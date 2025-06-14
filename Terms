@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Termo de Uso - ex.financial</title>
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome (for Icons) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" xintegrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Alpine.js for interactivity -->
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #000000;
+            color: #E0E0E0;
+        }
+        .prose-invert a {
+            color: #38bdf8; /* sky-400 */
+        }
+        .prose-invert a:hover {
+            color: #7dd3fc; /* sky-300 */
+        }
+    </style>
+</head>
+<body class="antialiased" x-data="{ openMenu: false }">
+
+    <!-- Header -->
+    <header class="bg-black/80 backdrop-blur-lg fixed w-full z-40">
+        <div class="container mx-auto px-4 sm:px-6">
+            <div class="flex items-center justify-between h-20">
+                <a href="index.html" class="text-2xl font-bold text-white">ex.<span class="text-sky-400">financial</span></a>
+                
+                <nav class="hidden lg:flex items-center space-x-10">
+                    <a href="index.html#exchange" class="text-sm font-medium hover:text-sky-400 transition-colors">Exchange</a>
+                    <a href="index.html#how-it-works" class="text-sm font-medium hover:text-sky-400 transition-colors">How It Works</a>
+                    <a href="index.html#security" class="text-sm font-medium hover:text-sky-400 transition-colors">Security</a>
+                </nav>
+
+                <div class="flex items-center">
+                    <a href="https://wa.me/5599981699999?text=Hello,%20I'd%20like%20to%20know%20more%20about%20your%20financial%20solutions." target="_blank" class="hidden sm:inline-block bg-white text-black font-bold py-2.5 px-6 rounded-lg hover:bg-gray-200 transition-all duration-300">
+                        Contact Us
+                    </a>
+                    <button @click="openMenu = true" class="lg:hidden ml-4 text-white focus:outline-none z-50">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Menu Overlay -->
+    <div x-show="openMenu" x-cloak
+         x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+         x-transition:leave="transition ease-in duration-300" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
+         class="fixed inset-0 bg-black/95 backdrop-blur-lg z-50 flex flex-col items-center justify-center">
+        <button @click="openMenu = false" class="absolute top-7 right-5 text-white focus:outline-none">
+            <i class="fas fa-times text-3xl"></i>
+        </button>
+        <nav class="flex flex-col items-center space-y-8">
+            <a @click="openMenu = false" href="index.html#exchange" class="text-2xl font-medium text-slate-300 hover:text-sky-400">Exchange</a>
+            <a @click="openMenu = false" href="index.html#how-it-works" class="text-2xl font-medium text-slate-300 hover:text-sky-400">How It Works</a>
+            <a @click="openMenu = false" href="index.html#security" class="text-2xl font-medium text-slate-300 hover:text-sky-400">Security</a>
+            <a @click="openMenu = false" href="https://wa.me/5599981699999?text=Hello,%20I'd%20like%20to%20know%20more%20about%20your%20financial%20solutions." target="_blank" class="mt-8 bg-white text-black font-bold py-3 px-10 rounded-lg">
+                Contact Us
+            </a>
+        </nav>
+    </div>
+
+    <main class="pt-20">
+        <div class="container mx-auto px-4 sm:px-6 py-16 sm:py-24 max-w-4xl">
+            <a href="index.html" class="text-sky-400 hover:text-sky-500 mb-8 inline-block">&larr; Voltar para a Home</a>
+            <h1 class="text-4xl font-extrabold text-white mb-8">Termo de Uso</h1>
+            <div class="prose prose-invert prose-lg max-w-none text-slate-300 space-y-6">
+                <p>Este Termo de Uso, incluindo a <strong>Política de Privacidade e Proteção de Dados Pessoais</strong>, aqui incorporadas, regulam o acesso e uso da Plataforma, regula a utilização dos serviços oferecidos pela empresa <strong>Ex.financial Ltda</strong>, CNPJ: 54.041.201/0001-66, localizada na Sala 1416 - Torre 2, CEP 60811-341, e-mail: info@ex.financial ("Empresa"), através de seu website e demais canais de comunicação.</p>
+                <p>O respectivo contrato de custódia e troca de criptomoedas firmado entre o parceiro Cripto (“Parceiro Cripto”) e o Usuário, que estabelece o recebimento, custódia, uso, transferência, resgate, compra e venda, um criptoativo digital.</p>
+                <p>Ao utilizar os serviços da Empresa, você ("Usuário") concorda com os termos e condições estabelecidos neste documento.</p>
+
+                <ol class="list-decimal space-y-4 pl-5">
+                    <li>
+                        <strong>Serviços Oferecidos:</strong> A Empresa oferece serviços de câmbio de criptomoedas e troca por PIX, dinheiro e outras formas de pagamento, conforme disponibilidade e política da Empresa.
+                    </li>
+                    <li>
+                        <strong>Cadastro e Segurança:</strong> O Usuário deverá fornecer informações precisas e atualizadas durante o processo de cadastro. O Usuário é responsável por manter a confidencialidade de suas credenciais de acesso e por todas as atividades realizadas em sua conta.
+                    </li>
+                    <li>
+                        <strong>Uso Adequado:</strong> O Usuário concorda em utilizar os serviços da Empresa de acordo com todas as leis e regulamentos aplicáveis. O uso dos serviços para atividades ilegais ou fraudulentas não será tolerado.
+                    </li>
+                    <li>
+                        <strong>Riscos:</strong> O câmbio de criptomoedas e outras transações financeiras envolvem riscos. A Empresa não se responsabiliza por perdas financeiras ou danos decorrentes do uso de seus serviços. Os membros (definidos abaixo) reconhecem e aceitam que o uso de criptoativos e de soluções, redes e protocolos pautados em blockchain podem envolver certos riscos. Os membros reconhecem e aceitam que o preço de mercado pode variar de tempos em tempos e que a Ex.financial não assume nenhuma obrigação em relação ao preço de mercado. Adicionalmente, os membros reconhecem e aceitam que a Ex.financial não é e nem pretende que seja, uma oportunidade de investimento de qualquer natureza e que isso não deve ser interpretado desta forma. A MCN não é e não deve ser tratada como um “security” em nenhuma jurisdição.
+                    </li>
+                     <li>
+                        <strong>Disponibilidade:</strong> A Empresa envidará esforços para garantir a disponibilidade contínua de seus serviços, porém não pode garantir que os mesmos estarão livres de interrupções ou falhas técnicas.
+                    </li>
+                    <li>
+                        <strong>Privacidade:</strong> A Empresa respeita a privacidade dos usuários e se compromete a proteger as informações pessoais fornecidas. Consulte nossa <a href="privacy.html" class="hover:underline">Política de Privacidade</a> para mais informações sobre como tratamos seus dados.
+                    </li>
+                    <li>
+                        <strong>Alterações no Termo:</strong> A Empresa se reserva o direito de modificar este Termo a qualquer momento, mediante aviso prévio aos Usuários. O uso continuado dos serviços após a entrada em vigor das alterações constituirá aceitação dos novos termos.
+                    </li>
+                    <li>
+                        <strong>Rescisão:</strong> A Empresa pode rescindir ou suspender a conta de qualquer Usuário que viole este Termo ou que, a critério da Empresa, represente uma ameaça à segurança ou integridade de seus serviços.
+                    </li>
+                    <li>
+                        <strong>Legislação Aplicável:</strong> Este Termo será regido e interpretado de acordo com as leis da República Federativa do Brasil. Quaisquer disputas decorrentes deste Termo serão submetidas à jurisdição exclusiva dos tribunais competentes da cidade de Fortaleza, Ceará.
+                    </li>
+                </ol>
+                
+                <p>Ao utilizar os serviços da Empresa, o Usuário declara ter lido, compreendido e concordado com os termos e condições deste Termo de Uso e Política de Privacidade.</p>
+                <p><strong>Data de entrada em vigor:</strong> 14 de Junho de 2024.</p>
+                <p>Para quaisquer dúvidas ou esclarecimentos, entre em contato conosco através do e-mail <a href="mailto:info@ex.financial" class="hover:underline">info@ex.financial</a>.</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-800">
+        <div class="container mx-auto px-4 sm:px-6 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="col-span-1 lg:col-span-2">
+                    <h3 class="text-xl font-bold text-white">ex.<span class="text-sky-400">financial</span></h3>
+                    <p class="text-sm mt-2 text-slate-400 max-w-xs">Ex.financial Ltda<br>CNPJ: 54.041.201/0001-66</p>
+                </div>
+                 <div>
+                    <h4 class="font-semibold text-white tracking-wider">Company</h4>
+                    <ul class="mt-4 space-y-2 text-sm text-slate-400">
+                        <li><a href="#" class="hover:text-sky-400">About Us</a></li>
+                        <li><a href="terms.html" class="hover:text-sky-400">Terms of Service</a></li>
+                        <li><a href="privacy.html" class="hover:text-sky-400">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-white tracking-wider">Contact</h4>
+                     <ul class="mt-4 space-y-2 text-sm text-slate-400">
+                         <li><a href="mailto:info@ex.financial" class="hover:text-sky-400 flex items-center"><i class="fas fa-envelope fa-fw mr-2"></i><span>info@ex.financial</span></a></li>
+                        <li><a href="https://wa.me/5599981699999" target="_blank" class="hover:text-sky-400 flex items-center"><i class="fab fa-whatsapp fa-fw mr-2"></i><span>+55 99 98169-9999</span></a></li>
+                        <li><a href="https://t.me/exfinancial" target="_blank" class="hover:text-sky-400 flex items-center"><i class="fab fa-telegram fa-fw mr-2"></i><span>@exfinancial</span></a></li>
+                        <li>
+                            <div class="flex space-x-4 mt-4">
+                                <a href="https://www.instagram.com/ex.financial?igsh=cDVqankwM2dnOGh2&utm_source=qr" target="_blank" class="hover:text-sky-400"><i class="fab fa-instagram text-xl"></i></a>
+                                <a href="#" class="hover:text-sky-400"><i class="fab fa-twitter text-xl"></i></a>
+                                <a href="#" class="hover:text-sky-400"><i class="fab fa-linkedin text-xl"></i></a>
+                            </div>
+                        </li>
+                     </ul>
+                </div>
+            </div>
+             <div class="mt-12 border-t border-slate-800 pt-8 text-sm text-slate-500">
+                <p><strong>Address:</strong> SALA 1416 Av. Washington Soares, 3663 15º andar - Torre 2 - WSTC - Edson Queiroz, Fortaleza - CE, 60811-341</p>
+                <p class="mt-4">&copy; 2025 Ex.financial Ltda. All rights reserved.</p>
+                <p class="mt-2">This website is for informational purposes and does not constitute a financial institution.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- This script enables the typography plugin for prose styling -->
+    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+
+</body>
+</html>
