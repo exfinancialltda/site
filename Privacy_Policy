@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Política de Privacidade - ex.financial</title>
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome (for Icons) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" xintegrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Alpine.js for interactivity -->
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #000000;
+            color: #E0E0E0;
+        }
+        .prose-invert a {
+            color: #38bdf8; /* sky-400 */
+        }
+        .prose-invert a:hover {
+            color: #7dd3fc; /* sky-300 */
+        }
+    </style>
+</head>
+<body class="antialiased" x-data="{ openMenu: false }">
+
+    <!-- Header -->
+    <header class="bg-black/80 backdrop-blur-lg fixed w-full z-40">
+        <div class="container mx-auto px-4 sm:px-6">
+            <div class="flex items-center justify-between h-20">
+                <a href="index.html" class="text-2xl font-bold text-white">ex.<span class="text-sky-400">financial</span></a>
+                
+                <nav class="hidden lg:flex items-center space-x-10">
+                    <a href="index.html#exchange" class="text-sm font-medium hover:text-sky-400 transition-colors">Exchange</a>
+                    <a href="index.html#how-it-works" class="text-sm font-medium hover:text-sky-400 transition-colors">How It Works</a>
+                    <a href="index.html#security" class="text-sm font-medium hover:text-sky-400 transition-colors">Security</a>
+                </nav>
+
+                <div class="flex items-center">
+                    <a href="https://wa.me/5599981699999?text=Hello,%20I'd%20like%20to%20know%20more%20about%20your%20financial%20solutions." target="_blank" class="hidden sm:inline-block bg-white text-black font-bold py-2.5 px-6 rounded-lg hover:bg-gray-200 transition-all duration-300">
+                        Contact Us
+                    </a>
+                    <button @click="openMenu = true" class="lg:hidden ml-4 text-white focus:outline-none z-50">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Menu Overlay -->
+    <div x-show="openMenu" x-cloak
+         x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+         x-transition:leave="transition ease-in duration-300" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
+         class="fixed inset-0 bg-black/95 backdrop-blur-lg z-50 flex flex-col items-center justify-center">
+        <button @click="openMenu = false" class="absolute top-7 right-5 text-white focus:outline-none">
+            <i class="fas fa-times text-3xl"></i>
+        </button>
+        <nav class="flex flex-col items-center space-y-8">
+            <a @click="openMenu = false" href="index.html#exchange" class="text-2xl font-medium text-slate-300 hover:text-sky-400">Exchange</a>
+            <a @click="openMenu = false" href="index.html#how-it-works" class="text-2xl font-medium text-slate-300 hover:text-sky-400">How It Works</a>
+            <a @click="openMenu = false" href="index.html#security" class="text-2xl font-medium text-slate-300 hover:text-sky-400">Security</a>
+            <a @click="openMenu = false" href="https://wa.me/5599981699999?text=Hello,%20I'd%20like%20to%20know%20more%20about%20your%20financial%20solutions." target="_blank" class="mt-8 bg-white text-black font-bold py-3 px-10 rounded-lg">
+                Contact Us
+            </a>
+        </nav>
+    </div>
+
+    <main class="pt-20">
+        <div class="container mx-auto px-4 sm:px-6 py-16 sm:py-24 max-w-4xl">
+            <h1 class="text-4xl font-extrabold text-white mb-8">Política de Privacidade</h1>
+            <div class="prose prose-invert prose-lg max-w-none text-slate-300 space-y-6">
+                <p>A empresa <strong>Ex.financial Ltda</strong>, CNPJ: 54.041.201/0001-66, localizada na Sala 1416 - Torre 2, CEP 60811-341, e-mail: info@ex.financial, compromete-se em proteger a privacidade e os dados pessoais dos usuários ("Usuários") de seus serviços de câmbio de criptomoedas e troca por PIX, dinheiro e outras formas de pagamento.</p>
+                
+                <ol class="list-decimal space-y-4">
+                    <li>
+                        <strong>Coleta de Informações:</strong> A Empresa poderá coletar informações pessoais dos Usuários durante o processo de cadastro e utilização de seus serviços. Essas informações podem incluir, mas não estão limitadas a: nome, endereço, e-mail, número de telefone, informações financeiras e dados de transações.
+                    </li>
+                    <li>
+                        <strong>Uso das Informações:</strong> As informações pessoais dos Usuários serão utilizadas pela Empresa para a prestação dos serviços contratados, incluindo processamento de transações, comunicação com os Usuários, prevenção de fraudes e cumprimento de obrigações legais.
+                    </li>
+                     <li>
+                        <strong>Compartilhamento de Informações:</strong> A Empresa não compartilhará as informações pessoais dos Usuários com terceiros, exceto nos seguintes casos:
+                        <ul class="list-disc pl-6 mt-2 space-y-1">
+                            <li>Quando necessário para a prestação dos serviços contratados;</li>
+                            <li>Em cumprimento de obrigações legais;</li>
+                            <li>Com o consentimento expresso do Usuário.</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong>Segurança dos Dados:</strong> A Empresa adota medidas de segurança adequadas para proteger as informações pessoais dos Usuários contra acesso não autorizado, divulgação ou destruição. No entanto, é importante ressaltar que nenhum método de transmissão pela internet ou armazenamento eletrônico é 100% seguro.
+                    </li>
+                     <li>
+                        <strong>Cookies e Tecnologias Semelhantes:</strong> A Empresa poderá utilizar cookies e outras tecnologias de rastreamento para melhorar a experiência de navegação dos Usuários em seu website. Os Usuários podem controlar o uso de cookies através das configurações de seus navegadores.
+                    </li>
+                    <li>
+                        <strong>Leis do Brasil:</strong> Esta Política de Privacidade está sujeita às leis da República Federativa do Brasil. Quaisquer questões relacionadas à privacidade dos Usuários serão regidas e interpretadas de acordo com a legislação brasileira.
+                    </li>
+                    <li>
+                        <strong>Atualização de Informações:</strong> Os Usuários têm o direito de acessar, corrigir ou excluir suas informações pessoais a qualquer momento. Para atualizar suas informações ou exercer outros direitos de privacidade, os Usuários podem entrar em contato com a Empresa através do e-mail: info@ex.financial.
+                    </li>
+                    <li>
+                        <strong>Menores de Idade:</strong> Os serviços da Empresa não são direcionados a menores de idade. A Empresa não coleta intencionalmente informações pessoais de menores sem o consentimento dos pais ou responsáveis legais.
+                    </li>
+                     <li>
+                        <strong>Alterações na Política de Privacidade:</strong> A Empresa reserva-se o direito de atualizar ou modificar esta Política de Privacidade a qualquer momento, mediante aviso prévio aos Usuários. O uso continuado dos serviços após a entrada em vigor das alterações constituirá aceitação das novas políticas.
+                    </li>
+                    <li>
+                        <strong>Contato:</strong> Para quaisquer dúvidas ou esclarecimentos sobre esta Política de Privacidade, os Usuários podem entrar em contato com a Empresa através do e-mail: info@ex.financial.
+                    </li>
+                </ol>
+                
+                <p>Ao utilizar os serviços da Empresa, os Usuários concordam com os termos e condições desta Política de Privacidade.</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-800">
+        <div class="container mx-auto px-4 sm:px-6 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="col-span-1 lg:col-span-2">
+                    <h3 class="text-xl font-bold text-white">ex.<span class="text-sky-400">financial</span></h3>
+                    <p class="text-sm mt-2 text-slate-400 max-w-xs">Ex.financial Ltda<br>CNPJ: 54.041.201/0001-66</p>
+                </div>
+                 <div>
+                    <h4 class="font-semibold text-white tracking-wider">Company</h4>
+                    <ul class="mt-4 space-y-2 text-sm text-slate-400">
+                        <li><a href="#" class="hover:text-sky-400">About Us</a></li>
+                        <li><a href="terms.html" class="hover:text-sky-400">Terms of Service</a></li>
+                        <li><a href="privacy.html" class="hover:text-sky-400">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-white tracking-wider">Contact</h4>
+                     <ul class="mt-4 space-y-2 text-sm text-slate-400">
+                         <li><a href="mailto:info@ex.financial" class="hover:text-sky-400 flex items-center"><i class="fas fa-envelope fa-fw mr-2"></i><span>info@ex.financial</span></a></li>
+                        <li><a href="https://wa.me/5599981699999" target="_blank" class="hover:text-sky-400 flex items-center"><i class="fab fa-whatsapp fa-fw mr-2"></i><span>+55 99 98169-9999</span></a></li>
+                        <li><a href="https://t.me/exfinancial" target="_blank" class="hover:text-sky-400 flex items-center"><i class="fab fa-telegram fa-fw mr-2"></i><span>@exfinancial</span></a></li>
+                        <li>
+                            <div class="flex space-x-4 mt-4">
+                                <a href="https://www.instagram.com/ex.financial?igsh=cDVqankwM2dnOGh2&utm_source=qr" target="_blank" class="hover:text-sky-400"><i class="fab fa-instagram text-xl"></i></a>
+                                <a href="#" class="hover:text-sky-400"><i class="fab fa-twitter text-xl"></i></a>
+                                <a href="#" class="hover:text-sky-400"><i class="fab fa-linkedin text-xl"></i></a>
+                            </div>
+                        </li>
+                     </ul>
+                </div>
+            </div>
+             <div class="mt-12 border-t border-slate-800 pt-8 text-sm text-slate-500">
+                <p><strong>Address:</strong> SALA 1416 Av. Washington Soares, 3663 15º andar - Torre 2 - WSTC - Edson Queiroz, Fortaleza - CE, 60811-341</p>
+                <p class="mt-4">&copy; 2025 Ex.financial Ltda. All rights reserved.</p>
+                <p class="mt-2">This website is for informational purposes and does not constitute a financial institution.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- This script enables the typography plugin for prose styling -->
+    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+
+</body>
+</html>
