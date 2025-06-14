@@ -269,8 +269,8 @@
                     <h4 class="font-semibold text-white tracking-wider">Company</h4>
                     <ul class="mt-4 space-y-2 text-sm text-slate-400">
                         <li><a href="#" class="hover:text-sky-400">About Us</a></li>
-                        <li><a href="#" class="hover:text-sky-400">Terms of Service</a></li>
-                        <li><a href="#" class="hover:text-sky-400">Privacy Policy</a></li>
+                        <li><a href="https://ex.financial/Terms_of_Service" target="_blank" class="hover:text-sky-400">Terms of Service</a></li>
+                        <li><a href="https://ex.financial/Privacy_Policy" target="_blank" class="hover:text-sky-400">Privacy Policy</a></li>
                     </ul>
                 </div>
                 <div>
@@ -401,7 +401,6 @@
                 if (platform === 'whatsapp') {
                     url = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
                 } else if (platform === 'telegram') {
-                    // Telegram link for sharing text. It will open the app and let the user choose a chat.
                     url = `https://t.me/share/url?url=ex.financial&text=${encodedMessage}`;
                 }
 
