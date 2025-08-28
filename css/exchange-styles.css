@@ -1,19 +1,18 @@
-/* Современные стили для сайта обмена валют */
+/* Точная копия дизайна top-exchange.com с нашим виджетом */
 :root {
-    --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-    --success-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-    --warning-gradient: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
-    --dark-gradient: linear-gradient(135deg, #0c0c0c 0%, #1a1a1a 100%);
+    --primary-color: #1a1a1a;
+    --secondary-color: #2d2d2d;
+    --accent-color: #00d4aa;
+    --accent-hover: #00b894;
+    --text-primary: #ffffff;
+    --text-secondary: #b0b0b0;
+    --text-muted: #808080;
+    --border-color: #404040;
+    --success-color: #00d4aa;
+    --warning-color: #ff6b6b;
+    --card-bg: rgba(45, 45, 45, 0.8);
     --glass-bg: rgba(255, 255, 255, 0.05);
     --glass-border: rgba(255, 255, 255, 0.1);
-    --card-bg: rgba(17, 24, 39, 0.8);
-    --text-primary: #ffffff;
-    --text-secondary: #E5E7EB;
-    --text-muted: #9CA3AF;
-    --accent-blue: #3B82F6;
-    --accent-green: #10B981;
-    --accent-purple: #8B5CF6;
 }
 
 * {
@@ -24,61 +23,23 @@
 
 body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    background: var(--dark-gradient);
+    background: var(--primary-color);
     color: var(--text-primary);
     overflow-x: hidden;
     line-height: 1.6;
 }
 
-/* Селектор языка */
-.language-selector {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    z-index: 1000;
-    background: var(--glass-bg);
-    backdrop-filter: blur(20px);
-    border: 1px solid var(--glass-border);
-    border-radius: 12px;
-    padding: 8px;
-    display: flex;
-    gap: 4px;
-}
-
-.lang-selector {
-    background: transparent;
-    border: none;
-    color: var(--text-secondary);
-    padding: 8px 12px;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-size: 14px;
-    font-weight: 500;
-}
-
-.lang-selector:hover {
-    background: rgba(255, 255, 255, 0.1);
-    color: var(--text-primary);
-}
-
-.lang-selector.active {
-    background: var(--primary-gradient);
-    color: var(--text-primary);
-    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
-}
-
-/* Header */
+/* Header - точная копия top-exchange.com */
 .header {
-    background: var(--glass-bg);
-    backdrop-filter: blur(20px);
-    border-bottom: 1px solid var(--glass-border);
+    background: var(--primary-color);
+    border-bottom: 1px solid var(--border-color);
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     z-index: 100;
-    padding: 1rem 0;
+    padding: 0;
+    height: 80px;
 }
 
 .header-content {
@@ -88,18 +49,80 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    height: 100%;
 }
 
 .logo {
-    font-size: 1.5rem;
+    font-size: 1.75rem;
     font-weight: 700;
-    background: var(--primary-gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: var(--accent-color);
+    text-decoration: none;
 }
 
-/* Hero Section */
+.logo:hover {
+    color: var(--accent-hover);
+}
+
+.header nav {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+
+.header nav a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    font-size: 0.95rem;
+}
+
+.header nav a:hover {
+    color: var(--text-primary);
+}
+
+.header nav a.active {
+    color: var(--accent-color);
+}
+
+/* Language Selector - как на top-exchange.com */
+.language-selector {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    background: var(--secondary-color);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 4px;
+    display: flex;
+    gap: 2px;
+}
+
+.lang-selector {
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    padding: 6px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 13px;
+    font-weight: 500;
+    min-width: 35px;
+}
+
+.lang-selector:hover {
+    background: var(--glass-bg);
+    color: var(--text-primary);
+}
+
+.lang-selector.active {
+    background: var(--accent-color);
+    color: var(--primary-color);
+}
+
+/* Hero Section - точная копия top-exchange.com */
 .hero {
     min-height: 100vh;
     display: flex;
@@ -107,23 +130,32 @@ body {
     justify-content: center;
     text-align: center;
     padding: 120px 2rem 2rem;
-    background: radial-gradient(ellipse at top, rgba(99, 102, 241, 0.3), transparent 70%),
-                radial-gradient(ellipse at bottom right, rgba(244, 63, 94, 0.2), transparent 70%),
-                var(--dark-gradient);
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+    position: relative;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23404040' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;
 }
 
 .hero-content {
     max-width: 800px;
+    position: relative;
+    z-index: 2;
 }
 
 .hero-title {
     font-size: 3.5rem;
     font-weight: 800;
     margin-bottom: 1.5rem;
-    background: var(--primary-gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: var(--text-primary);
+    line-height: 1.2;
 }
 
 .hero-subtitle {
@@ -135,7 +167,7 @@ body {
     margin-right: auto;
 }
 
-/* Exchange Section */
+/* Exchange Section - точная копия top-exchange.com */
 .exchange-section {
     padding: 4rem 2rem;
     max-width: 1200px;
@@ -147,10 +179,7 @@ body {
     font-size: 2.5rem;
     font-weight: 700;
     margin-bottom: 1rem;
-    background: var(--primary-gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: var(--text-primary);
 }
 
 .section-subtitle {
@@ -163,34 +192,24 @@ body {
     margin-right: auto;
 }
 
-/* Exchange Card */
+/* Exchange Card - точная копия top-exchange.com */
 .exchange-card {
-    background: var(--card-bg);
-    backdrop-filter: blur(20px);
-    border: 1px solid var(--glass-border);
-    border-radius: 24px;
-    padding: 2rem;
-    max-width: 600px;
+    background: var(--secondary-color);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 2.5rem;
+    max-width: 700px;
     margin: 0 auto;
     position: relative;
-    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
 }
 
-.exchange-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: var(--primary-gradient);
-}
-
-/* Exchange Form */
+/* Exchange Form - как на top-exchange.com */
 .exchange-form {
     display: flex;
     flex-direction: column;
     gap: 2rem;
+    margin-bottom: 2rem;
 }
 
 .currency-input-group {
@@ -202,15 +221,17 @@ body {
     font-size: 0.875rem;
     font-weight: 600;
     color: var(--text-secondary);
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 .currency-input {
     width: 100%;
-    background: var(--glass-bg);
-    border: 1px solid var(--glass-border);
-    border-radius: 16px;
-    padding: 1rem 1rem 1rem 4rem;
+    background: var(--primary-color);
+    border: 2px solid var(--border-color);
+    border-radius: 12px;
+    padding: 1.25rem 1rem 1.25rem 4rem;
     font-size: 1.5rem;
     font-weight: 600;
     color: var(--text-primary);
@@ -219,8 +240,12 @@ body {
 }
 
 .currency-input:focus {
-    border-color: var(--accent-blue);
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px rgba(0, 212, 170, 0.1);
+}
+
+.currency-input::placeholder {
+    color: var(--text-muted);
 }
 
 .currency-icon {
@@ -228,68 +253,53 @@ body {
     left: 1rem;
     top: 50%;
     transform: translateY(-50%);
-    width: 2rem;
-    height: 2rem;
+    width: 2.5rem;
+    height: 2.5rem;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     font-weight: 700;
-    font-size: 0.875rem;
+    font-size: 1rem;
+    color: white;
 }
 
 .currency-icon.usdt {
-    background: var(--success-gradient);
-    color: white;
+    background: var(--success-color);
 }
 
 .currency-icon.brl {
-    background: var(--warning-gradient);
-    color: white;
+    background: var(--warning-color);
 }
 
-/* Exchange Button */
+/* Exchange Button - как на top-exchange.com */
 .exchange-button {
-    background: var(--primary-gradient);
+    background: var(--accent-color);
     border: none;
-    border-radius: 16px;
-    padding: 1rem 2rem;
+    border-radius: 12px;
+    padding: 1.25rem 2rem;
     font-size: 1.125rem;
     font-weight: 600;
-    color: white;
+    color: var(--primary-color);
     cursor: pointer;
     transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 .exchange-button:hover {
+    background: var(--accent-hover);
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+    box-shadow: 0 8px 25px rgba(0, 212, 170, 0.4);
 }
 
-.exchange-button::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-    transition: left 0.5s;
-}
-
-.exchange-button:hover::before {
-    left: 100%;
-}
-
-/* Crypto Widget Container */
+/* Crypto Widget Container - стилизация под top-exchange.com */
 .crypto-widget-container {
     margin-top: 2rem;
-    padding: 1.5rem;
-    background: var(--glass-bg);
-    border-radius: 16px;
-    border: 1px solid var(--glass-border);
+    padding: 2rem;
+    background: var(--primary-color);
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
 }
 
 .widget-title {
@@ -297,43 +307,57 @@ body {
     font-size: 1.25rem;
     font-weight: 600;
     color: var(--text-secondary);
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
-/* Features Grid */
+/* Features Grid - как на top-exchange.com */
 .features-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     gap: 2rem;
     margin-top: 4rem;
 }
 
 .feature-card {
-    background: var(--card-bg);
-    backdrop-filter: blur(20px);
-    border: 1px solid var(--glass-border);
-    border-radius: 20px;
-    padding: 2rem;
+    background: var(--secondary-color);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 2.5rem;
     text-align: center;
     transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.feature-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--accent-color);
 }
 
 .feature-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    border-color: var(--accent-color);
 }
 
 .feature-icon {
     width: 4rem;
     height: 4rem;
-    background: var(--primary-gradient);
+    background: var(--accent-color);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 0 auto 1.5rem;
     font-size: 1.5rem;
-    color: white;
+    color: var(--primary-color);
 }
 
 .feature-title {
@@ -346,6 +370,50 @@ body {
 .feature-description {
     color: var(--text-secondary);
     line-height: 1.6;
+}
+
+/* Security Section */
+.security-section {
+    background: var(--primary-color);
+    padding: 4rem 2rem;
+    margin-top: 2rem;
+}
+
+/* Contact Section */
+.contact-section {
+    background: var(--secondary-color);
+    padding: 4rem 2rem;
+    text-align: center;
+}
+
+.contact-button {
+    background: var(--accent-color);
+    color: var(--primary-color);
+    padding: 1rem 2rem;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.contact-button:hover {
+    background: var(--accent-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 212, 170, 0.4);
+}
+
+/* Footer */
+.footer {
+    background: var(--primary-color);
+    border-top: 1px solid var(--border-color);
+    padding: 2rem;
+    text-align: center;
+    color: var(--text-muted);
 }
 
 /* Responsive Design */
@@ -361,7 +429,7 @@ body {
     
     .currency-input {
         font-size: 1.25rem;
-        padding: 0.875rem 0.875rem 0.875rem 3.5rem;
+        padding: 1rem 1rem 1rem 3.5rem;
     }
     
     .language-selector {
@@ -372,6 +440,16 @@ body {
     .lang-selector {
         padding: 6px 8px;
         font-size: 12px;
+        min-width: 30px;
+    }
+    
+    .header nav {
+        gap: 1rem;
+    }
+    
+    .features-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
     }
 }
 
@@ -405,7 +483,7 @@ body {
     width: 20px;
     height: 20px;
     margin: -10px 0 0 -10px;
-    border: 2px solid var(--accent-blue);
+    border: 2px solid var(--accent-color);
     border-top: 2px solid transparent;
     border-radius: 50%;
     animation: spin 1s linear infinite;
