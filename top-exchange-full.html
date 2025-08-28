@@ -188,6 +188,16 @@
       background: #f9f9f9;
     }
 
+    .currency-item.active {
+      background: #e8f5e8;
+      border-left: 4px solid #2ecc71;
+    }
+
+    .currency-item.active .currency-name {
+      color: #2ecc71;
+      font-weight: 600;
+    }
+
     .currency-icon {
       width: 32px;
       height: 32px;
@@ -354,39 +364,39 @@
     <div class="card">
       <h3>SELECT WHAT YOU SEND</h3>
       <ul class="currency-list">
-        <li class="currency-item">
+        <li class="currency-item" data-currency="USDT (TRC-20)" data-type="from">
           <div class="currency-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="currentColor"/></svg></div>
           <div class="currency-name">USDT (TRC-20)</div>
         </li>
-        <li class="currency-item">
+        <li class="currency-item" data-currency="Bitcoin" data-type="from">
           <div class="currency-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="currentColor"/></svg></div>
           <div class="currency-name">Bitcoin</div>
         </li>
-        <li class="currency-item">
+        <li class="currency-item" data-currency="Ethereum ETH" data-type="from">
           <div class="currency-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="currentColor"/></svg></div>
           <div class="currency-name">Ethereum ETH</div>
         </li>
-        <li class="currency-item">
+        <li class="currency-item" data-currency="Litecoin" data-type="from">
           <div class="currency-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="currentColor"/></svg></div>
           <div class="currency-name">Litecoin</div>
         </li>
-        <li class="currency-item">
+        <li class="currency-item" data-currency="MoneyGo USD" data-type="from">
           <div class="currency-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="currentColor"/></svg></div>
           <div class="currency-name">MoneyGo USD</div>
         </li>
-        <li class="currency-item">
+        <li class="currency-item" data-currency="Tron TRX" data-type="from">
           <div class="currency-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="currentColor"/></svg></div>
           <div class="currency-name">Tron TRX</div>
         </li>
-        <li class="currency-item">
+        <li class="currency-item" data-currency="USDT (ERC-20)" data-type="from">
           <div class="currency-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="currentColor"/></svg></div>
           <div class="currency-name">USDT (ERC-20)</div>
         </li>
-        <li class="currency-item">
+        <li class="currency-item" data-currency="Bsc BNB" data-type="from">
           <div class="currency-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="currentColor"/></svg></div>
           <div class="currency-name">Bsc BNB</div>
         </li>
-        <li class="currency-item">
+        <li class="currency-item" data-currency="USDT (BEP-20)" data-type="from">
           <div class="currency-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="currentColor"/></svg></div>
           <div class="currency-name">USDT (BEP-20)</div>
         </li>
@@ -397,39 +407,39 @@
     <div class="card">
       <h3>SELECT WHAT YOU GET</h3>
       <ul class="currency-list">
-        <li class="currency-item">
+        <li class="currency-item" data-currency="USDT (TRC-20)" data-type="to">
           <div class="currency-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="currentColor"/></svg></div>
           <div class="currency-name">USDT (TRC-20)</div>
         </li>
-        <li class="currency-item">
+        <li class="currency-item" data-currency="Bitcoin" data-type="to">
           <div class="currency-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="currentColor"/></svg></div>
           <div class="currency-name">Bitcoin</div>
         </li>
-        <li class="currency-item">
+        <li class="currency-item" data-currency="Ethereum ETH" data-type="to">
           <div class="currency-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="currentColor"/></svg></div>
           <div class="currency-name">Ethereum ETH</div>
         </li>
-        <li class="currency-item">
+        <li class="currency-item" data-currency="MoneyGo USD" data-type="to">
           <div class="currency-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="currentColor"/></svg></div>
           <div class="currency-name">MoneyGo USD</div>
         </li>
-        <li class="currency-item">
+        <li class="currency-item" data-currency="Tron TRX" data-type="to">
           <div class="currency-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="currentColor"/></svg></div>
           <div class="currency-name">Tron TRX</div>
         </li>
-        <li class="currency-item">
+        <li class="currency-item" data-currency="USDT (ERC-20)" data-type="to">
           <div class="currency-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="currentColor"/></svg></div>
           <div class="currency-name">USDT (ERC-20)</div>
         </li>
-        <li class="currency-item">
+        <li class="currency-item" data-currency="Bsc BNB" data-type="to">
           <div class="currency-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="currentColor"/></svg></div>
           <div class="currency-name">Bsc BNB</div>
         </li>
-        <li class="currency-item">
+        <li class="currency-item" data-currency="USDT (BEP-20)" data-type="to">
           <div class="currency-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="currentColor"/></svg></div>
           <div class="currency-name">USDT (BEP-20)</div>
         </li>
-        <li class="currency-item">
+        <li class="currency-item" data-currency="USDC (BEP-20)" data-type="to">
           <div class="currency-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="currentColor"/></svg></div>
           <div class="currency-name">USDC (BEP-20)</div>
         </li>
@@ -578,6 +588,44 @@
       if (fromAmount) {
         fromAmount.addEventListener('input', convertAmount);
       }
+
+      // Добавляем обработчики для кликов по валютам
+      const fromCurrencyItems = document.querySelectorAll('[data-type="from"]');
+      const toCurrencyItems = document.querySelectorAll('[data-type="to"]');
+
+      // Обработчики для валют отправления
+      fromCurrencyItems.forEach(item => {
+        item.addEventListener('click', function() {
+          // Убираем активное состояние у всех валют отправления
+          fromCurrencyItems.forEach(i => i.classList.remove('active'));
+          // Добавляем активное состояние к выбранной валюте
+          this.classList.add('active');
+          
+          // Обновляем select в форме
+          const currency = this.getAttribute('data-currency');
+          if (fromSelect) {
+            fromSelect.value = currency;
+            updateExchangeRate();
+          }
+        });
+      });
+
+      // Обработчики для валют получения
+      toCurrencyItems.forEach(item => {
+        item.addEventListener('click', function() {
+          // Убираем активное состояние у всех валют получения
+          toCurrencyItems.forEach(i => i.classList.remove('active'));
+          // Добавляем активное состояние к выбранной валюте
+          this.classList.add('active');
+          
+          // Обновляем select в форме
+          const currency = this.getAttribute('data-currency');
+          if (toSelect) {
+            toSelect.value = currency;
+            updateExchangeRate();
+          }
+        });
+      });
     });
   </script>
 
