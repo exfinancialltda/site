@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ex.financial | Widget Copy</title>
+    <meta name="description" content="Exact copy of the widget page with dark theme and controls">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        /* Точная копия дизайна виджета */
+        :root {
+            --primary-color: #0a0a0a;
+            --secondary-color: #1a1a1a;
+            --accent-color: #00d4aa;
+            --accent-hover: #00b894;
+            --text-primary: #ffffff;
+            --text-secondary: #cccccc;
+            --text-muted: #888888;
+            --border-color: #333333;
+            --success-color: #00d4aa;
+            --warning-color: #ff6b6b;
+            --card-bg: rgba(26, 26, 26, 0.95);
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--primary-color);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Основной контейнер виджета */
+        .widget-container {
+            background: var(--secondary-color);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 3rem;
+            max-width: 800px;
+            width: 100%;
+            margin: 2rem;
+            position: relative;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Заголовок виджета */
+        .widget-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .widget-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            letter-spacing: -0.5px;
+        }
+
+        .widget-subtitle {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            max-width: 500px;
+            margin: 0 auto;
+            font-weight: 400;
+        }
+
+        /* Форма обмена */
+        .exchange-form {
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .currency-input-group {
+            position: relative;
+        }
+
+        .currency-label {
+            display: block;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-bottom: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .currency-input {
+            width: 100%;
+            background: var(--primary-color);
+            border: 2px solid var(--border-color);
+            border-radius: 16px;
+            padding: 1.5rem 1rem 1.5rem 5rem;
+            font-size: 1.75rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .currency-input:focus {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 4px rgba(0, 212, 170, 0.1);
+        }
+
+        .currency-input::placeholder {
+            color: var(--text-muted);
+        }
+
+        .currency-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 3rem;
+            height: 3rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: white;
+        }
+
+        .currency-icon.usdt {
+            background: var(--success-color);
+        }
+
+        .currency-icon.brl {
+            background: var(--warning-color);
+        }
+
+        /* Кнопка обмена */
+        .exchange-button {
+            background: var(--accent-color);
+            border: none;
+            border-radius: 16px;
+            padding: 1.5rem 2.5rem;
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 1rem;
+        }
+
+        .exchange-button:hover {
+            background: var(--accent-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(0, 212, 170, 0.4);
+        }
+
+        /* Контейнер виджета */
+        .crypto-widget-container {
+            margin-top: 2.5rem;
+            padding: 2.5rem;
+            background: var(--primary-color);
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+        }
+
+        .widget-title-small {
+            text-align: center;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .widget-container {
+                padding: 2rem;
+                margin: 1rem;
+            }
+            
+            .widget-title {
+                font-size: 2rem;
+            }
+            
+            .currency-input {
+                font-size: 1.5rem;
+                padding: 1.25rem 1rem 1.25rem 4.5rem;
+            }
+            
+            .crypto-widget-container {
+                padding: 2rem;
+            }
+        }
+
+        /* Анимации */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.8s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <div class="widget-container fade-in-up">
+        <!-- Заголовок виджета -->
+        <div class="widget-header">
+            <h1 class="widget-title">Cryptocurrency Exchange</h1>
+            <p class="widget-subtitle">Premium rates with instant settlement</p>
+        </div>
+        
+        <!-- Форма обмена -->
+        <form class="exchange-form">
+            <!-- From Currency -->
+            <div class="currency-input-group">
+                <label class="currency-label">You Send</label>
+                <div class="currency-icon usdt">$</div>
+                <input type="number" class="currency-input" placeholder="0.00" min="0" step="0.01">
+            </div>
+
+            <!-- Exchange Icon -->
+            <div style="text-align: center; margin: 1rem 0;">
+                <i class="fas fa-exchange-alt" style="font-size: 1.5rem; color: #00d4aa;"></i>
+            </div>
+
+            <!-- To Currency -->
+            <div class="currency-input-group">
+                <label class="currency-label">You Receive</label>
+                <div class="currency-icon brl">R$</div>
+                <input type="number" class="currency-input" placeholder="0.00" readonly>
+            </div>
+
+            <!-- Execute Button -->
+            <button type="submit" class="exchange-button">Execute Exchange</button>
+        </form>
+
+        <!-- Контейнер виджета -->
+        <div class="crypto-widget-container">
+            <div class="widget-title-small">Live Rates</div>
+            
+            <!-- Виджет USDT/BRL с темной темой -->
+            <crypto-converter-widget
+                amount="1"
+                shadow="true"
+                symbol="false"
+                locale="en"
+                rounded="true"
+                quote="BRL"
+                base="USDT"
+                theme="dark"
+                decimal="4"
+                stat="false"
+                tax="-2.3"
+                background-color="#0a0a0a"
+            ></crypto-converter-widget>
+            
+            <!-- CSS для полного скрытия шестеренки и всех значков -->
+            <style>
+                /* Скрытие ВСЕХ ссылок и элементов currencyrate.today */
+                crypto-converter-widget a[href*="currencyrate.today"],
+                crypto-converter-widget a[href*="co-w.io"],
+                crypto-converter-widget a[href*="currencyrate"],
+                crypto-converter-widget a[href*="today"],
+                crypto-converter-widget a[href*="co-w"],
+                crypto-converter-widget a[href*=".io"],
+                crypto-converter-widget a[href*="github.com"],
+                crypto-converter-widget a[href*="dejurin"],
+                crypto-converter-widget a[href*="crypto-converter-widget"] {
+                    display: none !important;
+                }
+                
+                /* Скрытие всех ссылок вообще */
+                crypto-converter-widget a,
+                crypto-converter-widget a:hover,
+                crypto-converter-widget a:focus,
+                crypto-converter-widget a:active {
+                    display: none !important;
+                }
+                
+                /* Полное скрытие ВСЕХ элементов управления */
+                crypto-converter-widget [class*="header"],
+                crypto-converter-widget [class*="toolbar"],
+                crypto-converter-widget [class*="controls"],
+                crypto-converter-widget [class*="icons"],
+                crypto-converter-widget [class*="top-bar"],
+                crypto-converter-widget [class*="action-bar"],
+                crypto-converter-widget [class*="nav"],
+                crypto-converter-widget [class*="menu"],
+                crypto-converter-widget [class*="bar"],
+                crypto-converter-widget [class*="gear"],
+                crypto-converter-widget [class*="settings"],
+                crypto-converter-widget [class*="config"] {
+                    display: none !important;
+                }
+                
+                /* Скрытие ВСЕХ SVG иконок */
+                crypto-converter-widget svg,
+                crypto-converter-widget path,
+                crypto-converter-widget circle,
+                crypto-converter-widget rect {
+                    display: none !important;
+                }
+                
+                /* Скрытие ВСЕХ элементов с иконками */
+                crypto-converter-widget [class*="icon"],
+                crypto-converter-widget [class*="btn"],
+                crypto-converter-widget [class*="button"],
+                crypto-converter-widget [class*="control"],
+                crypto-converter-widget [class*="action"] {
+                    display: none !important;
+                }
+                
+                /* Скрытие ВСЕХ строк с элементами управления */
+                crypto-converter-widget > div:first-child,
+                crypto-converter-widget > div:first-child > *,
+                crypto-converter-widget > div:nth-child(1),
+                crypto-converter-widget > div:nth-child(2) {
+                    display: none !important;
+                }
+                
+                /* Скрытие элементов по высоте и размеру */
+                crypto-converter-widget [style*="height: 50px"],
+                crypto-converter-widget [style*="height: 40px"],
+                crypto-converter-widget [style*="height: 30px"],
+                crypto-converter-widget [style*="width: 50px"],
+                crypto-converter-widget [style*="width: 40px"],
+                crypto-converter-widget [style*="width: 30px"] {
+                    display: none !important;
+                }
+                
+                /* Скрытие всех элементов с определенными атрибутами */
+                crypto-converter-widget [data-*],
+                crypto-converter-widget [aria-*] {
+                    display: none !important;
+                }
+            </style>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <!-- Crypto Converter Widget Script -->
+    <script
+        src="https://cdn.jsdelivr.net/gh/dejurin/crypto-converter-widget@latest/dist/latest.min.js"
+        onload="console.log('Widget script loaded successfully')"
+        onerror="console.error('Failed to load widget script')"
+    ></script>
+
+    <script>
+        // Простая логика конвертации
+        document.addEventListener('DOMContentLoaded', function() {
+            const fromInput = document.querySelector('.currency-input');
+            const toInput = document.querySelectorAll('.currency-input')[1];
+            
+            // Примерный курс USDT/BRL (можно заменить на реальный API)
+            const exchangeRate = 5.35;
+            
+            fromInput.addEventListener('input', function() {
+                const amount = parseFloat(this.value) || 0;
+                const converted = amount * exchangeRate;
+                toInput.value = converted.toFixed(2);
+            });
+            
+            // Анимация появления элементов
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in-up');
+                    }
+                });
+            }, observerOptions);
+            
+            document.querySelectorAll('.widget-container').forEach(container => {
+                observer.observe(container);
+            });
+        });
+    </script>
+</body>
+</html>
