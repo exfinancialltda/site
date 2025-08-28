@@ -457,37 +457,7 @@
     <!-- Right Column -->
     <div class="card">
       <h3>ENTER DETAILS</h3>
-      <div class="form-group">
-        <label for="fromCurrency" class="form-label">From Currency</label>
-        <select id="fromCurrency" class="form-input">
-          <option value="">Select currency to send</option>
-          <option value="USDT (TRC-20)">USDT (TRC-20)</option>
-          <option value="Bitcoin">Bitcoin</option>
-          <option value="Ethereum ETH">Ethereum ETH</option>
-          <option value="Litecoin">Litecoin</option>
-          <option value="MoneyGo USD">MoneyGo USD</option>
-          <option value="Tron TRX">Tron TRX</option>
-          <option value="USDT (ERC-20)">USDT (ERC-20)</option>
-          <option value="Bsc BNB">Bsc BNB</option>
-          <option value="USDT (BEP-20)">USDT (BEP-20)</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="toCurrency" class="form-label">To Currency</label>
-        <select id="toCurrency" class="form-input">
-          <option value="">Select currency to receive</option>
-          <option value="BRL">BRL</option>
-          <option value="Bitcoin">Bitcoin</option>
-          <option value="Ethereum ETH">Ethereum ETH</option>
-          <option value="Litecoin">Litecoin</option>
-          <option value="MoneyGo USD">MoneyGo USD</option>
-          <option value="Tron TRX">Tron TRX</option>
-          <option value="USDT (ERC-20)">USDT (ERC-20)</option>
-          <option value="Bsc BNB">Bsc BNB</option>
-          <option value="USDT (BEP-20)">USDT (BEP-20)</option>
-          <option value="USDC (BEP-20)">USDC (BEP-20)</option>
-        </select>
-      </div>
+
       <div class="form-group">
         <label for="well" class="form-label">RATE</label>
         <input type="text" id="well" class="form-input" placeholder="Exchange rate will appear here" readonly>
@@ -553,44 +523,28 @@
 
     // Функция для обновления курса
     function updateExchangeRate() {
-      const fromSelect = document.getElementById('fromCurrency');
-      const toSelect = document.getElementById('toCurrency');
       const rateInput = document.getElementById('well');
-      
-      if (fromSelect.value && toSelect.value) {
-        const rate = getExchangeRate(fromSelect.value, toSelect.value);
-        if (rate) {
-          rateInput.value = rate.toFixed(6);
-        }
-      }
+      // Устанавливаем фиксированный курс USDT (TRC-20) к BRL
+      const rate = 5.35; // Примерный курс USDT к BRL
+      rateInput.value = rate.toFixed(4);
     }
 
     // Функция для конвертации суммы
     function convertAmount() {
-      const fromSelect = document.getElementById('fromCurrency');
-      const toSelect = document.getElementById('toCurrency');
       const fromAmount = document.getElementById('give');
       const toAmount = document.getElementById('receive');
       
-      if (fromSelect.value && toSelect.value && fromAmount.value) {
-        const rate = getExchangeRate(fromSelect.value, toSelect.value);
-        if (rate) {
-          const converted = parseFloat(fromAmount.value) * rate;
-          toAmount.value = converted.toFixed(6);
-        }
+      if (fromAmount.value) {
+        const rate = 5.35; // Фиксированный курс USDT (TRC-20) к BRL
+        const converted = parseFloat(fromAmount.value) * rate;
+        toAmount.value = converted.toFixed(2);
       }
     }
 
     // Инициализация при загрузке страницы
     document.addEventListener('DOMContentLoaded', function() {
-      // Добавляем обработчики событий для выбора валют
-      const fromSelect = document.getElementById('fromCurrency');
-      const toSelect = document.getElementById('toCurrency');
-      
-      if (fromSelect && toSelect) {
-        fromSelect.addEventListener('change', updateExchangeRate);
-        toSelect.addEventListener('change', updateExchangeRate);
-      }
+      // Устанавливаем курс при загрузке страницы
+      updateExchangeRate();
 
       // Добавляем обработчик для поля суммы
       const fromAmount = document.getElementById('give');
@@ -610,12 +564,8 @@
           // Добавляем активное состояние к выбранной валюте
           this.classList.add('active');
           
-          // Обновляем select в форме
-          const currency = this.getAttribute('data-currency');
-          if (fromSelect) {
-            fromSelect.value = currency;
-            updateExchangeRate();
-          }
+          // Обновляем курс
+          updateExchangeRate();
         });
       });
 
@@ -627,12 +577,8 @@
           // Добавляем активное состояние к выбранной валюте
           this.classList.add('active');
           
-          // Обновляем select в форме
-          const currency = this.getAttribute('data-currency');
-          if (toSelect) {
-            toSelect.value = currency;
-            updateExchangeRate();
-          }
+          // Обновляем курс
+          updateExchangeRate();
         });
       });
     });
