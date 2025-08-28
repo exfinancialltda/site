@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-translate="title">Ex.financial | Câmbio de Criptomoedas</title>
+    <meta name="description" content="Plataforma premium de câmbio de criptomoedas com taxas institucionais e liquidação instantânea">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="manifest" href="site.webmanifest">
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="css/exchange-styles.css">
+
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --premium-gradient: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            --dark-gradient: linear-gradient(135deg, #0c0c0c 0%, #1a1a1a 100%);
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--dark-gradient);
+            color: #E5E7EB;
+            overflow-x: hidden;
+        }
+
+        .sora-font {
+            font-family: 'Sora', sans-serif;
+        }
+
+        .hero-bg {
+            background: radial-gradient(ellipse at top, rgba(99, 102, 241, 0.3), transparent 70%),
+                       radial-gradient(ellipse at bottom right, rgba(244, 63, 94, 0.2), transparent 70%),
+                       radial-gradient(ellipse at bottom left, rgba(59, 130, 246, 0.2), transparent 70%),
+                       #000000;
+            position: relative;
+        }
+
+        .hero-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.03'%3E%3Ccircle cx='30' cy='30' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;
+        }
+
+        .glassmorphism {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .premium-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .premium-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .premium-button:hover::before {
+            left: 100%;
+        }
+
+        .premium-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+        }
+
+        .feature-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(102, 126, 234, 0.8), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+
+        .feature-card:hover::before {
+            transform: translateX(100%);
+        }
+
+        .feature-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(102, 126, 234, 0.5);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.2);
+        }
+
+        .floating-elements {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .floating-element {
+            position: absolute;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(244, 63, 94, 0.1));
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .floating-element:nth-child(1) {
+            top: 20%;
+            left: 10%;
+            width: 80px;
+            height: 80px;
+            animation-delay: 0s;
+        }
+
+        .floating-element:nth-child(2) {
+            top: 60%;
+            right: 10%;
+            width: 120px;
+            height: 120px;
+            animation-delay: 2s;
+        }
+
+        .floating-element:nth-child(3) {
+            bottom: 20%;
+            left: 20%;
+            width: 60px;
+            height: 60px;
+            animation-delay: 4s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        .pulse-ring {
+            animation: pulse-ring 2s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite;
+        }
+
+        @keyframes pulse-ring {
+            0% {
+                transform: scale(0.8);
+                opacity: 1;
+            }
+            80%, 100% {
+                transform: scale(1.2);
+                opacity: 0;
+            }
+        }
+
+        .text-gradient {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .glow-text {
+            text-shadow: 0 0 20px rgba(102, 126, 234, 0.5);
+        }
+
+        .exchange-card {
+            background: linear-gradient(135deg, rgba(17, 24, 39, 0.8) 0%, rgba(31, 41, 55, 0.8) 100%);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .stats-number {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        @media (max-width: 768px) {
+            .hero-bg::before {
+                opacity: 0.5;
+            }
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            40% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+            60% {
+                transform: translateX(-50%) translateY(-5px);
+            }
+        }
+    </style>
+</head>
+<body x-data="{ openMenu: false }" class="antialiased">
+
+    <!-- Header -->
+    <header class="glassmorphism fixed w-full z-50 transition-all duration-300">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <a href="#" class="text-2xl font-bold sora-font">
+                    <span class="text-white">ex.</span><span class="text-gradient">financial</span>
+                </a>
+                
+                <nav class="hidden lg:flex items-center space-x-10">
+                    <a href="#exchange" class="text-sm font-semibold hover:text-gradient transition-all duration-300 relative group">
+                        Exchange
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-purple-600 transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="#how-it-works" class="text-sm font-semibold hover:text-gradient transition-all duration-300 relative group">
+                        How It Works
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-purple-600 transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="#security" class="text-sm font-semibold hover:text-gradient transition-all duration-300 relative group">
+                        Security
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-purple-600 transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                </nav>
+
+                <div class="flex items-center space-x-4">
+                    <a href="https://wa.me/5599981699999?text=Hello,%20I'd%20like%20to%20know%20more%20about%20your%20elite%20financial%20solutions." target="_blank" class="hidden sm:inline-block premium-button text-white font-bold py-3 px-6 rounded-xl transition-all duration-300 relative overflow-hidden">
+                        <span class="relative z-10">Start Elite Journey</span>
+                    </a>
+                    <button @click="openMenu = true" class="lg:hidden text-white focus:outline-none p-2">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Menu Overlay -->
+    <div x-show="openMenu" x-cloak
+         x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+         x-transition:leave="transition ease-in duration-300" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
+         class="fixed inset-0 glassmorphism z-50 flex flex-col items-center justify-center">
+        <button @click="openMenu = false" class="absolute top-7 right-5 text-white focus:outline-none">
+            <i class="fas fa-times text-2xl"></i>
+        </button>
+        <nav class="flex flex-col items-center space-y-8">
+            <a @click="openMenu = false" href="#exchange" class="text-2xl font-semibold text-gray-300 hover:text-gradient transition-all duration-300 sora-font">Exchange</a>
+            <a @click="openMenu = false" href="#how-it-works" class="text-2xl font-semibold text-gray-300 hover:text-gradient transition-all duration-300 sora-font">How It Works</a>
+            <a @click="openMenu = false" href="#security" class="text-2xl font-semibold text-gray-300 hover:text-gradient transition-all duration-300 sora-font">Security</a>
+            <a @click="openMenu = false" href="https://wa.me/5599981699999?text=Hello,%20I'd%20like%20to%20know%20more%20about%20your%20elite%20financial%20solutions." target="_blank" class="mt-8 premium-button text-white font-bold py-4 px-10 rounded-xl">
+                Start Elite Journey
+            </a>
+        </nav>
+    </div>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="relative hero-bg min-h-screen flex items-center overflow-hidden">
+            <div class="floating-elements">
+                <div class="floating-element"></div>
+                <div class="floating-element"></div>
+                <div class="floating-element"></div>
+            </div>
+            
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="grid lg:grid-cols-2 gap-16 items-center">
+                    <div class="text-center lg:text-left" data-aos="fade-right" data-aos-duration="1000">
+                        <div class="inline-flex items-center px-4 py-2 rounded-full glassmorphism mb-6">
+                            <span class="w-2 h-2 bg-green-400 rounded-full mr-2 pulse-ring"></span>
+                            <span class="text-sm font-medium">🔒 Bank-Level Security • 24/7 Support</span>
+                        </div>
+                        
+                        <h1 class="text-5xl sm:text-6xl lg:text-7xl font-black sora-font leading-tight mb-8">
+                            <span class="text-white glow-text">Elite Financial</span><br>
+                            <span class="text-gradient">Revolution</span>
+                        </h1>
+                        
+                        <p class="text-xl lg:text-2xl max-w-2xl mx-auto lg:mx-0 text-gray-300 mb-12 leading-relaxed">
+                            Join the exclusive circle of digital finance pioneers. Access borderless wealth management with 
+                            <span class="text-gradient font-semibold">premium USDC solutions</span> designed for the elite.
+                        </p>
+                        
+                        <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                            <a href="https://wa.me/5599981699999?text=Hello,%20I'd%20like%20to%20access%20your%20elite%20financial%20solutions." target="_blank" class="premium-button text-white font-bold py-5 px-10 rounded-xl text-lg inline-block transition-all duration-300 relative overflow-hidden">
+                                <span class="relative z-10 flex items-center justify-center">
+                                    <i class="fas fa-rocket mr-3"></i>
+                                    Start Elite Journey
+                                </span>
+                            </a>
+                            <a href="#exchange" class="glassmorphism text-white font-semibold py-5 px-10 rounded-xl text-lg inline-block hover:bg-white/10 transition-all duration-300 flex items-center justify-center">
+                                <i class="fas fa-play mr-3"></i>
+                                See Live Rates
+                            </a>
+                        </div>
+                        
+                        <!-- Trust Indicators -->
+                        <div class="flex items-center justify-center lg:justify-start space-x-8 mt-12" data-aos="fade-up" data-aos-delay="200">
+                            <div class="text-center">
+                                <div class="stats-number text-3xl font-black sora-font">$50M+</div>
+                                <div class="text-gray-400 text-sm">Volume Traded</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="stats-number text-3xl font-black sora-font">10k+</div>
+                                <div class="text-gray-400 text-sm">Elite Clients</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="stats-number text-3xl font-black sora-font">99.9%</div>
+                                <div class="text-gray-400 text-sm">Uptime</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex justify-center lg:justify-end" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
+                        <div class="relative">
+                            <div class="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-600 rounded-3xl blur-xl opacity-30 animate-pulse"></div>
+                            <img src="https://images.unsplash.com/photo-1639762681485-074b7f938ba0?q=80&w=2232&auto=format&fit=crop" alt="Elite Financial Technology" class="relative max-h-[600px] lg:max-h-[700px] rounded-3xl border border-white/20 shadow-2xl">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Scroll Indicator -->
+            <div class="scroll-indicator text-white/60">
+                <i class="fas fa-chevron-down text-2xl"></i>
+            </div>
+        </section>
+
+        <!-- Elite Exchange Section -->
+        <section id="exchange" class="py-24 sm:py-32 relative" data-aos="fade-up">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl sm:text-5xl font-black sora-font text-white mb-6">
+                        <span class="text-gradient">USDT Exchange</span>
+                    </h2>
+
+                </div>
+                
+                <div class="exchange-card rounded-3xl p-8 sm:p-12 max-w-2xl mx-auto relative overflow-hidden">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500"></div>
+                    
+                    <div class="text-center mb-8">
+                        <div class="inline-flex items-center px-6 py-3 rounded-full glassmorphism mb-4">
+                            <span class="w-3 h-3 bg-green-400 rounded-full mr-3 animate-pulse"></span>
+                            <span class="font-semibold">Live Crypto Rates</span>
+                        </div>
+
+                    </div>
+                    
+                    <!-- Crypto Converter Widget -->
+                    <div class="flex justify-center mb-6">
+                        <div class="w-full max-w-md">
+
+                            
+                            <!-- Виджет USDT/BRL с темной темой -->
+                            <crypto-converter-widget
+                                amount="1"
+                                shadow="true"
+                                symbol="false"
+                                locale="pt-BR"
+                                rounded="true"
+                                quote="BRL"
+                                base="USDT"
+                                theme="dark"
+                                decimal="4"
+                                stat="false"
+                                tax="-2.3"
+                                background-color="#1a1a1a"
+                            ></crypto-converter-widget>
+                            
+                            <!-- CSS для полного скрытия шестеренки и всех значков -->
+                            <style>
+                                /* Скрытие ВСЕХ ссылок и элементов currencyrate.today */
+                                crypto-converter-widget a[href*="currencyrate.today"],
+                                crypto-converter-widget a[href*="co-w.io"],
+                                crypto-converter-widget a[href*="currencyrate"],
+                                crypto-converter-widget a[href*="today"],
+                                crypto-converter-widget a[href*="co-w"],
+                                crypto-converter-widget a[href*=".io"],
+                                crypto-converter-widget a[href*="github.com"],
+                                crypto-converter-widget a[href*="dejurin"],
+                                crypto-converter-widget a[href*="crypto-converter-widget"] {
+                                    display: none !important;
+                                }
+                                
+                                /* Скрытие всех ссылок вообще */
+                                crypto-converter-widget a,
+                                crypto-converter-widget a:hover,
+                                crypto-converter-widget a:focus,
+                                crypto-converter-widget a:active {
+                                    display: none !important;
+                                }
+                                
+                                /* Полное скрытие ВСЕХ элементов управления */
+                                crypto-converter-widget [class*="header"],
+                                crypto-converter-widget [class*="toolbar"],
+                                crypto-converter-widget [class*="controls"],
+                                crypto-converter-widget [class*="icons"],
+                                crypto-converter-widget [class*="top-bar"],
+                                crypto-converter-widget [class*="action-bar"],
+                                crypto-converter-widget [class*="nav"],
+                                crypto-converter-widget [class*="menu"],
+                                crypto-converter-widget [class*="bar"],
+                                crypto-converter-widget [class*="gear"],
+                                crypto-converter-widget [class*="settings"],
+                                crypto-converter-widget [class*="config"] {
+                                    display: none !important;
+                                }
+                                
+                                /* Скрытие ВСЕХ SVG иконок */
+                                crypto-converter-widget svg,
+                                crypto-converter-widget path,
+                                crypto-converter-widget circle,
+                                crypto-converter-widget rect {
+                                    display: none !important;
+                                }
+                                
+                                /* Скрытие ВСЕХ элементов с иконками */
+                                crypto-converter-widget [class*="icon"],
+                                crypto-converter-widget [class*="btn"],
+                                crypto-converter-widget [class*="button"],
+                                crypto-converter-widget [class*="control"],
+                                crypto-converter-widget [class*="action"] {
+                                    display: none !important;
+                                }
+                                
+                                /* Скрытие ВСЕХ строк с элементами управления */
+                                crypto-converter-widget > div:first-child,
+                                crypto-converter-widget > div:first-child > *,
+                                crypto-converter-widget > div:nth-child(1),
+                                crypto-converter-widget > div:nth-child(2) {
+                                    display: none !important;
+                                }
+                                
+                                /* Скрытие элементов по высоте и размеру */
+                                crypto-converter-widget [style*="height: 50px"],
+                                crypto-converter-widget [style*="height: 40px"],
+                                crypto-converter-widget [style*="height: 30px"],
+                                crypto-converter-widget [style*="width: 50px"],
+                                crypto-converter-widget [style*="width: 40px"],
+                                crypto-converter-widget [style*="width: 30px"] {
+                                    display: none !important;
+                                }
+                                
+                                /* Скрытие всех элементов с определенными атрибутами */
+                                crypto-converter-widget [data-*],
+                                crypto-converter-widget [aria-*] {
+                                    display: none !important;
+                                }
+                            </style>
+                            
+
+                        </div>
+                    </div>
+                    
+                    <!-- Premium CTA -->
+                    <div class="text-center pt-6" data-aos="fade-up" data-aos-delay="400">
+                        <a href="https://wa.me/5599981699999?text=Hello,%20I%20want%20to%20make%20an%20elite%20exchange%20transaction." target="_blank" class="premium-button text-white font-bold py-5 px-12 rounded-2xl text-lg inline-block transition-all duration-300 relative overflow-hidden w-full sm:w-auto">
+                            <span class="relative z-10 flex items-center justify-center">
+                                <i class="fas fa-crown mr-3"></i>
+                                Execute Elite Exchange
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+        <!-- How It Works Section -->
+        <section id="how-it-works" class="py-24 sm:py-32">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-20" data-aos="fade-up">
+                    <h2 class="text-4xl sm:text-5xl font-black sora-font text-white mb-6">
+                        How <span class="text-gradient">Elite Process</span> Works
+                    </h2>
+                    <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                        Experience seamless, secure, and swift transactions with our premium three-step process
+                    </p>
+                </div>
+                
+                <div class="grid md:grid-cols-3 gap-8 lg:gap-12">
+                    <!-- Step 1 -->
+                    <div class="feature-card rounded-3xl p-8 text-center relative" data-aos="fade-up" data-aos-delay="100">
+                        <div class="absolute -top-6 left-1/2 transform -translate-x-1/2">
+                            <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white font-bold text-xl">1</div>
+                        </div>
+                        <div class="pt-8">
+                            <div class="w-20 h-20 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full mx-auto mb-6 flex items-center justify-center">
+                                <i class="fas fa-user-shield text-3xl text-white"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-white mb-4 sora-font">Elite Verification</h3>
+                            <p class="text-gray-300 leading-relaxed">
+                                Quick premium KYC process designed for high-net-worth individuals. Secure, discreet, and efficient verification.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="feature-card rounded-3xl p-8 text-center relative" data-aos="fade-up" data-aos-delay="200">
+                        <div class="absolute -top-6 left-1/2 transform -translate-x-1/2">
+                            <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-600 rounded-full flex items-center justify-center text-white font-bold text-xl">2</div>
+                        </div>
+                        <div class="pt-8">
+                            <div class="w-20 h-20 bg-gradient-to-br from-purple-500 to-pink-600 rounded-full mx-auto mb-6 flex items-center justify-center">
+                                <i class="fas fa-exchange-alt text-3xl text-white"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-white mb-4 sora-font">Premium Exchange</h3>
+                            <p class="text-gray-300 leading-relaxed">
+                                Access institutional-grade rates with zero hidden fees. Real-time execution with premium market access.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="feature-card rounded-3xl p-8 text-center relative" data-aos="fade-up" data-aos-delay="300">
+                        <div class="absolute -top-6 left-1/2 transform -translate-x-1/2">
+                            <div class="w-12 h-12 bg-gradient-to-br from-pink-500 to-red-600 rounded-full flex items-center justify-center text-white font-bold text-xl">3</div>
+                        </div>
+                        <div class="pt-8">
+                            <div class="w-20 h-20 bg-gradient-to-br from-pink-500 to-red-600 rounded-full mx-auto mb-6 flex items-center justify-center">
+                                <i class="fas fa-bolt text-3xl text-white"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-white mb-4 sora-font">Instant Settlement</h3>
+                            <p class="text-gray-300 leading-relaxed">
+                                Lightning-fast transfers with 24/7 settlement. VIP priority processing for all elite members.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Elite CTA -->
+                <div class="text-center mt-16" data-aos="fade-up" data-aos-delay="400">
+                    <a href="https://wa.me/5599981699999?text=Hello,%20I%20want%20to%20join%20the%20elite%20financial%20circle." target="_blank" class="premium-button text-white font-bold py-5 px-12 rounded-2xl text-lg inline-block transition-all duration-300 relative overflow-hidden">
+                        <span class="relative z-10 flex items-center justify-center">
+                            <i class="fas fa-vip mr-3"></i>
+                            Join Elite Circle Now
+                        </span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Security Section -->
+        <section id="security" class="py-24 sm:py-32 relative">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid lg:grid-cols-2 gap-16 items-center">
+                    <div data-aos="fade-right">
+                        <h2 class="text-4xl sm:text-5xl font-black sora-font text-white mb-8">
+                            <span class="text-gradient">Military-Grade</span><br>Security
+                        </h2>
+                        <p class="text-xl text-gray-300 mb-12 leading-relaxed">
+                            Your wealth deserves the highest level of protection. Our security infrastructure surpasses traditional banking standards.
+                        </p>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-start space-x-4">
+                                <div class="w-12 h-12 bg-gradient-to-br from-green-500 to-blue-600 rounded-full flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-shield-alt text-white text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-bold text-white mb-2">Bank-Level Encryption</h3>
+                                    <p class="text-gray-300">256-bit SSL encryption with multi-signature cold storage protection</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start space-x-4">
+                                <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-600 rounded-full flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-user-lock text-white text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-bold text-white mb-2">Identity Protection</h3>
+                                    <p class="text-gray-300">Advanced KYC with privacy-first approach for elite discretion</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start space-x-4">
+                                <div class="w-12 h-12 bg-gradient-to-br from-orange-500 to-red-600 rounded-full flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-clock text-white text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-bold text-white mb-2">24/7 Monitoring</h3>
+                                    <p class="text-gray-300">Real-time fraud detection with dedicated security team</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="relative" data-aos="fade-left" data-aos-delay="200">
+                        <div class="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-600 rounded-3xl blur-xl opacity-30"></div>
+                        <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?q=80&w=2070&auto=format&fit=crop" alt="Security Technology" class="relative rounded-3xl border border-white/20 shadow-2xl">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Elite CTA Section -->
+        <section class="py-24 sm:py-32 relative overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 opacity-10"></div>
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative">
+                <div class="text-center max-w-4xl mx-auto" data-aos="fade-up">
+                    <h2 class="text-4xl sm:text-6xl font-black sora-font text-white mb-8">
+                        Ready to Join the <span class="text-gradient">Elite?</span>
+                    </h2>
+                    <p class="text-xl lg:text-2xl text-gray-300 mb-12 leading-relaxed">
+                        Experience the future of digital finance with our premium platform. 
+                        <span class="text-gradient font-semibold">Exclusive access</span> for serious investors.
+                    </p>
+                    
+                    <div class="flex flex-col sm:flex-row gap-6 justify-center items-center">
+                        <a href="https://wa.me/5599981699999?text=Hello,%20I%20want%20to%20start%20my%20elite%20financial%20journey%20immediately." target="_blank" class="premium-button text-white font-bold py-6 px-12 rounded-2xl text-xl transition-all duration-300 relative overflow-hidden">
+                            <span class="relative z-10 flex items-center justify-center">
+                                <i class="fas fa-rocket mr-4"></i>
+                                Start Elite Journey
+                            </span>
+                        </a>
+                        
+                        <div class="flex items-center space-x-4 text-gray-300">
+                            <div class="flex items-center">
+                                <i class="fas fa-star text-yellow-400 mr-1"></i>
+                                <i class="fas fa-star text-yellow-400 mr-1"></i>
+                                <i class="fas fa-star text-yellow-400 mr-1"></i>
+                                <i class="fas fa-star text-yellow-400 mr-1"></i>
+                                <i class="fas fa-star text-yellow-400 mr-2"></i>
+                                <span class="font-semibold">4.9/5 Elite Rating</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-12 flex items-center justify-center space-x-8 text-sm text-gray-400">
+                        <div class="flex items-center">
+                            <i class="fas fa-check-circle text-green-400 mr-2"></i>
+                            No Hidden Fees
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check-circle text-green-400 mr-2"></i>
+                            24/7 VIP Support
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check-circle text-green-400 mr-2"></i>
+                            Instant Settlement
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="glassmorphism py-16">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div class="md:col-span-2">
+                    <a href="#" class="text-3xl font-bold sora-font mb-6 inline-block">
+                        <span class="text-white">ex.</span><span class="text-gradient">financial</span>
+                    </a>
+                    <p class="text-gray-300 mb-6 max-w-md">
+                        Elite digital finance platform for sophisticated investors. Secure, fast, and exclusive financial solutions.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-12 h-12 glassmorphism rounded-full flex items-center justify-center hover:bg-white/10 transition-all duration-300">
+                            <i class="fab fa-twitter text-xl text-gray-300"></i>
+                        </a>
+                        <a href="#" class="w-12 h-12 glassmorphism rounded-full flex items-center justify-center hover:bg-white/10 transition-all duration-300">
+                            <i class="fab fa-linkedin text-xl text-gray-300"></i>
+                        </a>
+                        <a href="#" class="w-12 h-12 glassmorphism rounded-full flex items-center justify-center hover:bg-white/10 transition-all duration-300">
+                            <i class="fab fa-telegram text-xl text-gray-300"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-white font-bold mb-4 sora-font">Services</h3>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><a href="#" class="hover:text-gradient transition-colors">Elite Exchange</a></li>
+                        <li><a href="#" class="hover:text-gradient transition-colors">Premium Trading</a></li>
+                        <li><a href="#" class="hover:text-gradient transition-colors">VIP Support</a></li>
+                        <li><a href="#" class="hover:text-gradient transition-colors">Wealth Management</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-white font-bold mb-4 sora-font">Company</h3>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><a href="about_us.html" class="hover:text-gradient transition-colors">About Us</a></li>
+                        <li><a href="Terms.html" class="hover:text-gradient transition-colors">Terms</a></li>
+                        <li><a href="Privacy_Policy.html" class="hover:text-gradient transition-colors">Privacy</a></li>
+                        <li><a href="AML.html" class="hover:text-gradient transition-colors">AML Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-white/10 mt-12 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 Ex.financial. All rights reserved. Elite financial solutions for sophisticated investors.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <div x-data="{ show: false }" @scroll.window="show = (window.scrollY > 400)" x-cloak>
+        <button x-show="show" @click="window.scrollTo({top: 0, behavior: 'smooth'})"
+                x-transition
+                class="fixed bottom-8 right-8 glassmorphism text-white w-14 h-14 rounded-full flex items-center justify-center shadow-lg hover:bg-white/10 focus:outline-none z-30 transition-all duration-300">
+            <i class="fas fa-arrow-up text-xl"></i>
+        </button>
+    </div>
+
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true,
+            offset: 100
+        });
+
+
+
+        // Enhanced header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(0, 0, 0, 0.95)';
+                header.style.backdropFilter = 'blur(20px)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.05)';
+                header.style.backdropFilter = 'blur(20px)';
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Widget is now handled by crypto-converter-widget
+            console.log('Page loaded, crypto widget should appear');
+        });
+    </script>
+    
+    <!-- Trustpilot Integration -->
+    <script>
+        (function(w,d,s,r,n){w.TrustpilotObject=n;w[n]=w[n]||function(){(w[n].q=w[n].q||[]).push(arguments)};
+            var a=d.createElement(s);a.async=1;a.src=r;a.type='text/javascript';var f=d.getElementsByTagName(s)[0];
+            f.parentNode.insertBefore(a,f)})(window,document,'script', 'https://invitejs.trustpilot.com/tp.min.js', 'tp');
+            tp('register', 'w8k0wqu0cp6TCw73');
+    </script>
+
+    <!-- Crypto Converter Widget Script -->
+    <script
+        src="https://cdn.jsdelivr.net/gh/dejurin/crypto-converter-widget@latest/dist/latest.min.js"
+        onload="console.log('Widget script loaded successfully')"
+        onerror="console.error('Failed to load widget script')"
+    ></script>
+
+</body>
+</html>
