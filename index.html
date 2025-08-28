@@ -1,322 +1,894 @@
 <!DOCTYPE html>
-<html lang="pt-BR" class="scroll-smooth">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title data-translate="title">Ex.financial | Câmbio de Criptomoedas</title>
-    <meta name="description" content="Plataforma premium de câmbio de criptomoedas com taxas institucionais e liquidação instantânea">
-    
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-    <link rel="manifest" href="site.webmanifest">
-    
-    <!-- Google Fonts: Inter -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<!-- saved from url=(0048)file:///Users/bagrat/site/top-exchange-full.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ex.financial</title>
+  <link href="./Ex.financial_files/css2" rel="stylesheet">
+  <style>
+    :root {
+      --primary-color: #667eea;
+      --secondary-color: #764ba2;
+      --accent-color: #f093fb;
+      --success-color: #4facfe;
+      --warning-color: #f093fb;
+      --error-color: #ff6b6b;
+      --text-primary: #2d3748;
+      --text-secondary: #718096;
+      --bg-primary: #ffffff;
+      --bg-secondary: #f7fafc;
+      --border-color: #e2e8f0;
+      --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+      --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+      --gradient-primary: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+      --gradient-accent: linear-gradient(135deg, var(--accent-color) 0%, var(--success-color) 100%);
+      --border-radius: 16px;
+      --border-radius-sm: 8px;
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
 
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
 
-    <!-- Custom Styles -->
-    <link rel="stylesheet" href="css/exchange-styles.css">
+    body {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      background-attachment: fixed;
+      color: var(--text-primary);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* Header Styles */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 2rem;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      box-shadow: var(--shadow-lg);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      font-weight: 800;
+      font-size: 1.75rem;
+      gap: 0.75rem;
+      background: var(--gradient-primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .logo span {
+      color: var(--primary-color);
+    }
+
+    .status {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-size: 0.9rem;
+      color: var(--success-color);
+      font-weight: 600;
+    }
+
+    .status svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .time {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    .support {
+      display: flex;
+      flex-direction: column;
+      font-size: 0.85rem;
+      color: var(--success-color);
+      gap: 0.25rem;
+      font-weight: 600;
+    }
+
+    .lang {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    .lang svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .auth {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .btn {
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: var(--border-radius-sm);
+      cursor: pointer;
+      font-weight: 600;
+      transition: var(--transition);
+      font-size: 0.9rem;
+    }
+
+    .btn-login {
+      background: transparent;
+      color: var(--text-primary);
+      border: 2px solid var(--border-color);
+    }
+
+    .btn-login:hover {
+      border-color: var(--primary-color);
+      color: var(--primary-color);
+    }
+
+    .btn-register {
+      background: var(--gradient-primary);
+      color: white;
+      box-shadow: var(--shadow-md);
+    }
+
+    .btn-register:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    /* Navigation */
+    nav {
+      display: flex;
+      gap: 2rem;
+      margin: 1rem 0;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      padding: 1rem 2rem;
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow-md);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--text-secondary);
+      font-weight: 500;
+      transition: var(--transition);
+      padding: 0.5rem 1rem;
+      border-radius: var(--border-radius-sm);
+    }
+
+    nav a:hover {
+      color: var(--primary-color);
+      background: rgba(102, 126, 234, 0.1);
+    }
+
+    .active {
+      background: var(--gradient-primary);
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: var(--border-radius-sm);
+      box-shadow: var(--shadow-md);
+    }
+
+    /* Main Content */
+    .main {
+      display: flex;
+      gap: 2rem;
+      padding: 2rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    /* Card Styles */
+    .card {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      border-radius: var(--border-radius);
+      padding: 2rem;
+      box-shadow: var(--shadow-xl);
+      flex: 1;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      transition: var(--transition);
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    }
+
+    .card h3 {
+      font-size: 1.25rem;
+      color: var(--text-primary);
+      margin-bottom: 1.5rem;
+      border-bottom: 2px solid var(--border-color);
+      padding-bottom: 1rem;
+      font-weight: 700;
+      position: relative;
+    }
+
+    .card h3::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 50px;
+      height: 2px;
+      background: var(--gradient-primary);
+      border-radius: 1px;
+    }
+
+    /* Filter Styles */
+    .filter {
+      display: flex;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 25px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      background: var(--bg-secondary);
+      color: var(--text-secondary);
+      transition: var(--transition);
+      font-weight: 500;
+      border: 1px solid var(--border-color);
+    }
+
+    .filter-btn:hover {
+      background: var(--primary-color);
+      color: white;
+      transform: translateY(-1px);
+    }
+
+    .filter-btn.active {
+      background: var(--gradient-primary);
+      color: white;
+      box-shadow: var(--shadow-md);
+    }
+
+    /* Currency List Styles */
+    .currency-list {
+      list-style: none;
+    }
+
+    .currency-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem;
+      border-bottom: 1px solid var(--border-color);
+      cursor: pointer;
+      transition: var(--transition);
+      border-radius: var(--border-radius-sm);
+      margin-bottom: 0.5rem;
+    }
+
+    .currency-item:hover {
+      background: rgba(102, 126, 234, 0.05);
+      transform: translateX(5px);
+    }
+
+    .currency-item.active {
+      background: var(--gradient-primary);
+      color: white;
+      border-left: 4px solid var(--accent-color);
+      box-shadow: var(--shadow-md);
+    }
+
+    .currency-item.active .currency-name {
+      color: white;
+      font-weight: 700;
+    }
+
+    .currency-item.active .currency-icon svg {
+      fill: white;
+    }
+
+    .currency-item .currency-icon svg {
+      fill: var(--primary-color);
+    }
+
+    .currency-icon {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: var(--bg-secondary);
+      border: 2px solid var(--border-color);
+      transition: var(--transition);
+    }
+
+    .currency-item:hover .currency-icon {
+      border-color: var(--primary-color);
+      transform: scale(1.1);
+    }
+
+    .currency-name {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .currency-code {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+    }
+
+    .reserve {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+    }
+
+    /* Form Styles */
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 0.95rem;
+      margin-bottom: 0.75rem;
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 1rem;
+      border: 2px solid var(--border-color);
+      border-radius: var(--border-radius-sm);
+      font-size: 1rem;
+      transition: var(--transition);
+      background: var(--bg-secondary);
+    }
+
+    .form-input:focus {
+      border-color: var(--primary-color);
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+      background: white;
+    }
+
+    select.form-input {
+      cursor: pointer;
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+      background-position: right 1rem center;
+      background-repeat: no-repeat;
+      background-size: 1.5em 1.5em;
+      padding-right: 3rem;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+    }
+
+    .form-row {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .form-col {
+      flex: 1;
+    }
+
+    .btn-submit {
+      background: var(--gradient-primary);
+      color: white;
+      padding: 1rem;
+      border: none;
+      border-radius: var(--border-radius-sm);
+      font-weight: 700;
+      cursor: pointer;
+      width: 100%;
+      margin-top: 1.5rem;
+      font-size: 1.1rem;
+      transition: var(--transition);
+      box-shadow: var(--shadow-md);
+    }
+
+    .btn-submit:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    /* Steps Styles */
+    .steps {
+      display: flex;
+      gap: 2rem;
+      margin-top: 2rem;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      flex-wrap: wrap;
+    }
+
+    .step {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 1rem;
+      background: var(--bg-secondary);
+      border-radius: var(--border-radius-sm);
+      border: 1px solid var(--border-color);
+    }
+
+    .step svg {
+      width: 20px;
+      height: 20px;
+      color: var(--primary-color);
+    }
+
+    /* Chat Button */
+    .chat-button {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      background: var(--gradient-accent);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 70px;
+      height: 70px;
+      cursor: pointer;
+      box-shadow: var(--shadow-xl);
+      transition: var(--transition);
+      z-index: 1000;
+    }
+
+    .chat-button:hover {
+      transform: scale(1.1) rotate(5deg);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    }
+
+    .chat-button svg {
+      width: 28px;
+      height: 28px;
+    }
+
+    /* Footer */
+    footer {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      padding: 3rem 2rem;
+      margin-top: 4rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: var(--shadow-lg);
+    }
+
+    footer a {
+      text-decoration: none;
+      color: var(--text-primary);
+      font-weight: 600;
+      padding: 0.75rem 1.5rem;
+      border-radius: var(--border-radius-sm);
+      transition: var(--transition);
+      border: 1px solid transparent;
+    }
+
+    footer a:hover {
+      color: var(--primary-color);
+      border-color: var(--primary-color);
+      background: rgba(102, 126, 234, 0.05);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .main {
+        flex-direction: column;
+        padding: 1rem;
+        gap: 1.5rem;
+      }
+      
+      .form-row {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      
+      header {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem;
+      }
+
+      .card {
+        padding: 1.5rem;
+      }
+
+      .steps {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .filter {
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .main {
+        padding: 0.5rem;
+      }
+      
+      .card {
+        padding: 1rem;
+      }
+      
+      header {
+        padding: 0.75rem;
+      }
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .card {
+      animation: fadeInUp 0.6s ease-out;
+    }
+
+    .currency-item {
+      animation: fadeInUp 0.4s ease-out;
+    }
+
+    .currency-item:nth-child(1) { animation-delay: 0.1s; }
+    .currency-item:nth-child(2) { animation-delay: 0.2s; }
+    .currency-item:nth-child(3) { animation-delay: 0.3s; }
+    .currency-item:nth-child(4) { animation-delay: 0.4s; }
+    .currency-item:nth-child(5) { animation-delay: 0.5s; }
+    .currency-item:nth-child(6) { animation-delay: 0.6s; }
+    .currency-item:nth-child(7) { animation-delay: 0.7s; }
+    .currency-item:nth-child(8) { animation-delay: 0.8s; }
+    .currency-item:nth-child(9) { animation-delay: 0.9s; }
+  </style>
 </head>
 <body>
-    <!-- Language Selector -->
-    <div class="language-selector">
-        <button class="lang-selector active" data-lang="pt-BR" onclick="changeLanguage('pt-BR')">PT</button>
-        <button class="lang-selector" data-lang="ru" onclick="changeLanguage('ru')">RU</button>
-        <button class="lang-selector" data-lang="en" onclick="changeLanguage('en')">EN</button>
-        <button class="lang-selector" data-lang="es" onclick="changeLanguage('es')">ES</button>
+
+  <!-- Header -->
+  <header>
+    <div class="logo">
+      <span>EX</span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M12 2L2 7l10 5 12l10 5 10-5M2 12l10 5 10-5" fill="currentColor"></path></svg><span>FINANCIAL</span>
+    </div>
+    <div class="status">
+      <div><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="currentColor"></path></svg> The service is working</div>
+      <div><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="currentColor"></path></svg> 24/7</div>
     </div>
 
-    <!-- Header -->
-    <header class="header">
-        <div class="header-content">
-            <a href="#" class="logo">ex.financial</a>
-            <nav>
-                <a href="#exchange" data-translate="crypto_exchange">Exchange</a>
-                <a href="#features" data-translate="how_it_works">How It Works</a>
-                <a href="#security" data-translate="security_title">Security</a>
-                <a href="#contact" data-translate="contact_us">Contact</a>
-            </nav>
+    <div class="support">
+      <div>support@ex.financial</div>
+    </div>
+    <div class="lang">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="currentColor"></path></svg>
+      EN
+    </div>
+
+  </header>
+
+
+
+  <!-- Main Content -->
+  <div class="main">
+    <!-- Left Column -->
+    <div class="card">
+      <h3>SELECT WHAT YOU SEND</h3>
+      <ul class="currency-list">
+        <li class="currency-item active" data-currency="USDT (TRC-20)" data-type="from">
+          <div class="currency-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="currentColor"></path></svg></div>
+          <div class="currency-name">USDT (TRC-20)</div>
+        </li>
+        <li class="currency-item" data-currency="ALYIPAY CNY" data-type="from">
+          <div class="currency-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="currentColor"></path></svg></div>
+          <div class="currency-name">ALYIPAY CNY</div>
+        </li>
+        <li class="currency-item" data-currency="USD" data-type="from">
+          <div class="currency-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="currentColor"></path></svg></div>
+          <div class="currency-name">USD</div>
+        </li>
+        <li class="currency-item" data-currency="Litecoin" data-type="from">
+          <div class="currency-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="currentColor"></path></svg></div>
+          <div class="currency-name">Litecoin</div>
+        </li>
+        <li class="currency-item" data-currency="EURO" data-type="from">
+          <div class="currency-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="currentColor"></path></svg></div>
+          <div class="currency-name">EURO</div>
+        </li>
+        <li class="currency-item" data-currency="Tron TRX" data-type="from">
+          <div class="currency-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="currentColor"></path></svg></div>
+          <div class="currency-name">Tron TRX</div>
+        </li>
+        <li class="currency-item" data-currency="USDT (ERC-20)" data-type="from">
+          <div class="currency-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="currentColor"></path></svg></div>
+          <div class="currency-name">USDT (ERC-20)</div>
+        </li>
+        <li class="currency-item" data-currency="Bsc BNB" data-type="from">
+          <div class="currency-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="currentColor"></path></svg></div>
+          <div class="currency-name">Bsc BNB</div>
+        </li>
+        <li class="currency-item" data-currency="USDT (BEP-20)" data-type="from">
+          <div class="currency-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="currentColor"></path></svg></div>
+          <div class="currency-name">USDT (BEP-20)</div>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Middle Column -->
+    <div class="card">
+      <h3>SELECT WHAT YOU GET</h3>
+      <ul class="currency-list">
+        <li class="currency-item active" data-currency="BRL" data-type="to">
+          <div class="currency-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="currentColor"></path></svg></div>
+          <div class="currency-name">BRL</div>
+        </li>
+        <li class="currency-item" data-currency="ALYIPAY CNY" data-type="to">
+          <div class="currency-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="currentColor"></path></svg></div>
+          <div class="currency-name">ALYIPAY CNY</div>
+        </li>
+        <li class="currency-item" data-currency="USD" data-type="to">
+          <div class="currency-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="currentColor"></path></svg></div>
+          <div class="currency-name">USD</div>
+        </li>
+        <li class="currency-item" data-currency="EURO" data-type="to">
+          <div class="currency-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="currentColor"></path></svg></div>
+          <div class="currency-name">EURO</div>
+        </li>
+        <li class="currency-item" data-currency="Tron TRX" data-type="to">
+          <div class="currency-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="currentColor"></path></svg></div>
+          <div class="currency-name">Tron TRX</div>
+        </li>
+        <li class="currency-item" data-currency="USDT (ERC-20)" data-type="to">
+          <div class="currency-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="currentColor"></path></svg></div>
+          <div class="currency-name">USDT (ERC-20)</div>
+        </li>
+        <li class="currency-item" data-currency="Bsc BNB" data-type="to">
+          <div class="currency-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="currentColor"></path></svg></div>
+          <div class="currency-name">Bsc BNB</div>
+        </li>
+        <li class="currency-item" data-currency="USDT (BEP-20)" data-type="to">
+          <div class="currency-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="currentColor"></path></svg></div>
+          <div class="currency-name">USDT (BEP-20)</div>
+        </li>
+        <li class="currency-item" data-currency="USDC (BEP-20)" data-type="to">
+          <div class="currency-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="currentColor"></path></svg></div>
+          <div class="currency-name">USDC (BEP-20)</div>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Right Column -->
+    <div class="card">
+      <h3>ENTER DETAILS</h3>
+
+      <div class="form-group">
+        <label for="well" class="form-label">RATE</label>
+        <input type="text" id="well" class="form-input" placeholder="Exchange rate will appear here" readonly="">
+      </div>
+      <div class="form-row">
+        <div class="form-col">
+          <label for="give" class="form-label">You give:</label>
+          <input type="number" id="give" class="form-input" placeholder="Enter the amount">
+          <small>Amount excluding payment system commission</small>
         </div>
-    </header>
-
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <h1 class="hero-title" data-translate="hero_title">Cryptocurrency Exchange</h1>
-            <p class="hero-subtitle" data-translate="hero_subtitle">Premium rates with instant settlement</p>
-            <a href="#exchange" class="exchange-button" data-translate="start_exchange">Start Exchange</a>
+        <div class="form-col">
+          <label for="receive" class="form-label">You receive:</label>
+          <input type="number" id="receive" class="form-input" placeholder="Enter the amount">
+          <small>Amount received to the target account</small>
         </div>
-    </section>
+      </div>
+      <div class="form-group">
+        <label for="phone" class="form-label">Telephone</label>
+        <input type="tel" id="phone" class="form-input" placeholder="Enter your phone number">
+      </div>
+      <div class="form-group">
+        <label for="email" class="form-label">Email</label>
+        <input type="email" id="email" class="form-input" placeholder="Enter your email">
+      </div>
+      <button class="btn-submit">Start exchange</button>
+    </div>
+  </div>
 
-    <!-- Exchange Section -->
-    <section id="exchange" class="exchange-section">
-        <h2 class="section-title" data-translate="exchange_title">Premium Exchange</h2>
-        <p class="section-subtitle" data-translate="exchange_subtitle">Access institutional rates with zero hidden fees</p>
-        
-        <div class="exchange-card">
-            <form class="exchange-form">
-                <!-- From Currency -->
-                <div class="currency-input-group">
-                    <label class="currency-label" data-translate="convert_from">You Send</label>
-                    <div class="currency-icon usdt">$</div>
-                    <input type="number" class="currency-input" placeholder="0.00" min="0" step="0.01">
-                </div>
+  <!-- JavaScript for currency conversion -->
+  <script>
+    // Данные о валютах
+    const currencies = {
+      'USDT (TRC-20)': { symbol: 'USDT', rate: 1.0 },
+      'BRL': { symbol: 'BRL', rate: 5.35 },
+      'ALYIPAY CNY': { symbol: 'CNY', rate: 7.2 },
+      'USD': { symbol: 'USD', rate: 1.0 },
+      'Litecoin': { symbol: 'LTC', rate: 0.037 },
+      'EURO': { symbol: 'EUR', rate: 0.92 },
+      'Tron TRX': { symbol: 'TRX', rate: 37.04 },
+      'USDT (ERC-20)': { symbol: 'USDT', rate: 1.0 },
+      'Bsc BNB': { symbol: 'BNB', rate: 0.0017 },
+      'USDT (BEP-20)': { symbol: 'USDT', rate: 1.0 },
+      'USDC (BEP-20)': { symbol: 'USDC', rate: 1.0 }
+    };
 
-                <!-- Exchange Icon -->
-                <div style="text-align: center; margin: 1rem 0;">
-                    <i class="fas fa-exchange-alt" style="font-size: 1.5rem; color: #00d4aa;"></i>
-                </div>
+    // Функция для получения курса между двумя валютами
+    function getExchangeRate(fromCurrency, toCurrency) {
+      if (!currencies[fromCurrency] || !currencies[toCurrency]) return null;
+      
+      const fromRate = currencies[fromCurrency].rate;
+      const toRate = currencies[toCurrency].rate;
+      
+      // Конвертируем через USDT как базовую валюту
+      if (fromCurrency.includes('USDT') || fromCurrency.includes('USD')) {
+        return toRate;
+      } else if (toCurrency.includes('USDT') || toCurrency.includes('USD')) {
+        return 1 / fromRate;
+      } else {
+        // Если обе валюты не USDT/USD, конвертируем через USDT
+        return toRate / fromRate;
+      }
+    }
 
-                <!-- To Currency -->
-                <div class="currency-input-group">
-                    <label class="currency-label" data-translate="convert_to">You Receive</label>
-                    <div class="currency-icon brl">R$</div>
-                    <input type="number" class="currency-input" placeholder="0.00" readonly>
-                </div>
+    // Функция для обновления курса
+    function updateExchangeRate() {
+      const rateInput = document.getElementById('well');
+      const fromCurrency = getSelectedFromCurrency();
+      const toCurrency = getSelectedToCurrency();
+      
+      if (fromCurrency && toCurrency) {
+        const rate = getExchangeRate(fromCurrency, toCurrency);
+        if (rate) {
+          rateInput.value = rate.toFixed(4);
+          // Сохраняем текущий курс для конвертации
+          window.currentRate = rate;
+        }
+      }
+    }
 
-                <!-- Execute Button -->
-                <button type="submit" class="exchange-button" data-translate="execute_exchange">Execute Exchange</button>
-            </form>
+    // Функция для получения выбранной валюты отправления
+    function getSelectedFromCurrency() {
+      const activeItem = document.querySelector('[data-type="from"].active');
+      return activeItem ? activeItem.getAttribute('data-currency') : null;
+    }
 
-            <!-- Crypto Widget Container -->
-            <div class="crypto-widget-container">
-                <div class="widget-title" data-translate="live_rates">Live Rates</div>
-                
-                <!-- Виджет USDT/BRL с темной темой -->
-                <crypto-converter-widget
-                    amount="1"
-                    shadow="true"
-                    symbol="false"
-                    locale="pt-BR"
-                    rounded="true"
-                    quote="BRL"
-                    base="USDT"
-                    theme="dark"
-                    decimal="4"
-                    stat="false"
-                    tax="-2.3"
-                    background-color="#1a1a1a"
-                ></crypto-converter-widget>
-                
-                <!-- CSS для полного скрытия шестеренки и всех значков -->
-                <style>
-                    /* Скрытие ВСЕХ ссылок и элементов currencyrate.today */
-                    crypto-converter-widget a[href*="currencyrate.today"],
-                    crypto-converter-widget a[href*="co-w.io"],
-                    crypto-converter-widget a[href*="currencyrate"],
-                    crypto-converter-widget a[href*="today"],
-                    crypto-converter-widget a[href*="co-w"],
-                    crypto-converter-widget a[href*=".io"],
-                    crypto-converter-widget a[href*="github.com"],
-                    crypto-converter-widget a[href*="dejurin"],
-                    crypto-converter-widget a[href*="crypto-converter-widget"] {
-                        display: none !important;
-                    }
-                    
-                    /* Скрытие всех ссылок вообще */
-                    crypto-converter-widget a,
-                    crypto-converter-widget a:hover,
-                    crypto-converter-widget a:focus,
-                    crypto-converter-widget a:active {
-                        display: none !important;
-                    }
-                    
-                    /* Полное скрытие ВСЕХ элементов управления */
-                    crypto-converter-widget [class*="header"],
-                    crypto-converter-widget [class*="toolbar"],
-                    crypto-converter-widget [class*="controls"],
-                    crypto-converter-widget [class*="icons"],
-                    crypto-converter-widget [class*="top-bar"],
-                    crypto-converter-widget [class*="action-bar"],
-                    crypto-converter-widget [class*="nav"],
-                    crypto-converter-widget [class*="menu"],
-                    crypto-converter-widget [class*="bar"],
-                    crypto-converter-widget [class*="gear"],
-                    crypto-converter-widget [class*="settings"],
-                    crypto-converter-widget [class*="config"] {
-                        display: none !important;
-                    }
-                    
-                    /* Скрытие ВСЕХ SVG иконок */
-                    crypto-converter-widget svg,
-                    crypto-converter-widget path,
-                    crypto-converter-widget circle,
-                    crypto-converter-widget rect {
-                        display: none !important;
-                    }
-                    
-                    /* Скрытие ВСЕХ элементов с иконками */
-                    crypto-converter-widget [class*="icon"],
-                    crypto-converter-widget [class*="btn"],
-                    crypto-converter-widget [class*="button"],
-                    crypto-converter-widget [class*="control"],
-                    crypto-converter-widget [class*="action"] {
-                        display: none !important;
-                    }
-                    
-                    /* Скрытие ВСЕХ строк с элементами управления */
-                    crypto-converter-widget > div:first-child,
-                    crypto-converter-widget > div:first-child > *,
-                    crypto-converter-widget > div:nth-child(1),
-                    crypto-converter-widget > div:nth-child(2) {
-                        display: none !important;
-                    }
-                    
-                    /* Скрытие элементов по высоте и размеру */
-                    crypto-converter-widget [style*="height: 50px"],
-                    crypto-converter-widget [style*="height: 40px"],
-                    crypto-converter-widget [style*="height: 30px"],
-                    crypto-converter-widget [style*="width: 50px"],
-                    crypto-converter-widget [style*="width: 40px"],
-                    crypto-converter-widget [style*="width: 30px"] {
-                        display: none !important;
-                    }
-                    
-                    /* Скрытие всех элементов с определенными атрибутами */
-                    crypto-converter-widget [data-*],
-                    crypto-converter-widget [aria-*] {
-                        display: none !important;
-                    }
-                </style>
-            </div>
-        </div>
-    </section>
+    // Функция для получения выбранной валюты получения
+    function getSelectedToCurrency() {
+      const activeItem = document.querySelector('[data-type="to"].active');
+      return activeItem ? activeItem.getAttribute('data-currency') : null;
+    }
 
-    <!-- Features Section -->
-    <section id="features" class="exchange-section">
-        <h2 class="section-title" data-translate="how_it_works">How It Works</h2>
-        
-        <div class="features-grid">
-            <div class="feature-card fade-in-up">
-                <div class="feature-icon">
-                    <i class="fas fa-user-shield"></i>
-                </div>
-                <h3 class="feature-title" data-translate="step1">Premium Verification</h3>
-                <p class="feature-description">Quick and secure KYC process for high-net-worth individuals</p>
-            </div>
-            
-            <div class="feature-card fade-in-up">
-                <div class="feature-icon">
-                    <i class="fas fa-exchange-alt"></i>
-                </div>
-                <h3 class="feature-title" data-translate="step2">Executive Exchange</h3>
-                <p class="feature-description">Access to institutional-level rates with real-time execution</p>
-            </div>
-            
-            <div class="feature-card fade-in-up">
-                <div class="feature-icon">
-                    <i class="fas fa-bolt"></i>
-                </div>
-                <h3 class="feature-title" data-translate="step3">Instant Settlement</h3>
-                <p class="feature-description">Ultra-fast transfers with 24/7 settlement for premium members</p>
-            </div>
-        </div>
-    </section>
+    // Функция для конвертации суммы
+    function convertAmount() {
+      const fromAmount = document.getElementById('give');
+      const toAmount = document.getElementById('receive');
+      
+      if (fromAmount.value && window.currentRate) {
+        const converted = parseFloat(fromAmount.value) * window.currentRate;
+        toAmount.value = converted.toFixed(2);
+      }
+    }
 
-    <!-- Security Section -->
-    <section id="security" class="security-section">
-        <div class="exchange-section">
-            <h2 class="section-title" data-translate="security_title">Bank-Level Security</h2>
-            
-            <div class="features-grid">
-                <div class="feature-card fade-in-up">
-                    <div class="feature-icon">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
-                    <h3 class="feature-title">Bank-Level Encryption</h3>
-                    <p class="feature-description">256-bit SSL encryption with multi-signature cold storage protection</p>
-                </div>
-                
-                <div class="feature-card fade-in-up">
-                    <div class="feature-icon">
-                        <i class="fas fa-user-lock"></i>
-                    </div>
-                    <h3 class="feature-title">Identity Protection</h3>
-                    <p class="feature-description">Advanced KYC with privacy-first approach for premium discretion</p>
-                </div>
-                
-                <div class="feature-card fade-in-up">
-                    <div class="feature-icon">
-                        <i class="fas fa-clock"></i>
-                    </div>
-                    <h3 class="feature-title">24/7 Monitoring</h3>
-                    <p class="feature-description">Real-time fraud detection with dedicated security team</p>
-                </div>
-            </div>
-        </div>
-    </section>
+    // Функция для обратной конвертации (из поля получения)
+    function convertAmountReverse() {
+      const fromAmount = document.getElementById('give');
+      const toAmount = document.getElementById('receive');
+      
+      if (toAmount.value && window.currentRate) {
+        const converted = parseFloat(toAmount.value) / window.currentRate;
+        fromAmount.value = converted.toFixed(6);
+      }
+    }
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact-section">
-        <div class="exchange-section">
-            <h2 class="section-title" data-translate="contact_us">Contact Us</h2>
-            <p class="section-subtitle">Ready to start your premium exchange?</p>
-            
-            <div style="text-align: center;">
-                <a href="https://wa.me/5599981699999?text=Hello,%20I%20want%20to%20make%20a%20premium%20exchange." target="_blank" class="contact-button">
-                    <i class="fab fa-whatsapp" style="margin-right: 0.5rem;"></i>
-                    WhatsApp
-                </a>
-            </div>
-        </div>
-    </section>
+    // Инициализация при загрузке страницы
+    document.addEventListener('DOMContentLoaded', function() {
+      // Устанавливаем начальные активные валюты
+      const fromCurrencyItems = document.querySelectorAll('[data-type="from"]');
+      const toCurrencyItems = document.querySelectorAll('[data-type="to"]');
+      
+      // Устанавливаем USDT (TRC-20) как активную валюту отправления по умолчанию
+      if (fromCurrencyItems.length > 0) {
+        fromCurrencyItems[0].classList.add('active');
+      }
+      
+      // Устанавливаем BRL как активную валюту получения по умолчанию
+      if (toCurrencyItems.length > 0) {
+        toCurrencyItems[0].classList.add('active');
+      }
 
-    <!-- Footer -->
-    <footer class="footer">
-        <p>&copy; 2024 Ex.financial. Premium cryptocurrency exchange platform.</p>
-    </footer>
+      // Устанавливаем курс при загрузке страницы
+      updateExchangeRate();
 
-    <!-- Scripts -->
-    <script src="js/languages.js"></script>
-    
-    <!-- Crypto Converter Widget Script -->
-    <script
-        src="https://cdn.jsdelivr.net/gh/dejurin/crypto-converter-widget@latest/dist/latest.min.js"
-        onload="console.log('Widget script loaded successfully')"
-        onerror="console.error('Failed to load widget script')"
-    ></script>
-
-    <script>
-        // Простая логика конвертации
-        document.addEventListener('DOMContentLoaded', function() {
-            const fromInput = document.querySelector('.currency-input');
-            const toInput = document.querySelectorAll('.currency-input')[1];
-            
-            // Примерный курс USDT/BRL (можно заменить на реальный API)
-            const exchangeRate = 5.35;
-            
-            fromInput.addEventListener('input', function() {
-                const amount = parseFloat(this.value) || 0;
-                const converted = amount * exchangeRate;
-                toInput.value = converted.toFixed(2);
-            });
-            
-            // Анимация появления элементов
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            };
-            
-            const observer = new IntersectionObserver(function(entries) {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('fade-in-up');
-                    }
-                });
-            }, observerOptions);
-            
-            document.querySelectorAll('.feature-card').forEach(card => {
-                observer.observe(card);
-            });
+      // Добавляем обработчики для полей сумм
+      const fromAmount = document.getElementById('give');
+      const toAmount = document.getElementById('receive');
+      
+      if (fromAmount) {
+        fromAmount.addEventListener('input', convertAmount);
+        fromAmount.addEventListener('blur', function() {
+          if (this.value) {
+            convertAmount();
+          }
         });
-    </script>
-</body>
-</html>
+      }
+      
+      if (toAmount) {
+        toAmount.addEventListener('input', convertAmountReverse);
+        toAmount.addEventListener('blur', function() {
+          if (this.value) {
+            convertAmountReverse();
+          }
+        });
+      }
+
+      // Обработчики для кликов по валютам
+      fromCurrencyItems.forEach(item => {
+        item.addEventListener('click', function() {
+          // Убираем активное состояние у всех валют отправления
+          fromCurrencyItems.forEach(i => i.classList.remove('active'));
+          // Добавляем активное состояние к выбранной валюте
+          this.classList.add('active');
+          
+          // Обновляем курс и пересчитываем сумму
+          updateExchangeRate();
+          if (fromAmount && fromAmount.value) {
+            convertAmount();
+          }
+        });
+      });
+
+      toCurrencyItems.forEach(item => {
+        item.addEventListener('click', function() {
+          // Убираем активное состояние у всех валют получения
+          toCurrencyItems.forEach(i => i.classList.remove('active'));
+          // Добавляем активное состояние к выбранной валюте
+          this.classList.add('active');
+          
+          // Обновляем курс и пересчитываем сумму
+          updateExchangeRate();
+          if (fromAmount && fromAmount.value) {
+            convertAmount();
+          }
+        });
+      });
+    });
+  </script>
+
+  <!-- Footer -->
+  <footer>
+    <div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;">
+      <a href="file:///Users/bagrat/site/top-exchange-full.html#">About Us</a>
+      <a href="file:///Users/bagrat/site/top-exchange-full.html#">Privacy Policy</a>
+      <a href="file:///Users/bagrat/site/top-exchange-full.html#">Terms of Use</a>
+      <a href="file:///Users/bagrat/site/top-exchange-full.html#">AML/KYC</a>
+    </div>
+    <div style="margin-top: 1rem; color: var(--text-secondary); font-size: 0.9rem;">
+      © 2024 Ex.financial. All rights reserved.
+    </div>
+  </footer>
+
+
+
+</body></html>
