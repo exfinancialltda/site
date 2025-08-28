@@ -232,6 +232,24 @@
       font-size: 0.9rem;
     }
 
+    .form-input:focus {
+      border-color: #2ecc71;
+      outline: none;
+      box-shadow: 0 0 0 2px rgba(46, 204, 113, 0.2);
+    }
+
+    select.form-input {
+      cursor: pointer;
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+      background-position: right 0.5rem center;
+      background-repeat: no-repeat;
+      background-size: 1.5em 1.5em;
+      padding-right: 2.5rem;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+    }
+
     .form-row {
       display: flex;
       gap: 1rem;
@@ -422,12 +440,39 @@
     <div class="card">
       <h3>ENTER DETAILS</h3>
       <div class="form-group">
-        <label for="well" class="form-label">RATE</label>
-        <input type="text" id="well" class="form-input" placeholder="Select rate">
+        <label for="fromCurrency" class="form-label">From Currency</label>
+        <select id="fromCurrency" class="form-input">
+          <option value="">Select currency to send</option>
+          <option value="USDT (TRC-20)">USDT (TRC-20)</option>
+          <option value="Bitcoin">Bitcoin</option>
+          <option value="Ethereum ETH">Ethereum ETH</option>
+          <option value="Litecoin">Litecoin</option>
+          <option value="MoneyGo USD">MoneyGo USD</option>
+          <option value="Tron TRX">Tron TRX</option>
+          <option value="USDT (ERC-20)">USDT (ERC-20)</option>
+          <option value="Bsc BNB">Bsc BNB</option>
+          <option value="USDT (BEP-20)">USDT (BEP-20)</option>
+        </select>
       </div>
       <div class="form-group">
-        <label for="reserve" class="form-label">Reserve</label>
-        <input type="text" id="reserve" class="form-input" placeholder="Select reserve">
+        <label for="toCurrency" class="form-label">To Currency</label>
+        <select id="toCurrency" class="form-input">
+          <option value="">Select currency to receive</option>
+          <option value="USDT (TRC-20)">USDT (TRC-20)</option>
+          <option value="Bitcoin">Bitcoin</option>
+          <option value="Ethereum ETH">Ethereum ETH</option>
+          <option value="Litecoin">Litecoin</option>
+          <option value="MoneyGo USD">MoneyGo USD</option>
+          <option value="Tron TRX">Tron TRX</option>
+          <option value="USDT (ERC-20)">USDT (ERC-20)</option>
+          <option value="Bsc BNB">Bsc BNB</option>
+          <option value="USDT (BEP-20)">USDT (BEP-20)</option>
+          <option value="USDC (BEP-20)">USDC (BEP-20)</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="well" class="form-label">RATE</label>
+        <input type="text" id="well" class="form-input" placeholder="Exchange rate will appear here" readonly>
       </div>
       <div class="form-row">
         <div class="form-col">
@@ -452,6 +497,89 @@
       <button class="btn-submit">Start exchange</button>
     </div>
   </div>
+
+  <!-- JavaScript for currency conversion -->
+  <script>
+    // Данные о валютах
+    const currencies = {
+      'USDT (TRC-20)': { symbol: 'USDT', rate: 1.0 },
+      'Bitcoin': { symbol: 'BTC', rate: 0.000037 },
+      'Ethereum ETH': { symbol: 'ETH', rate: 0.00059 },
+      'Litecoin': { symbol: 'LTC', rate: 0.037 },
+      'MoneyGo USD': { symbol: 'USD', rate: 1.0 },
+      'Tron TRX': { symbol: 'TRX', rate: 37.04 },
+      'USDT (ERC-20)': { symbol: 'USDT', rate: 1.0 },
+      'Bsc BNB': { symbol: 'BNB', rate: 0.0017 },
+      'USDT (BEP-20)': { symbol: 'USDT', rate: 1.0 },
+      'USDC (BEP-20)': { symbol: 'USDC', rate: 1.0 }
+    };
+
+    // Функция для получения курса между двумя валютами
+    function getExchangeRate(fromCurrency, toCurrency) {
+      if (!currencies[fromCurrency] || !currencies[toCurrency]) return null;
+      
+      const fromRate = currencies[fromCurrency].rate;
+      const toRate = currencies[toCurrency].rate;
+      
+      // Конвертируем через USDT как базовую валюту
+      if (fromCurrency.includes('USDT') || fromCurrency.includes('USD')) {
+        return toRate;
+      } else if (toCurrency.includes('USDT') || toCurrency.includes('USD')) {
+        return 1 / fromRate;
+      } else {
+        // Если обе валюты не USDT/USD, конвертируем через USDT
+        return toRate / fromRate;
+      }
+    }
+
+    // Функция для обновления курса
+    function updateExchangeRate() {
+      const fromSelect = document.getElementById('fromCurrency');
+      const toSelect = document.getElementById('toCurrency');
+      const rateInput = document.getElementById('well');
+      
+      if (fromSelect.value && toSelect.value) {
+        const rate = getExchangeRate(fromSelect.value, toSelect.value);
+        if (rate) {
+          rateInput.value = rate.toFixed(6);
+        }
+      }
+    }
+
+    // Функция для конвертации суммы
+    function convertAmount() {
+      const fromSelect = document.getElementById('fromCurrency');
+      const toSelect = document.getElementById('toCurrency');
+      const fromAmount = document.getElementById('give');
+      const toAmount = document.getElementById('receive');
+      
+      if (fromSelect.value && toSelect.value && fromAmount.value) {
+        const rate = getExchangeRate(fromSelect.value, toSelect.value);
+        if (rate) {
+          const converted = parseFloat(fromAmount.value) * rate;
+          toAmount.value = converted.toFixed(6);
+        }
+      }
+    }
+
+    // Инициализация при загрузке страницы
+    document.addEventListener('DOMContentLoaded', function() {
+      // Добавляем обработчики событий для выбора валют
+      const fromSelect = document.getElementById('fromCurrency');
+      const toSelect = document.getElementById('toCurrency');
+      
+      if (fromSelect && toSelect) {
+        fromSelect.addEventListener('change', updateExchangeRate);
+        toSelect.addEventListener('change', updateExchangeRate);
+      }
+
+      // Добавляем обработчик для поля суммы
+      const fromAmount = document.getElementById('give');
+      if (fromAmount) {
+        fromAmount.addEventListener('input', convertAmount);
+      }
+    });
+  </script>
 
   <!-- Footer -->
   <footer style="background: white; padding: 2rem; margin-top: 3rem; border-top: 1px solid #eee; text-align: center;">
