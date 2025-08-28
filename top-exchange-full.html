@@ -524,9 +524,29 @@
     // Функция для обновления курса
     function updateExchangeRate() {
       const rateInput = document.getElementById('well');
-      // Устанавливаем фиксированный курс USDT (TRC-20) к BRL
-      const rate = 5.35; // Примерный курс USDT к BRL
-      rateInput.value = rate.toFixed(4);
+      const fromCurrency = getSelectedFromCurrency();
+      const toCurrency = getSelectedToCurrency();
+      
+      if (fromCurrency && toCurrency) {
+        const rate = getExchangeRate(fromCurrency, toCurrency);
+        if (rate) {
+          rateInput.value = rate.toFixed(4);
+          // Сохраняем текущий курс для конвертации
+          window.currentRate = rate;
+        }
+      }
+    }
+
+    // Функция для получения выбранной валюты отправления
+    function getSelectedFromCurrency() {
+      const activeItem = document.querySelector('[data-type="from"].active');
+      return activeItem ? activeItem.getAttribute('data-currency') : null;
+    }
+
+    // Функция для получения выбранной валюты получения
+    function getSelectedToCurrency() {
+      const activeItem = document.querySelector('[data-type="to"].active');
+      return activeItem ? activeItem.getAttribute('data-currency') : null;
     }
 
     // Функция для конвертации суммы
@@ -534,29 +554,65 @@
       const fromAmount = document.getElementById('give');
       const toAmount = document.getElementById('receive');
       
-      if (fromAmount.value) {
-        const rate = 5.35; // Фиксированный курс USDT (TRC-20) к BRL
-        const converted = parseFloat(fromAmount.value) * rate;
+      if (fromAmount.value && window.currentRate) {
+        const converted = parseFloat(fromAmount.value) * window.currentRate;
         toAmount.value = converted.toFixed(2);
+      }
+    }
+
+    // Функция для обратной конвертации (из поля получения)
+    function convertAmountReverse() {
+      const fromAmount = document.getElementById('give');
+      const toAmount = document.getElementById('receive');
+      
+      if (toAmount.value && window.currentRate) {
+        const converted = parseFloat(toAmount.value) / window.currentRate;
+        fromAmount.value = converted.toFixed(6);
       }
     }
 
     // Инициализация при загрузке страницы
     document.addEventListener('DOMContentLoaded', function() {
+      // Устанавливаем начальные активные валюты
+      const fromCurrencyItems = document.querySelectorAll('[data-type="from"]');
+      const toCurrencyItems = document.querySelectorAll('[data-type="to"]');
+      
+      // Устанавливаем USDT (TRC-20) как активную валюту отправления по умолчанию
+      if (fromCurrencyItems.length > 0) {
+        fromCurrencyItems[0].classList.add('active');
+      }
+      
+      // Устанавливаем BRL как активную валюту получения по умолчанию
+      if (toCurrencyItems.length > 0) {
+        toCurrencyItems[0].classList.add('active');
+      }
+
       // Устанавливаем курс при загрузке страницы
       updateExchangeRate();
 
-      // Добавляем обработчик для поля суммы
+      // Добавляем обработчики для полей сумм
       const fromAmount = document.getElementById('give');
+      const toAmount = document.getElementById('receive');
+      
       if (fromAmount) {
         fromAmount.addEventListener('input', convertAmount);
+        fromAmount.addEventListener('blur', function() {
+          if (this.value) {
+            convertAmount();
+          }
+        });
+      }
+      
+      if (toAmount) {
+        toAmount.addEventListener('input', convertAmountReverse);
+        toAmount.addEventListener('blur', function() {
+          if (this.value) {
+            convertAmountReverse();
+          }
+        });
       }
 
-      // Добавляем обработчики для кликов по валютам
-      const fromCurrencyItems = document.querySelectorAll('[data-type="from"]');
-      const toCurrencyItems = document.querySelectorAll('[data-type="to"]');
-
-      // Обработчики для валют отправления
+      // Обработчики для кликов по валютам
       fromCurrencyItems.forEach(item => {
         item.addEventListener('click', function() {
           // Убираем активное состояние у всех валют отправления
@@ -564,12 +620,14 @@
           // Добавляем активное состояние к выбранной валюте
           this.classList.add('active');
           
-          // Обновляем курс
+          // Обновляем курс и пересчитываем сумму
           updateExchangeRate();
+          if (fromAmount && fromAmount.value) {
+            convertAmount();
+          }
         });
       });
 
-      // Обработчики для валют получения
       toCurrencyItems.forEach(item => {
         item.addEventListener('click', function() {
           // Убираем активное состояние у всех валют получения
@@ -577,8 +635,11 @@
           // Добавляем активное состояние к выбранной валюте
           this.classList.add('active');
           
-          // Обновляем курс
+          // Обновляем курс и пересчитываем сумму
           updateExchangeRate();
+          if (fromAmount && fromAmount.value) {
+            convertAmount();
+          }
         });
       });
     });
