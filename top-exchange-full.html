@@ -415,9 +415,9 @@
     <div class="card">
       <h3>SELECT WHAT YOU GET</h3>
       <ul class="currency-list">
-        <li class="currency-item" data-currency="USDT (TRC-20)" data-type="to">
+        <li class="currency-item" data-currency="BRL" data-type="to">
           <div class="currency-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="currentColor"/></svg></div>
-          <div class="currency-name">USDT (TRC-20)</div>
+          <div class="currency-name">BRL</div>
         </li>
         <li class="currency-item" data-currency="Bitcoin" data-type="to">
           <div class="currency-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="currentColor"/></svg></div>
@@ -476,7 +476,7 @@
         <label for="toCurrency" class="form-label">To Currency</label>
         <select id="toCurrency" class="form-input">
           <option value="">Select currency to receive</option>
-          <option value="USDT (TRC-20)">USDT (TRC-20)</option>
+          <option value="BRL">BRL</option>
           <option value="Bitcoin">Bitcoin</option>
           <option value="Ethereum ETH">Ethereum ETH</option>
           <option value="Litecoin">Litecoin</option>
@@ -521,6 +521,7 @@
     // Данные о валютах
     const currencies = {
       'USDT (TRC-20)': { symbol: 'USDT', rate: 1.0 },
+      'BRL': { symbol: 'BRL', rate: 5.35 },
       'Bitcoin': { symbol: 'BTC', rate: 0.000037 },
       'Ethereum ETH': { symbol: 'ETH', rate: 0.00059 },
       'Litecoin': { symbol: 'LTC', rate: 0.037 },
