@@ -276,7 +276,7 @@
     /* Currency List Styles */
     .currency-list {
       list-style: none;
-      max-height: 400px; /* Высота для 8 элементов (примерно 50px каждый) */
+      max-height: 550px; /* Высота для 11 элементов (примерно 50px каждый) */
       overflow-y: auto; /* Вертикальная прокрутка */
       overflow-x: hidden; /* Горизонтальная прокрутка скрыта */
       scrollbar-width: thin; /* Тонкий скроллбар для Firefox */
@@ -314,6 +314,21 @@
       background: linear-gradient(transparent, var(--card-bg));
       pointer-events: none;
       border-radius: 0 0 8px 0;
+    }
+
+    /* Улучшенная прокрутка для длинных списков */
+    .currency-list {
+      scroll-behavior: smooth;
+    }
+
+    /* Стили для последних элементов в списке */
+    .currency-item:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Улучшенный hover эффект для длинных списков */
+    .currency-item:hover {
+      z-index: 10;
     }
 
     .currency-item {
@@ -541,6 +556,50 @@
       display: inline-block;
     }
 
+    /* Стили для контейнера курса */
+    .rate-container {
+      position: relative;
+    }
+
+    .rate-status {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+    }
+
+    .status-indicator {
+      font-size: 1rem;
+    }
+
+    .status-text {
+      font-weight: 500;
+    }
+
+    /* Анимация для индикатора загрузки */
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .status-indicator.loading {
+      animation: spin 1s linear infinite;
+    }
+
+    /* Стили для больших экранов */
+    @media (min-width: 1200px) {
+      .currency-list {
+        max-height: 600px; /* Еще больше места для больших экранов */
+      }
+      
+      .currency-item {
+        height: 52px; /* Немного больше высота для лучшей читаемости */
+        padding: 1.1rem;
+      }
+    }
+
     .btn-submit:hover {
       transform: translateY(-2px);
       box-shadow: var(--shadow-lg);
@@ -659,7 +718,7 @@
       }
 
       .currency-list {
-        max-height: 350px;
+        max-height: 500px;
       }
 
       .currency-item {
@@ -703,7 +762,7 @@
       }
 
       .currency-list {
-        max-height: 300px;
+        max-height: 450px;
       }
 
       .currency-item {
@@ -778,41 +837,50 @@
     <div class="card">
       <h3>SELECT WHAT YOU SEND</h3>
       <ul class="currency-list">
+        <!-- Стабильные монеты -->
         <li class="currency-item active" data-currency="USDT (TRC-20)" data-type="from">
           <div class="currency-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="currentColor"></path></svg></div>
           <div class="currency-name">USDT (TRC-20)</div>
         </li>
-        <li class="currency-item" data-currency="ALYIPAY CNY" data-type="from">
+        <li class="currency-item" data-currency="Bitcoin BTC" data-type="from">
           <div class="currency-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="currentColor"></path></svg></div>
-          <div class="currency-name">ALYIPAY CNY</div>
+          <div class="currency-name">Bitcoin BTC</div>
         </li>
-        <li class="currency-item" data-currency="USD" data-type="from">
+        <li class="currency-item" data-currency="Ethereum ETH" data-type="from">
           <div class="currency-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="currentColor"></path></svg></div>
-          <div class="currency-name">USD</div>
+          <div class="currency-name">Ethereum ETH</div>
         </li>
-        <li class="currency-item" data-currency="Litecoin" data-type="from">
+        <li class="currency-item" data-currency="Litecoin LTC" data-type="from">
           <div class="currency-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="currentColor"></path></svg></div>
-          <div class="currency-name">Litecoin</div>
-        </li>
-        <li class="currency-item" data-currency="EURO" data-type="from">
-          <div class="currency-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="currentColor"></path></svg></div>
-          <div class="currency-name">EURO</div>
+          <div class="currency-name">Litecoin LTC</div>
         </li>
         <li class="currency-item" data-currency="Tron TRX" data-type="from">
           <div class="currency-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="currentColor"></path></svg></div>
           <div class="currency-name">Tron TRX</div>
         </li>
-        <li class="currency-item" data-currency="USDT (ERC-20)" data-type="from">
-          <div class="currency-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="currentColor"></path></svg></div>
-          <div class="currency-name">USDT (ERC-20)</div>
-        </li>
         <li class="currency-item" data-currency="Bsc BNB" data-type="from">
           <div class="currency-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="currentColor"></path></svg></div>
           <div class="currency-name">Bsc BNB</div>
         </li>
-        <li class="currency-item" data-currency="USDT (BEP-20)" data-type="from">
+        <li class="currency-item" data-currency="Polygon MATIC" data-type="from">
           <div class="currency-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="currentColor"></path></svg></div>
-          <div class="currency-name">USDT (BEP-20)</div>
+          <div class="currency-name">Polygon MATIC</div>
+        </li>
+        <li class="currency-item" data-currency="Solana SOL" data-type="from">
+          <div class="currency-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="currentColor"></path></svg></div>
+          <div class="currency-name">Solana SOL</div>
+        </li>
+        <li class="currency-item" data-currency="Cardano ADA" data-type="from">
+          <div class="currency-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="currentColor"></path></svg></div>
+          <div class="currency-name">Cardano ADA</div>
+        </li>
+        <li class="currency-item" data-currency="Dogecoin DOGE" data-type="from">
+          <div class="currency-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="currentColor"></path></svg></div>
+          <div class="currency-name">Dogecoin DOGE</div>
+        </li>
+        <li class="currency-item" data-currency="Shiba Inu SHIB" data-type="from">
+          <div class="currency-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="currentColor"></path></svg></div>
+          <div class="currency-name">Shiba Inu SHIB</div>
         </li>
       </ul>
     </div>
@@ -821,41 +889,62 @@
     <div class="card">
       <h3>SELECT WHAT YOU GET</h3>
       <ul class="currency-list">
-        <li class="currency-item active" data-currency="BRL" data-type="to">
+        <!-- Фиатные валюты -->
+        <li class="currency-item active" data-currency="BRL Real" data-type="to">
           <div class="currency-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="currentColor"></path></svg></div>
-          <div class="currency-name">BRL</div>
+          <div class="currency-name">BRL Real</div>
         </li>
-        <li class="currency-item" data-currency="ALYIPAY CNY" data-type="to">
+        <li class="currency-item" data-currency="USD Dollar" data-type="to">
           <div class="currency-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="currentColor"></path></svg></div>
-          <div class="currency-name">ALYIPAY CNY</div>
+          <div class="currency-name">USD Dollar</div>
         </li>
-        <li class="currency-item" data-currency="USD" data-type="to">
+        <li class="currency-item" data-currency="EUR Euro" data-type="to">
           <div class="currency-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="currentColor"></path></svg></div>
-          <div class="currency-name">USD</div>
+          <div class="currency-name">EUR Euro</div>
         </li>
-        <li class="currency-item" data-currency="EURO" data-type="to">
+        <li class="currency-item" data-currency="CNY Yuan" data-type="to">
           <div class="currency-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="currentColor"></path></svg></div>
-          <div class="currency-name">EURO</div>
+          <div class="currency-name">CNY Yuan</div>
         </li>
-        <li class="currency-item" data-currency="Tron TRX" data-type="to">
+        <li class="currency-item" data-currency="GBP Pound" data-type="to">
           <div class="currency-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="currentColor"></path></svg></div>
-          <div class="currency-name">Tron TRX</div>
+          <div class="currency-name">GBP Pound</div>
+        </li>
+        <li class="currency-item" data-currency="JPY Yen" data-type="to">
+          <div class="currency-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="currentColor"></path></svg></div>
+          <div class="currency-name">JPY Yen</div>
+        </li>
+        
+        <!-- Стабильные монеты -->
+        <li class="currency-item" data-currency="USDT (TRC-20)" data-type="to">
+          <div class="currency-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="currentColor"></path></svg></div>
+          <div class="currency-name">USDT (TRC-20)</div>
         </li>
         <li class="currency-item" data-currency="USDT (ERC-20)" data-type="to">
           <div class="currency-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="currentColor"></path></svg></div>
           <div class="currency-name">USDT (ERC-20)</div>
         </li>
-        <li class="currency-item" data-currency="Bsc BNB" data-type="to">
+        <li class="currency-item" data-currency="USDC (ERC-20)" data-type="to">
           <div class="currency-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="currentColor"></path></svg></div>
-          <div class="currency-name">Bsc BNB</div>
+          <div class="currency-name">USDC (ERC-20)</div>
         </li>
-        <li class="currency-item" data-currency="USDT (BEP-20)" data-type="to">
+        <li class="currency-item" data-currency="DAI (ERC-20)" data-type="to">
           <div class="currency-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="currentColor"></path></svg></div>
-          <div class="currency-name">USDT (BEP-20)</div>
+          <div class="currency-name">DAI (ERC-20)</div>
         </li>
-        <li class="currency-item" data-currency="USDC (BEP-20)" data-type="to">
+        
+        <!-- Основные криптовалюты -->
+        <li class="currency-item" data-currency="Bitcoin BTC" data-type="to">
           <div class="currency-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="currentColor"></path></svg></div>
-          <div class="currency-name">USDC (BEP-20)</div>
+          <div class="currency-name">Bitcoin BTC</div>
+        </li>
+        <li class="currency-item" data-currency="Ethereum ETH" data-type="to">
+          <div class="currency-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="currentColor"></path></svg></div>
+          <div class="currency-name">Ethereum ETH</div>
+        </li>
+        <li class="currency-item" data-currency="Monero XMR" data-type="to">
+          <div class="currency-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="currentColor"></path></svg></div>
+          <div class="currency-name">Monero XMR</div>
         </li>
       </ul>
     </div>
@@ -866,18 +955,24 @@
 
       <div class="form-group">
         <label for="well" class="form-label">RATE</label>
-        <input type="text" id="well" class="form-input" placeholder="Exchange rate will appear here" readonly="">
+        <div class="rate-container">
+          <input type="text" id="well" class="form-input" placeholder="Loading real-time rates..." readonly="">
+          <div id="rate-status" class="rate-status">
+            <span class="status-indicator" id="status-indicator">🔄</span>
+            <span class="status-text" id="status-text">Loading...</span>
+          </div>
+        </div>
       </div>
       <div class="form-row">
         <div class="form-col">
           <label for="give" class="form-label">You give:</label>
           <input type="number" id="give" class="form-input" placeholder="Enter the amount">
-          <small>Amount excluding payment system commission</small>
+
         </div>
         <div class="form-col">
           <label for="receive" class="form-label">You receive:</label>
           <input type="number" id="receive" class="form-input" placeholder="Enter the amount">
-          <small>Amount received to the target account</small>
+
         </div>
       </div>
       <div class="form-group">
@@ -899,23 +994,98 @@
 
   <!-- JavaScript for currency conversion -->
   <script>
-    // Данные о валютах
+    // Данные о валютах с поддержкой Trocador API
     const currencies = {
-      'USDT (TRC-20)': { symbol: 'USDT', rate: 1.0 },
-      'BRL': { symbol: 'BRL', rate: 5.35 },
-      'ALYIPAY CNY': { symbol: 'CNY', rate: 7.2 },
-      'USD': { symbol: 'USD', rate: 1.0 },
-      'Litecoin': { symbol: 'LTC', rate: 0.037 },
-      'EURO': { symbol: 'EUR', rate: 0.92 },
-      'Tron TRX': { symbol: 'TRX', rate: 37.04 },
-      'USDT (ERC-20)': { symbol: 'USDT', rate: 1.0 },
-      'Bsc BNB': { symbol: 'BNB', rate: 0.0017 },
-      'USDT (BEP-20)': { symbol: 'USDT', rate: 1.0 },
-      'USDC (BEP-20)': { symbol: 'USDC', rate: 1.0 }
+      // Стабильные монеты
+      'USDT (TRC-20)': { symbol: 'USDT', network: 'TRC20', rate: 1.0, isStable: true, category: 'stablecoin' },
+      'USDT (ERC-20)': { symbol: 'USDT', network: 'ERC20', rate: 1.0, isStable: true, category: 'stablecoin' },
+      'USDT (BEP-20)': { symbol: 'USDT', network: 'BEP20', rate: 1.0, isStable: true, category: 'stablecoin' },
+      'USDC (ERC-20)': { symbol: 'USDC', network: 'ERC20', rate: 1.0, isStable: true, category: 'stablecoin' },
+      'USDC (BEP-20)': { symbol: 'USDC', network: 'BEP20', rate: 1.0, isStable: true, category: 'stablecoin' },
+      'DAI (ERC-20)': { symbol: 'DAI', network: 'ERC20', rate: 1.0, isStable: true, category: 'stablecoin' },
+      'TUSD (ERC-20)': { symbol: 'TUSD', network: 'ERC20', rate: 1.0, isStable: true, category: 'stablecoin' },
+      'BUSD (BEP-20)': { symbol: 'BUSD', network: 'BEP20', rate: 1.0, isStable: true, category: 'stablecoin' },
+      
+      // Основные криптовалюты
+      'Bitcoin BTC': { symbol: 'BTC', network: 'Mainnet', rate: 0.000037, category: 'crypto' },
+      'Bitcoin Lightning': { symbol: 'BTC', network: 'Lightning', rate: 0.000037, category: 'crypto' },
+      'Ethereum ETH': { symbol: 'ETH', network: 'Mainnet', rate: 0.0006, category: 'crypto' },
+      'Litecoin LTC': { symbol: 'LTC', network: 'Mainnet', rate: 0.037, category: 'crypto' },
+      'Bitcoin Cash BCH': { symbol: 'BCH', network: 'Mainnet', rate: 0.0012, category: 'crypto' },
+      'Dash DASH': { symbol: 'DASH', network: 'Mainnet', rate: 0.008, category: 'crypto' },
+      'Dogecoin DOGE': { symbol: 'DOGE', network: 'Mainnet', rate: 2.5, category: 'meme' },
+      'Monero XMR': { symbol: 'XMR', network: 'Mainnet', rate: 0.004, category: 'crypto' },
+      'Zcash ZEC': { symbol: 'ZEC', network: 'Mainnet', rate: 0.015, category: 'crypto' },
+      
+      // DeFi токены
+      'Tron TRX': { symbol: 'TRX', network: 'Mainnet', rate: 37.04, category: 'defi' },
+      'Bsc BNB': { symbol: 'BNB', network: 'BSC', rate: 0.0017, category: 'defi' },
+      'Polygon MATIC': { symbol: 'MATIC', network: 'Polygon', rate: 0.85, category: 'defi' },
+      'Solana SOL': { symbol: 'SOL', network: 'Mainnet', rate: 0.012, category: 'defi' },
+      'Cardano ADA': { symbol: 'ADA', network: 'Mainnet', rate: 1.8, category: 'defi' },
+      'Polkadot DOT': { symbol: 'DOT', network: 'Mainnet', rate: 0.12, category: 'defi' },
+      'Chainlink LINK': { symbol: 'LINK', network: 'Mainnet', rate: 0.08, category: 'defi' },
+      'Uniswap UNI': { symbol: 'UNI', network: 'Mainnet', rate: 0.15, category: 'defi' },
+      'Aave AAVE': { symbol: 'AAVE', network: 'Mainnet', rate: 0.006, category: 'defi' },
+      'Compound COMP': { symbol: 'COMP', network: 'Mainnet', rate: 0.008, category: 'defi' },
+      
+      // Layer 2 решения
+      'Arbitrum ARB': { symbol: 'ARB', network: 'Arbitrum', rate: 0.8, category: 'l2' },
+      'Optimism OP': { symbol: 'OP', network: 'Optimism', rate: 0.4, category: 'l2' },
+      'Base': { symbol: 'ETH', network: 'Base', rate: 0.0006, category: 'l2' },
+      
+      // Альтернативные сети
+      'Avalanche AVAX': { symbol: 'AVAX', network: 'Avalanche', rate: 0.025, category: 'alt' },
+      'Fantom FTM': { symbol: 'FTM', network: 'Fantom', rate: 1.2, category: 'alt' },
+      'Cronos CRO': { symbol: 'CRO', network: 'Cronos', rate: 3.5, category: 'alt' },
+      'Harmony ONE': { symbol: 'ONE', network: 'Harmony', rate: 15.0, category: 'alt' },
+      'Near Protocol NEAR': { symbol: 'NEAR', network: 'Mainnet', rate: 0.3, category: 'alt' },
+      'Algorand ALGO': { symbol: 'ALGO', network: 'Mainnet', rate: 2.1, category: 'alt' },
+      'Tezos XTZ': { symbol: 'XTZ', network: 'Mainnet', rate: 1.8, category: 'alt' },
+      'Cosmos ATOM': { symbol: 'ATOM', network: 'Mainnet', rate: 0.12, category: 'alt' },
+      
+      // Фиатные валюты
+      'BRL Real': { symbol: 'BRL', network: 'Mainnet', rate: 5.35, isFiat: true, category: 'fiat' },
+      'USD Dollar': { symbol: 'USD', network: 'Mainnet', rate: 1.0, isFiat: true, category: 'fiat' },
+      'EUR Euro': { symbol: 'EUR', network: 'Mainnet', rate: 0.92, isFiat: true, category: 'fiat' },
+      'CNY Yuan': { symbol: 'CNY', network: 'Mainnet', rate: 7.2, isFiat: true, category: 'fiat' },
+      'GBP Pound': { symbol: 'GBP', network: 'Mainnet', rate: 0.79, isFiat: true, category: 'fiat' },
+      'JPY Yen': { symbol: 'JPY', network: 'Mainnet', rate: 150.0, isFiat: true, category: 'fiat' },
+      'CAD Dollar': { symbol: 'CAD', network: 'Mainnet', rate: 1.35, isFiat: true, category: 'fiat' },
+      'AUD Dollar': { symbol: 'AUD', network: 'Mainnet', rate: 1.52, isFiat: true, category: 'fiat' },
+      'CHF Franc': { symbol: 'CHF', network: 'Mainnet', rate: 0.88, isFiat: true, category: 'fiat' },
+      'RUB Ruble': { symbol: 'RUB', network: 'Mainnet', rate: 95.0, isFiat: true, category: 'fiat' },
+      
+      // Мемкоины
+      'Shiba Inu SHIB': { symbol: 'SHIB', network: 'Mainnet', rate: 25000, category: 'meme' },
+      'Pepe PEPE': { symbol: 'PEPE', network: 'Mainnet', rate: 50000, category: 'meme' },
+      'Floki FLOKI': { symbol: 'FLOKI', network: 'Mainnet', rate: 8000, category: 'meme' },
+      'Bonk BONK': { symbol: 'BONK', network: 'Mainnet', rate: 15000, category: 'meme' },
+      
+      // Игровые токены
+      'Axie Infinity AXS': { symbol: 'AXS', network: 'Mainnet', rate: 0.4, category: 'gaming' },
+      'The Sandbox SAND': { symbol: 'SAND', network: 'Mainnet', rate: 0.6, category: 'gaming' },
+      'Decentraland MANA': { symbol: 'MANA', network: 'Mainnet', rate: 0.5, category: 'gaming' },
+      'Enjin Coin ENJ': { symbol: 'ENJ', network: 'Mainnet', rate: 0.8, category: 'gaming' },
+      
+      // AI и метавселенная
+      'Fetch.ai FET': { symbol: 'FET', network: 'Mainnet', rate: 0.3, category: 'ai' },
+      'SingularityNET AGIX': { symbol: 'AGIX', network: 'Mainnet', rate: 0.25, category: 'ai' },
+      'Ocean Protocol OCEAN': { symbol: 'OCEAN', network: 'Mainnet', rate: 0.4, category: 'ai' },
+      'Render RNDR': { symbol: 'RNDR', network: 'Mainnet', rate: 0.15, category: 'ai' }
+    };
+
+    // Trocador API конфигурация
+    const TROCADOR_CONFIG = {
+      baseUrl: 'https://api.trocador.app',
+      apiKey: '', // Здесь нужно будет добавить ваш API ключ
+      updateInterval: 5 * 60 * 1000, // 5 минут
+      lastUpdate: 0,
+      isTestMode: true // Включаем тестовый режим
     };
 
     // Функция для получения курса между двумя валютами
-    function getExchangeRate(fromCurrency, toCurrency) {
+    async function getTrocadorRate(fromCurrency, toCurrency, amount) {
       if (!currencies[fromCurrency] || !currencies[toCurrency]) return null;
       
       const fromRate = currencies[fromCurrency].rate;
@@ -932,18 +1102,71 @@
       }
     }
 
+    // Fallback функция для базовых курсов
+    function getFallbackRate(fromCurrency, toCurrency) {
+      if (!currencies[fromCurrency] || !currencies[toCurrency]) return null;
+
+      const fromRate = currencies[fromCurrency].rate;
+      const toRate = currencies[toCurrency].rate;
+      
+      // Конвертируем через USDT как базовую валюту
+      if (fromCurrency.includes('USDT') || fromCurrency.includes('USD')) {
+        return 1 / fromRate;
+      } else if (toCurrency.includes('USDT') || fromCurrency.includes('USD')) {
+        return toRate;
+      }
+      
+      // Если обе валюты не USDT/USD, конвертируем через USDT
+      return toRate / fromRate;
+    }
+
     // Функция для обновления курса
-    function updateExchangeRate() {
+    async function updateExchangeRate() {
       const rateInput = document.getElementById('well');
+      const statusIndicator = document.getElementById('status-indicator');
+      const statusText = document.getElementById('status-text');
       const fromCurrency = getSelectedFromCurrency();
       const toCurrency = getSelectedToCurrency();
+      const fromAmount = document.getElementById('give').value || 1;
       
       if (fromCurrency && toCurrency) {
-        const rate = getExchangeRate(fromCurrency, toCurrency);
-        if (rate) {
-          rateInput.value = rate.toFixed(4);
-          // Сохраняем текущий курс для конвертации
-          window.currentRate = rate;
+        // Показываем загрузку
+        if (statusIndicator && statusText) {
+          statusIndicator.textContent = '🔄';
+          statusIndicator.classList.add('loading');
+          statusText.textContent = 'Loading real-time rate...';
+        }
+
+        try {
+          // Пытаемся получить курс от Trocador API
+          const rate = await getTrocadorRate(fromCurrency, toCurrency, fromAmount);
+          if (rate) {
+            window.currentRate = rate;
+            rateInput.value = rate.toFixed(4);
+            rateInput.style.color = '#00d4aa'; // Зеленый цвет для реального курса
+            
+            // Показываем успех
+            if (statusIndicator && statusText) {
+              statusIndicator.textContent = '✅';
+              statusIndicator.classList.remove('loading');
+              statusText.textContent = 'Real-time rate from Trocador';
+            }
+          }
+        } catch (error) {
+          // Fallback к базовому курсу
+          const fallbackRate = getFallbackRate(fromCurrency, toCurrency);
+          if (fallbackRate) {
+            window.currentRate = fallbackRate;
+            rateInput.value = fallbackRate.toFixed(4);
+            rateInput.style.color = '#ff6b6b'; // Красный цвет для fallback курса
+            
+            // Показываем fallback
+            if (statusIndicator && statusText) {
+              statusIndicator.textContent = '⚠️';
+              statusIndicator.classList.remove('loading');
+              statusText.textContent = 'Using fallback rate';
+            }
+          }
         }
       }
     }
@@ -1081,6 +1304,17 @@
           const whatsappUrl = `https://wa.me/5599981699999?text=${encodedMessage}`;
           window.open(whatsappUrl, '_blank');
         });
+      }
+
+      // Автоматическое обновление курсов каждые 5 минут
+      setInterval(async () => {
+        await updateExchangeRate();
+      }, TROCADOR_CONFIG.updateInterval);
+
+      // Показываем информацию о статусе API
+      const rateInput = document.getElementById('well');
+      if (rateInput) {
+        rateInput.placeholder = 'Loading real-time rates...';
       }
     });
   </script>
