@@ -1106,7 +1106,7 @@
       <h3>SELECT WHAT YOU GET</h3>
       <ul class="currency-list">
         <!-- Фиатные валюты -->
-        <li class="currency-item active" data-currency="BRL Real" data-type="to">
+        <li class="currency-item" data-currency="BRL Real" data-type="to">
           <div class="currency-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="currentColor"></path></svg></div>
           <div class="currency-name">BRL Real</div>
         </li>
@@ -1114,7 +1114,7 @@
           <div class="currency-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="currentColor"></path></svg></div>
           <div class="currency-name">USD Dollar</div>
         </li>
-        <li class="currency-item" data-currency="EUR Euro" data-type="to">
+        <li class="currency-item active" data-currency="EUR Euro" data-type="to">
           <div class="currency-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="currentColor"></path></svg></div>
           <div class="currency-name">EUR Euro</div>
         </li>
@@ -2106,16 +2106,10 @@
       }
       
       // Устанавливаем BRL как активную валюту получения по умолчанию
-      if (toCurrencyItems.length > 0 && !document.querySelector("[data-type=\"to\"].active")) {
-        // Ищем BRL Real и делаем её активной
-        const brlItem = Array.from(toCurrencyItems).find(item => item.getAttribute("data-currency") === "BRL Real");
-        if (brlItem) {
-          brlItem.classList.add("active");
-        } else {
-          // Если BRL Real не найдена, делаем активной первую валюту
-          toCurrencyItems[0].classList.add("active");
-        }
+      if (toCurrencyItems.length > 0) {
+        toCurrencyItems[0].classList.add('active');
       }
+
       // Устанавливаем курс при загрузке страницы
       updateExchangeRate();
 
@@ -2219,10 +2213,10 @@
   <!-- Footer -->
   <footer>
     <div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;">
-      <a href="file:///Users/bagrat/site/top-exchange-full.html#">About Us</a>
-      <a href="file:///Users/bagrat/site/top-exchange-full.html#">Privacy Policy</a>
-      <a href="file:///Users/bagrat/site/top-exchange-full.html#">Terms of Use</a>
-      <a href="file:///Users/bagrat/site/top-exchange-full.html#">AML/KYC</a>
+      <a href="https://ex.financial/about_us.html">About Us</a>
+      <a href="https://ex.financial/privacy_policy.html">Privacy Policy</a>
+      <a href="https://ex.financial/terms.html">Terms of Use</a>
+      <a href="https://ex.financial/aml.html">AML/KYC</a>
     </div>
     <div style="margin-top: 1rem; color: var(--text-secondary); font-size: 0.9rem;">
       © 2024 Ex.financial. All rights reserved.
