@@ -49,6 +49,8 @@
 
     /* Header Styles */
     header {
+      flex-wrap: wrap;
+      gap: 1rem;
         text-align: center;      flex-wrap: wrap;
       gap: 1rem;      display: flex;
       justify-content: space-between;
@@ -64,6 +66,8 @@
     }
 
     .logo {
+      justify-content: center;
+      flex: 1;
       justify-content: center;
       flex: 1;      display: flex;
       align-items: center;
@@ -82,10 +86,8 @@
       -webkit-text-fill-color: #ffffff !important;
       background: none !important;
       background-clip: unset !important;
-    }      color: var(--primary-color);
-    }
-
-    .status {
+    }      justify-content: center;
+      flex: 1;
       justify-content: center;
       flex: 1;      display: flex;
       align-items: center;
@@ -108,6 +110,8 @@
 
     .support {
       justify-content: center;
+      flex: 1;
+      justify-content: center;
       flex: 1;      display: flex;
       flex-direction: column;
       font-size: 0.85rem;
@@ -117,6 +121,8 @@
     }
 
     .lang {
+      justify-content: center;
+      flex: 1;
       justify-content: center;
       flex: 1;      display: flex;
       align-items: center;
@@ -748,6 +754,7 @@
 
     /* Footer */
     footer {
+      text-align: center;
       text-align: center;      background: var(--card-bg);
       backdrop-filter: blur(20px);
       padding: 2rem 2rem;
@@ -758,6 +765,12 @@
 
     footer a {
     .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      margin-bottom: 1rem;
+    }    .footer-links {
       display: flex;
       justify-content: center;
       gap: 2rem;
