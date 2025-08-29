@@ -7,21 +7,24 @@
   <link href="./Ex.financial_files/css2" rel="stylesheet">
   <style>
     :root {
-      --primary-color: #667eea;
-      --secondary-color: #764ba2;
-      --accent-color: #f093fb;
-      --success-color: #4facfe;
-      --warning-color: #f093fb;
+      --primary-color: #00d4aa;
+      --secondary-color: #00b894;
+      --accent-color: #00d4aa;
+      --success-color: #00d4aa;
+      --warning-color: #ff6b6b;
       --error-color: #ff6b6b;
-      --text-primary: #2d3748;
-      --text-secondary: #718096;
-      --bg-primary: #ffffff;
-      --bg-secondary: #f7fafc;
-      --border-color: #e2e8f0;
-      --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-      --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+      --text-primary: #ffffff;
+      --text-secondary: #cccccc;
+      --bg-primary: #0a0a0a;
+      --bg-secondary: #1a1a1a;
+      --border-color: #333333;
+      --card-bg: rgba(26, 26, 26, 0.95);
+      --glass-bg: rgba(255, 255, 255, 0.03);
+      --glass-border: rgba(255, 255, 255, 0.08);
+      --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.3), 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
+      --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
       --gradient-primary: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
       --gradient-accent: linear-gradient(135deg, var(--accent-color) 0%, var(--success-color) 100%);
       --border-radius: 16px;
@@ -37,7 +40,7 @@
     }
 
     body {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      background: var(--bg-primary);
       background-attachment: fixed;
       color: var(--text-primary);
       line-height: 1.6;
@@ -49,14 +52,14 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 1.5rem 2rem;
-      background: rgba(255, 255, 255, 0.95);
+      padding: 1rem 2rem;
+      background: rgba(10, 10, 10, 0.95);
       backdrop-filter: blur(20px);
       box-shadow: var(--shadow-lg);
       position: sticky;
       top: 0;
       z-index: 100;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      border-bottom: 1px solid var(--border-color);
     }
 
     .logo {
@@ -140,13 +143,13 @@
     }
 
     .btn-login:hover {
-      border-color: var(--primary-color);
-      color: var(--primary-color);
+      border-color: var(--accent-color);
+      color: var(--accent-color);
     }
 
     .btn-register {
       background: var(--gradient-primary);
-      color: white;
+      color: var(--text-primary);
       box-shadow: var(--shadow-md);
     }
 
@@ -160,12 +163,12 @@
       display: flex;
       gap: 2rem;
       margin: 1rem 0;
-      background: rgba(255, 255, 255, 0.95);
+      background: var(--card-bg);
       backdrop-filter: blur(20px);
       padding: 1rem 2rem;
       border-radius: var(--border-radius);
       box-shadow: var(--shadow-md);
-      border: 1px solid rgba(255, 255, 255, 0.2);
+      border: 1px solid var(--glass-border);
     }
 
     nav a {
@@ -178,13 +181,13 @@
     }
 
     nav a:hover {
-      color: var(--primary-color);
-      background: rgba(102, 126, 234, 0.1);
+      color: var(--accent-color);
+      background: rgba(79, 172, 254, 0.1);
     }
 
     .active {
       background: var(--gradient-primary);
-      color: white;
+      color: var(--text-primary);
       padding: 0.5rem 1rem;
       border-radius: var(--border-radius-sm);
       box-shadow: var(--shadow-md);
@@ -194,20 +197,20 @@
     .main {
       display: flex;
       gap: 2rem;
-      padding: 2rem;
+      padding: 1rem;
       max-width: 1400px;
       margin: 0 auto;
     }
 
     /* Card Styles */
     .card {
-      background: rgba(255, 255, 255, 0.95);
+      background: var(--card-bg);
       backdrop-filter: blur(20px);
       border-radius: var(--border-radius);
-      padding: 2rem;
+      padding: 1.5rem;
       box-shadow: var(--shadow-xl);
       flex: 1;
-      border: 1px solid rgba(255, 255, 255, 0.2);
+      border: 1px solid var(--glass-border);
       transition: var(--transition);
     }
 
@@ -218,10 +221,10 @@
 
     .card h3 {
       font-size: 1.25rem;
-      color: var(--text-primary);
-      margin-bottom: 1.5rem;
+      color: var(--accent-color);
+      margin-bottom: 1rem;
       border-bottom: 2px solid var(--border-color);
-      padding-bottom: 1rem;
+      padding-bottom: 0.75rem;
       font-weight: 700;
       position: relative;
     }
@@ -233,7 +236,7 @@
       left: 0;
       width: 50px;
       height: 2px;
-      background: var(--gradient-primary);
+      background: var(--accent-color);
       border-radius: 1px;
     }
 
@@ -260,19 +263,57 @@
 
     .filter-btn:hover {
       background: var(--primary-color);
-      color: white;
+      color: var(--text-primary);
       transform: translateY(-1px);
     }
 
     .filter-btn.active {
       background: var(--gradient-primary);
-      color: white;
+      color: var(--text-primary);
       box-shadow: var(--shadow-md);
     }
 
     /* Currency List Styles */
     .currency-list {
       list-style: none;
+      max-height: 400px; /* Высота для 8 элементов (примерно 50px каждый) */
+      overflow-y: auto; /* Вертикальная прокрутка */
+      overflow-x: hidden; /* Горизонтальная прокрутка скрыта */
+      scrollbar-width: thin; /* Тонкий скроллбар для Firefox */
+      scrollbar-color: var(--accent-color) var(--card-bg); /* Цвет скроллбара */
+      position: relative; /* Для псевдоэлемента */
+    }
+
+    /* Стили для скроллбара WebKit (Chrome, Safari, Edge) */
+    .currency-list::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .currency-list::-webkit-scrollbar-track {
+      background: var(--card-bg);
+      border-radius: 3px;
+    }
+
+    .currency-list::-webkit-scrollbar-thumb {
+      background: var(--accent-color);
+      border-radius: 3px;
+    }
+
+    .currency-list::-webkit-scrollbar-thumb:hover {
+      background: var(--accent-hover);
+    }
+
+    /* Индикатор прокрутки */
+    .currency-list::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 20px;
+      height: 20px;
+      background: linear-gradient(transparent, var(--card-bg));
+      pointer-events: none;
+      border-radius: 0 0 8px 0;
     }
 
     .currency-item {
@@ -282,30 +323,34 @@
       padding: 1rem;
       border-bottom: 1px solid var(--border-color);
       cursor: pointer;
-      transition: var(--transition);
+      transition: all 0.3s ease;
       border-radius: var(--border-radius-sm);
       margin-bottom: 0.5rem;
+      height: 50px; /* Фиксированная высота для каждого элемента */
+      box-sizing: border-box; /* Учитывать padding в общей высоте */
     }
 
     .currency-item:hover {
-      background: rgba(102, 126, 234, 0.05);
+      background: var(--glass-bg);
+      border-color: var(--accent-color);
+      transform: translateX(5px); /* Легкое смещение при наведении */
       transform: translateX(5px);
     }
 
     .currency-item.active {
       background: var(--gradient-primary);
-      color: white;
+      color: var(--text-primary);
       border-left: 4px solid var(--accent-color);
       box-shadow: var(--shadow-md);
     }
 
     .currency-item.active .currency-name {
-      color: white;
+      color: var(--text-primary);
       font-weight: 700;
     }
 
     .currency-item.active .currency-icon svg {
-      fill: white;
+      fill: var(--text-primary);
     }
 
     .currency-item .currency-icon svg {
@@ -354,8 +399,15 @@
       display: block;
       font-size: 0.95rem;
       margin-bottom: 0.75rem;
-      color: var(--text-primary);
+      color: var(--text-secondary);
       font-weight: 600;
+    }
+
+    .form-label[for="well"] {
+      color: var(--accent-color);
+      font-weight: 700;
+      font-size: 1rem;
+      text-align: center;
     }
 
     .form-input {
@@ -365,14 +417,68 @@
       border-radius: var(--border-radius-sm);
       font-size: 1rem;
       transition: var(--transition);
-      background: var(--bg-secondary);
+      background: var(--card-bg);
     }
 
     .form-input:focus {
-      border-color: var(--primary-color);
+      border-color: var(--accent-color);
       outline: none;
-      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-      background: white;
+      box-shadow: 0 0 0 3px rgba(79, 172, 254, 0.1);
+      background: var(--card-bg);
+    }
+
+    .form-input::placeholder {
+      color: var(--text-muted);
+      opacity: 0.7;
+    }
+
+    small {
+      color: var(--text-muted);
+      font-size: 0.875rem;
+      opacity: 0.8;
+    }
+
+    .form-input[readonly] {
+      background: var(--bg-secondary);
+      color: var(--text-primary);
+      font-weight: 600;
+      font-size: 1.1rem;
+      text-align: center;
+      border-color: var(--accent-color);
+    }
+
+    .form-input[readonly]:focus {
+      border-color: var(--accent-color);
+      box-shadow: 0 0 0 3px rgba(79, 172, 254, 0.1);
+    }
+
+    .form-input[type="number"] {
+      color: var(--text-primary);
+      font-weight: 500;
+    }
+
+    .form-input[type="number"]:focus {
+      color: var(--text-primary);
+    }
+
+    .form-input[type="email"],
+    .form-input[type="tel"] {
+      color: var(--text-primary);
+      font-weight: 500;
+    }
+
+    .form-input[type="email"]:focus,
+    .form-input[type="tel"]:focus {
+      color: var(--text-primary);
+    }
+
+    .form-input[type="text"] {
+      color: var(--text-primary);
+      font-weight: 500;
+    }
+
+    .form-input[type="text"]:focus {
+      color: var(--text-primary);
     }
 
     select.form-input {
@@ -385,6 +491,8 @@
       -webkit-appearance: none;
       -moz-appearance: none;
       appearance: none;
+      color: var(--text-primary);
+      font-weight: 500;
     }
 
     .form-row {
@@ -398,7 +506,7 @@
 
     .btn-submit {
       background: var(--gradient-primary);
-      color: white;
+      color: var(--text-primary);
       padding: 1rem;
       border: none;
       border-radius: var(--border-radius-sm);
@@ -407,8 +515,30 @@
       width: 100%;
       margin-top: 1.5rem;
       font-size: 1.1rem;
-      transition: var(--transition);
+      transition: all 0.3s ease;
       box-shadow: var(--shadow-md);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-submit::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: left 0.5s;
+    }
+
+    .btn-submit:hover::before {
+      left: 100%;
+    }
+
+    .btn-submit svg {
+      vertical-align: middle;
+      display: inline-block;
     }
 
     .btn-submit:hover {
@@ -448,7 +578,7 @@
       bottom: 2rem;
       right: 2rem;
       background: var(--gradient-accent);
-      color: white;
+      color: var(--text-primary);
       border: none;
       border-radius: 50%;
       width: 70px;
@@ -471,17 +601,17 @@
 
     /* Footer */
     footer {
-      background: rgba(255, 255, 255, 0.95);
+      background: var(--card-bg);
       backdrop-filter: blur(20px);
-      padding: 3rem 2rem;
-      margin-top: 4rem;
-      border-top: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 2rem 2rem;
+      margin-top: 1rem;
+      border-top: 1px solid var(--glass-border);
       box-shadow: var(--shadow-lg);
     }
 
     footer a {
       text-decoration: none;
-      color: var(--text-primary);
+      color: var(--text-secondary);
       font-weight: 600;
       padding: 0.75rem 1.5rem;
       border-radius: var(--border-radius-sm);
@@ -490,32 +620,52 @@
     }
 
     footer a:hover {
-      color: var(--primary-color);
-      border-color: var(--primary-color);
-      background: rgba(102, 126, 234, 0.05);
+      color: var(--accent-color);
+      border-color: var(--accent-color);
+      background: rgba(79, 172, 254, 0.1);
     }
 
     /* Responsive Design */
     @media (max-width: 768px) {
       .main {
         flex-direction: column;
-        padding: 1rem;
-        gap: 1.5rem;
+        padding: 0.75rem;
+        gap: 1rem;
+      }
+
+      footer {
+        padding: 1.5rem 1rem;
+        margin-top: 0.75rem;
       }
       
       .form-row {
         flex-direction: column;
-        gap: 1rem;
+        gap: 0.75rem;
       }
       
       header {
         flex-direction: column;
-        gap: 1rem;
-        padding: 1rem;
+        gap: 0.75rem;
+        padding: 0.75rem 1rem;
       }
 
       .card {
-        padding: 1.5rem;
+        padding: 1.25rem;
+      }
+
+      .card h3 {
+        margin-bottom: 0.75rem;
+        padding-bottom: 0.5rem;
+      }
+
+      .currency-list {
+        max-height: 350px;
+      }
+
+      .currency-item {
+        height: 48px;
+        padding: 0.875rem;
+        margin-bottom: 0.375rem;
       }
 
       .steps {
@@ -531,14 +681,35 @@
     @media (max-width: 480px) {
       .main {
         padding: 0.5rem;
+        gap: 0.75rem;
       }
       
       .card {
-        padding: 1rem;
+        padding: 0.75rem;
+      }
+
+      .card h3 {
+        margin-bottom: 0.5rem;
+        padding-bottom: 0.5rem;
       }
       
       header {
+        padding: 0.5rem 1rem;
+      }
+
+      footer {
+        padding: 1rem 0.75rem;
+        margin-top: 0.5rem;
+      }
+
+      .currency-list {
+        max-height: 300px;
+      }
+
+      .currency-item {
+        height: 45px;
         padding: 0.75rem;
+        margin-bottom: 0.25rem;
       }
     }
 
@@ -571,6 +742,10 @@
     .currency-item:nth-child(7) { animation-delay: 0.7s; }
     .currency-item:nth-child(8) { animation-delay: 0.8s; }
     .currency-item:nth-child(9) { animation-delay: 0.9s; }
+
+    select.form-input:focus {
+      color: var(--text-primary);
+    }
   </style>
 </head>
 <body>
@@ -713,7 +888,12 @@
         <label for="email" class="form-label">Email</label>
         <input type="email" id="email" class="form-input" placeholder="Enter your email">
       </div>
-      <button class="btn-submit">Start exchange</button>
+      <button class="btn-submit">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="margin-right: 8px;">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/>
+        </svg>
+        Start Exchange
+      </button>
     </div>
   </div>
 
@@ -873,6 +1053,35 @@
           }
         });
       });
+
+      // Обработчик для кнопки "Start exchange" - переход на WhatsApp
+      const startExchangeBtn = document.querySelector('.btn-submit');
+      if (startExchangeBtn) {
+        startExchangeBtn.addEventListener('click', function() {
+          // Получаем данные формы
+          const fromCurrency = getSelectedFromCurrency();
+          const toCurrency = getSelectedToCurrency();
+          const fromAmount = document.getElementById('give').value;
+          const toAmount = document.getElementById('receive').value;
+          const email = document.getElementById('email').value;
+          
+          // Формируем сообщение для WhatsApp
+          let message = '🔄 *Exchange Request*\n\n';
+          message += `💰 *From:* ${fromAmount || '0'} ${fromCurrency || 'USDT (TRC-20)'}\n`;
+          message += `💸 *To:* ${toAmount || '0'} ${toCurrency || 'BRL'}\n`;
+          message += `📧 *Email:* ${email || 'Not provided'}\n\n`;
+          message += `💱 *Rate:* ${window.currentRate || 'N/A'}\n`;
+          message += `⏰ *Time:* ${new Date().toLocaleString()}\n\n`;
+          message += '🚀 Ready to start exchange!';
+          
+          // Кодируем сообщение для URL
+          const encodedMessage = encodeURIComponent(message);
+          
+          // Переходим на WhatsApp
+          const whatsappUrl = `https://wa.me/5599981699999?text=${encodedMessage}`;
+          window.open(whatsappUrl, '_blank');
+        });
+      }
     });
   </script>
 
