@@ -7,10 +7,10 @@
   <link href="file:///Users/bagrat/Downloads/Ex.financial_files/css2" rel="stylesheet">
   <style>
     :root {
-      --primary-color: #00d4aa;
-      --secondary-color: #00b894;
-      --accent-color: #00d4aa;
-      --success-color: #00d4aa;
+      --primary-color: #4facfe;
+      --secondary-color: #00f2fe;
+      --accent-color: #4facfe;
+      --success-color: #4facfe;
       --warning-color: #ff6b6b;
       --error-color: #ff6b6b;
       --text-primary: #ffffff;
@@ -651,23 +651,23 @@
     }
 
     .btn-whatsapp {
-      background: linear-gradient(135deg, #25d366, #128c7e);
+      background: linear-gradient(135deg, #4facfe, #00f2fe);
       flex: 1;
       min-width: 200px;
     }
 
     .btn-telegram {
-      background: linear-gradient(135deg, #0088cc, #005580);
+      background: linear-gradient(135deg, #4facfe, #00f2fe);
       flex: 1;
       min-width: 200px;
     }
 
     .btn-whatsapp:hover {
-      background: linear-gradient(135deg, #128c7e, #0d6b5f);
+      background: linear-gradient(135deg, #00f2fe, #4facfe);
     }
 
     .btn-telegram:hover {
-      background: linear-gradient(135deg, #005580, #003d5c);
+      background: linear-gradient(135deg, #00f2fe, #4facfe);
     }
 
     /* Адаптивность для мобильных устройств */
@@ -1902,7 +1902,7 @@
         
         // Обновляем цвет в зависимости от статуса
         if (status.includes('✅')) {
-          wsStatusElement.style.color = '#00d4aa';
+          wsStatusElement.style.color = '#4facfe';
         } else if (status.includes('❌')) {
           wsStatusElement.style.color = '#ff6b6b';
         } else if (status.includes('⚠️')) {
@@ -1964,7 +1964,7 @@
             // Курс уже содержит комиссию (применена в getExchangeRate)
             window.currentRate = rate;
             rateInput.value = rate.toFixed(4);
-            rateInput.style.color = '#00d4aa'; // Зеленый цвет для реального курса
+            rateInput.style.color = '#4facfe'; // Зеленый цвет для реального курса
             
             console.log("✅ Курс успешно установлен:", rate.toFixed(4));
             
