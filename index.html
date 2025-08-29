@@ -109,7 +109,11 @@
     .support {
       justify-content: center;
       flex: 1;      display: flex;
-      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto auto;
+      grid-template-areas:
+        "left right"
+        "center center";
         grid-template-rows: auto auto auto;
         grid-gap: 0.5rem;
       font-size: 0.85rem;
@@ -208,7 +212,11 @@
     /* Main Content */
     .main {
       display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto auto;
+      grid-template-areas:
+        "left right"
+        "center center";
       display: flex;
       gap: 2rem;
       padding: 1rem;
@@ -218,7 +226,7 @@
 
     /* Card Styles */
     .card {
-      background: var(--card-bg);
+      grid-area: left;      background: var(--card-bg);
       backdrop-filter: blur(20px);
       border-radius: var(--border-radius);
       padding: 1.5rem;
@@ -687,7 +695,11 @@
     /* Адаптивность для мобильных устройств */
     @media (max-width: 768px) {
       .button-group {
-        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto auto;
+      grid-template-areas:
+        "left right"
+        "center center";
         grid-template-rows: auto auto auto;
         grid-gap: 0.5rem;
         gap: 0.75rem;
@@ -788,7 +800,11 @@
     /* Responsive Design */
     @media (max-width: 768px) {
       .main {
-        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto auto;
+      grid-template-areas:
+        "left right"
+        "center center";
         grid-template-rows: auto auto auto;
         grid-gap: 0.5rem;
         padding: 0.75rem;
@@ -801,7 +817,11 @@
       }
       
       .form-row {
-        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto auto;
+      grid-template-areas:
+        "left right"
+        "center center";
         grid-template-rows: auto auto auto;
         grid-gap: 0.5rem;
         gap: 0.75rem;
@@ -809,7 +829,11 @@
       
       header {
         text-align: center;      flex-wrap: wrap;
-      gap: 1rem;        grid-template-columns: 1fr 1fr 1fr;
+      gap: 1rem;        grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto auto;
+      grid-template-areas:
+        "left right"
+        "center center";
         grid-template-rows: auto auto auto;
         grid-gap: 0.5rem;
         gap: 0.75rem;
@@ -817,7 +841,7 @@
       }
 
       .card {
-        padding: 1.25rem;
+      grid-area: left;        padding: 1.25rem;
       }
 
       .card h3 {
@@ -836,7 +860,11 @@
       }
 
       .steps {
-        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto auto;
+      grid-template-areas:
+        "left right"
+        "center center";
         grid-template-rows: auto auto auto;
         grid-gap: 0.5rem;
         gap: 1rem;
@@ -854,7 +882,7 @@
       }
       
       .card {
-        padding: 0.75rem;
+      grid-area: left;        padding: 0.75rem;
       }
 
       .card h3 {
@@ -896,7 +924,7 @@
     }
 
     .card {
-      animation: fadeInUp 0.6s ease-out;
+      grid-area: left;      animation: fadeInUp 0.6s ease-out;
     }
 
     .currency-item {
@@ -1135,7 +1163,9 @@
     </div>
 
     <!-- Middle Column -->
-    <div class="card">
+    .card:nth-child(2) {
+      grid-area: right;
+    }    <div class="card">
       <h3>SELECT WHAT YOU GET</h3>
       <ul class="currency-list">
         <!-- Фиатные валюты -->
@@ -1287,7 +1317,9 @@
     </div>
 
     <!-- Right Column -->
-    <div class="card">
+    .card:nth-child(3) {
+      grid-area: center;
+    }    <div class="card">
       <h3>ENTER DETAILS</h3>
 
       <div class="form-group">
