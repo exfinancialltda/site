@@ -91,7 +91,7 @@
       align-items: center;
       gap: 1rem;
       font-size: 0.9rem;
-      color: var(--success-color);
+      color: #ffffff !important;
       font-weight: 600;
     }
 
@@ -102,7 +102,7 @@
 
     .time {
       font-size: 0.9rem;
-      color: var(--text-secondary);
+      color: #ffffff !important;
       font-weight: 500;
     }
 
@@ -111,7 +111,7 @@
       flex: 1;      display: flex;
       flex-direction: column;
       font-size: 0.85rem;
-      color: var(--success-color);
+      color: #ffffff !important;
       gap: 0.25rem;
       font-weight: 600;
     }
@@ -122,7 +122,7 @@
       align-items: center;
       gap: 0.5rem;
       font-size: 0.9rem;
-      color: var(--text-secondary);
+      color: #ffffff !important;
       font-weight: 500;
     }
 
@@ -183,7 +183,7 @@
 
     nav a {
       text-decoration: none;
-      color: var(--text-secondary);
+      color: #ffffff !important;
       font-weight: 500;
       transition: var(--transition);
       padding: 0.5rem 1rem;
@@ -265,7 +265,7 @@
       font-size: 0.85rem;
       cursor: pointer;
       background: var(--bg-secondary);
-      color: var(--text-secondary);
+      color: #ffffff !important;
       transition: var(--transition);
       font-weight: 500;
       border: 1px solid var(--border-color);
@@ -407,12 +407,12 @@
 
     .currency-code {
       font-size: 0.85rem;
-      color: var(--text-secondary);
+      color: #ffffff !important;
     }
 
     .reserve {
       font-size: 0.85rem;
-      color: var(--text-secondary);
+      color: #ffffff !important;
     }
 
     /* Form Styles */
@@ -424,7 +424,7 @@
       display: block;
       font-size: 0.95rem;
       margin-bottom: 0.75rem;
-      color: var(--text-secondary);
+      color: #ffffff !important;
       font-weight: 600;
     }
 
@@ -577,7 +577,7 @@
       gap: 0.5rem;
       margin-top: 0.5rem;
       font-size: 0.875rem;
-      color: var(--text-secondary);
+      color: #ffffff !important;
     }
 
     .commission-info {
@@ -699,7 +699,7 @@
       gap: 2rem;
       margin-top: 2rem;
       font-size: 0.9rem;
-      color: var(--text-secondary);
+      color: #ffffff !important;
       flex-wrap: wrap;
     }
 
@@ -765,7 +765,7 @@
       margin-bottom: 1rem;
     }      display: inline-block;
       margin: 0.25rem;      text-decoration: none;
-      color: var(--text-secondary);
+      color: #ffffff !important;
       font-weight: 600;
       padding: 0.75rem 1.5rem;
       border-radius: var(--border-radius-sm);
@@ -1290,7 +1290,7 @@
       <div class="form-group">
         <label for="well" class="form-label">RATE</label>
         <div class="rate-container">
-          <input type="text" id="well" class="form-input" placeholder="Loading real-time rates..." readonly="" style="color: rgb(0, 212, 170);">
+          <input type="text" id="well" class="form-input" placeholder="Loading real-time rates..." readonly="" style="color: #ffffff;">
           <div id="rate-status" class="rate-status">
             <span class="status-indicator" id="status-indicator">✅</span>
             <span class="status-text" id="status-text">Real-time rate from Binance</span>
@@ -1994,7 +1994,7 @@
             // Курс уже содержит комиссию (применена в getExchangeRate)
             window.currentRate = rate;
             rateInput.value = rate.toFixed(4);
-            rateInput.style.color = '#005580'; // Зеленый цвет для реального курса
+            rateInput.style.color = '#ffffff'; // Белый цвет для реального курса
             
             console.log("✅ Курс успешно установлен:", rate.toFixed(4));
             
@@ -2254,9 +2254,9 @@
       <a href="https://ex.financial/Terms.html">Terms of Use</a>
       <a href="https://ex.financial/AML.html">AML/KYC</a>
     </div>
-    <div style="margin-top: 1rem; color: var(--text-secondary); font-size: 0.9rem;">
+    <div style="margin-top: 1rem; color: #ffffff !important; font-size: 0.9rem;">
       © 2025 Ex.financial. All rights reserved.
-      <div style="margin-top: 0.5rem; color: var(--text-secondary); font-size: 0.8rem;">
+      <div style="margin-top: 0.5rem; color: #ffffff !important; font-size: 0.8rem;">
         Ex.financial Ltda<br>
         CNPJ: 54.041.201/0001-66
       </div>    </div>
