@@ -1279,7 +1279,7 @@
       <div class="form-group">
         <label for="well" class="form-label">RATE</label>
         <div class="rate-container">
-          <input type="text" id="well" class="form-input" placeholder="Loading real-time rates..." readonly="" style="color: rgb(0, 212, 170);">
+          <input type="text" id="well" class="form-input" placeholder="Loading real-time rates..." readonly="" style="color: #ffffff;">
           <div id="rate-status" class="rate-status">
             <span class="status-indicator" id="status-indicator">✅</span>
             <span class="status-text" id="status-text">Real-time rate from Binance</span>
@@ -1983,7 +1983,7 @@
             // Курс уже содержит комиссию (применена в getExchangeRate)
             window.currentRate = rate;
             rateInput.value = rate.toFixed(4);
-            rateInput.style.color = '#005580'; // Зеленый цвет для реального курса
+            rateInput.style.color = '#ffffff'; // Белый цвет для реального курса
             
             console.log("✅ Курс успешно установлен:", rate.toFixed(4));
             
@@ -2069,7 +2069,7 @@
       if (fromAmount.value && window.currentRate) {
         const converted = parseFloat(fromAmount.value) * window.currentRate;
         // Применяем комиссию 2% к сумме, которую получит клиент
-        const finalAmount = converted * 0.98;
+        const finalAmount = converted;
         toAmount.value = finalAmount.toFixed(2);
       }
     }
@@ -2107,7 +2107,7 @@
       if (toAmount.value && window.currentRate) {
         // Учитываем комиссию 2% при обратной конвертации
         // Если клиент хочет получить X, то нужно отправить X / 0.98 / rate
-        const amountWithoutCommission = parseFloat(toAmount.value) / 0.98;
+        const amountWithoutCommission = parseFloat(toAmount.value);
         const converted = amountWithoutCommission / window.currentRate;
         fromAmount.value = converted.toFixed(6);
       }
