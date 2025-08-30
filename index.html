@@ -580,7 +580,29 @@
       color: var(--text-secondary);
     }
 
+    .commission-info {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+      padding: 0.5rem 1rem;
+      background: linear-gradient(135deg, rgba(79, 172, 254, 0.1), rgba(0, 212, 170, 0.1));
+      border: 1px solid rgba(79, 172, 254, 0.2);
+      border-radius: 20px;
+      font-size: 0.8rem;
+      color: #ffffff;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 8px rgba(79, 172, 254, 0.15);
+    }
 
+    .commission-info:hover {
+      background: linear-gradient(135deg, rgba(79, 172, 254, 0.15), rgba(0, 212, 170, 0.15));
+      border-color: rgba(79, 172, 254, 0.3);
+      box-shadow: 0 4px 12px rgba(79, 172, 254, 0.2);
+      transform: translateY(-1px);
+    }
 
     .commission-icon {
       font-size: 1rem;
@@ -1257,10 +1279,14 @@
       <div class="form-group">
         <label for="well" class="form-label">RATE</label>
         <div class="rate-container">
-          <input type="text" id="well" class="form-input" placeholder="Loading real-time rates..." readonly="" style="color: #ffffff;">
+          <input type="text" id="well" class="form-input" placeholder="Loading real-time rates..." readonly="" style="color: rgb(0, 212, 170);">
           <div id="rate-status" class="rate-status">
             <span class="status-indicator" id="status-indicator">✅</span>
-            <span class="status-text" id="status-text">Real-time rate</span>
+            <span class="status-text" id="status-text">Real-time rate from Binance</span>
+          </div>
+          <div id="commission-info" class="commission-info">
+            <span class="commission-icon">💰</span>
+            <span class="commission-text">Service fee: <strong>2%</strong></span>
           </div>
         </div>
 
@@ -1956,8 +1982,8 @@
           if (rate) {
             // Курс уже содержит комиссию (применена в getExchangeRate)
             window.currentRate = rate;
-            rateInput.value = (rate * 0.98).toFixed(4);
-            rateInput.style.color = '#ffffff'; // Белый цвет для реального курса
+            rateInput.value = rate.toFixed(4);
+            rateInput.style.color = '#005580'; // Зеленый цвет для реального курса
             
             console.log("✅ Курс успешно установлен:", rate.toFixed(4));
             
@@ -1965,7 +1991,7 @@
             if (statusIndicator && statusText) {
               statusIndicator.textContent = '✅';
               statusIndicator.classList.remove('loading');
-              statusText.textContent = 'Real-time rate';
+              statusText.textContent = 'Real-time rate from Binance';
             }
           } else {
             console.log("❌ getExchangeRate вернул null");
@@ -2212,12 +2238,12 @@
   <!-- Footer -->
   <footer>
     <div class="footer-links">
+      <a href="https://ex.financial/verification.html">Proof of Verification</a>
       <a href="https://ex.financial/about_us.html">About Us</a>
       <a href="https://ex.financial/Privacy_Policy.html">Privacy Policy</a>
       <a href="https://ex.financial/Terms.html">Terms of Use</a>
       <a href="https://ex.financial/AML.html">AML/KYC</a>
-    </div>
-    <div style="margin-top: 1rem; color: var(--text-secondary); font-size: 0.9rem;">
+    </div>    <div style="margin-top: 1rem; color: var(--text-secondary); font-size: 0.9rem;">
       © 2025 Ex.financial. All rights reserved.
       <div style="margin-top: 0.5rem; color: var(--text-secondary); font-size: 0.8rem;">
         Ex.financial Ltda<br>
