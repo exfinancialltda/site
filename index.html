@@ -580,29 +580,7 @@
       color: #ffffff !important;
     }
 
-    .commission-info {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-      margin-top: 0.5rem;
-      padding: 0.5rem 1rem;
-      background: linear-gradient(135deg, rgba(79, 172, 254, 0.1), rgba(0, 212, 170, 0.1));
-      border: 1px solid rgba(79, 172, 254, 0.2);
-      border-radius: 20px;
-      font-size: 0.8rem;
-      color: #ffffff;
-      font-weight: 500;
-      transition: all 0.3s ease;
-      box-shadow: 0 2px 8px rgba(79, 172, 254, 0.15);
-    }
 
-    .commission-info:hover {
-      background: linear-gradient(135deg, rgba(79, 172, 254, 0.15), rgba(0, 212, 170, 0.15));
-      border-color: rgba(79, 172, 254, 0.3);
-      box-shadow: 0 4px 12px rgba(79, 172, 254, 0.2);
-      transform: translateY(-1px);
-    }
 
     .commission-icon {
       font-size: 1rem;
@@ -1293,11 +1271,7 @@
           <input type="text" id="well" class="form-input" placeholder="Loading real-time rates..." readonly="" style="color: #ffffff;">
           <div id="rate-status" class="rate-status">
             <span class="status-indicator" id="status-indicator">✅</span>
-            <span class="status-text" id="status-text">Real-time rate from Binance</span>
-          </div>
-          <div id="commission-info" class="commission-info">
-            <span class="commission-icon">💰</span>
-            <span class="commission-text">Service fee: <strong>2%</strong></span>
+            <span class="status-text" id="status-text">Real-time rate</span>
           </div>
         </div>
 
@@ -2002,7 +1976,7 @@
             if (statusIndicator && statusText) {
               statusIndicator.textContent = '✅';
               statusIndicator.classList.remove('loading');
-              statusText.textContent = 'Real-time rate from Binance';
+              statusText.textContent = 'Real-time rate';
             }
           } else {
             console.log("❌ getExchangeRate вернул null");
