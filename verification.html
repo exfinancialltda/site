@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - ex.financial</title>
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome (for Icons) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" xintegrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Alpine.js for interactivity -->
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    <style>
+        body {
+      padding-bottom: 200px; /* Отступ для footer */      min-height: 100vh;
+      display: flex;
+      flex-direction: column;            font-family: 'Inter', sans-serif;
+            background-color: #000000;
+            color: #E0E0E0;
+        }
+        .prose-invert a {
+            color: #38bdf8; /* sky-400 */
+        }
+        .prose-invert a:hover {
+            color: #7dd3fc; /* sky-300 */
+        }
+        .prose-invert strong {
+            color: #fff;
+        }
+    /* Header and Footer Styles */
+    :root {
+      --primary-color: #005580;
+      --secondary-color: #003d5c;
+      --accent-color: #005580;
+      --success-color: #005580;
+      --warning-color: #ff6b6b;
+      --error-color: #ff6b6b;
+      --text-primary: #ffffff;
+      --text-secondary: #cccccc;
+      --bg-primary: #0a0a0a;
+      --bg-secondary: #1a1a1a;
+      --border-color: #333333;
+      --card-bg: rgba(26, 26, 26, 0.8);
+      --glass-border: rgba(255, 255, 255, 0.1);
+      --shadow-lg: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+      --transition: all 0.3s ease;
+    }
+    
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background: rgba(10, 10, 10, 0.95);
+      backdrop-filter: blur(20px);
+      box-shadow: var(--shadow-lg);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid var(--border-color);
+      flex-wrap: wrap;
+      gap: 1rem;
+      text-align: center;
+    }
+    
+    .logo {
+      display: flex;
+      align-items: center;
+      font-weight: 800;
+      font-size: 1.75rem;
+      justify-content: center;
+      flex: 1;
+    }
+    
+    .logo-ex {
+      color: #ffffff !important;
+      -webkit-text-fill-color: #ffffff !important;
+      background: none !important;
+      background-clip: unset !important;
+    }
+    
+    .logo-financial {
+      color: #61BCF3 !important;
+      -webkit-text-fill-color: #61BCF3 !important;
+      background: none !important;
+      background-clip: unset !important;
+    }
+    
+    .status {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-size: 0.9rem;
+      color: #ffffff !important;
+      font-weight: 600;
+      justify-content: center;
+      flex: 1;
+    }
+    
+    .support {
+      display: flex;
+      flex-direction: column;
+      font-size: 0.85rem;
+      color: #ffffff !important;
+      gap: 0.25rem;
+      font-weight: 600;
+      justify-content: center;
+      flex: 1;
+    }
+    
+    .lang {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.9rem;
+      color: #ffffff !important;
+      font-weight: 500;
+      justify-content: center;
+      flex: 1;
+    }
+    
+    footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      text-align: center;
+      background: var(--card-bg);
+      backdrop-filter: blur(20px);
+      padding: 2rem 2rem;
+      margin-top: 1rem;
+      border-top: 1px solid var(--glass-border);
+      box-shadow: var(--shadow-lg);
+    }
+    
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      margin-bottom: 1rem;
+    }
+    
+    .footer-links a {
+      display: inline-block;
+      margin: 0.25rem;
+      text-decoration: none;
+      color: #ffffff !important;
+      font-weight: 600;
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.1);
+      transition: var(--transition);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    .footer-links a:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+    
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        gap: 0.75rem;
+        padding: 0.75rem 1rem;
+      }
+      
+      footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+        padding: 1.5rem 1rem;
+        margin-top: 0.75rem;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      header {
+        padding: 0.5rem 1rem;
+      }
+      
+      footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+        padding: 1rem 0.75rem;
+        margin-top: 0.5rem;
+      }
+    }    </style>
+</head>
+<body class="antialiased" x-data="{ openMenu: false }">
+
+    <!-- Header -->
+    <header>
+      <div class="logo">
+        <span class="logo-ex">EX</span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M12 2L2 7l10 5 12l10 5 10-5M2 12l10 5 10-5" fill="currentColor"></path></svg><span class="logo-financial">FINANCIAL</span>
+      </div>
+      <div class="status">
+        <div><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="currentColor"></path></svg> The service is working</div>
+        <div><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="currentColor"></path></svg> 24/7</div>
+      </div>
+      <div class="support">
+        <div>support@ex.financial</div>
+      </div>
+      <div class="lang">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="currentColor"></path></svg>
+        EN
+      </div>
+    </header>
+    <!-- Mobile Menu Overlay -->
+    <div x-show="openMenu" x-cloak
+         x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+         x-transition:leave="transition ease-in duration-300" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
+         class="fixed inset-0 bg-black/95 backdrop-blur-lg z-50 flex flex-col items-center justify-center">
+        <button @click="openMenu = false" class="absolute top-7 right-5 text-white focus:outline-none">
+            <i class="fas fa-times text-3xl"></i>
+        </button>
+        <nav class="flex flex-col items-center space-y-8">
+            <a @click="openMenu = false" href="index.html#exchange" class="text-2xl font-medium text-slate-300 hover:text-sky-400">Exchange</a>
+            <a @click="openMenu = false" href="index.html#how-it-works" class="text-2xl font-medium text-slate-300 hover:text-sky-400">How It Works</a>
+            <a @click="openMenu = false" href="index.html#security" class="text-2xl font-medium text-slate-300 hover:text-sky-400">Security</a>
+            <a @click="openMenu = false" href="https://wa.me/5599981699999?text=Hello,%20I'd%20like%20to%20know%20more%20about%20your%20financial%20solutions." target="_blank" class="mt-8 bg-white text-black font-bold py-3 px-10 rounded-lg">
+                Contact Us
+            </a>
+        </nav>
+    </div>
+
+    <main class="pt-20">
+        <div class="container mx-auto px-4 sm:px-6 py-16 sm:py-24 max-w-4xl">
+            <h1 class="text-4xl font-extrabold text-white mb-8">About Us</h1>
+            <div class="prose prose-invert prose-lg max-w-none text-slate-300 space-y-6">
+                <p>At EX.Financial, we are more than just a currency exchange service — we are your trusted gateway to global financial connectivity. Founded by a team of financial specialists with decades of combined experience, our mission is to simplify the complex world of currency exchange for individuals, travelers, small businesses, and corporations alike.</p>
+                <p>We are passionate about what we do. Whether you're converting USD to BRL, EUR to GBP, or exploring less common currencies, we handle it all with precision, transparency, and care. Our expertise covers a wide spectrum of currencies — including but not limited to the US Dollar (USD), Euro (EUR), British Pound (GBP), Brazilian Real (BRL), Swiss Franc (CHF), and many others — ensuring that no matter where you are or where you’re going, your money is ready for the journey.</p>
+                
+                <h2 class="text-2xl font-bold text-white pt-8 border-t border-slate-800">What sets us apart?</h2>
+                <ul class="space-y-4">
+                    <li class="flex items-start"><i class="fas fa-lock text-sky-400 mt-1 mr-4"></i><span><strong>Security First</strong> — All transactions are encrypted, compliant with the latest financial regulations, and conducted through secure channels.</span></li>
+                    <li class="flex items-start"><i class="fas fa-chart-line text-sky-400 mt-1 mr-4"></i><span><strong>Competitive Exchange Rates</strong> — We monitor global markets in real-time to offer some of the best rates available, ensuring you get more value from every transaction.</span></li>
+                    <li class="flex items-start"><i class="fas fa-briefcase text-sky-400 mt-1 mr-4"></i><span><strong>Business-Friendly Solutions</strong> — For entrepreneurs and companies, we offer tailored currency services that include invoicing, international transfers, and multi-currency account support.</span></li>
+                    <li class="flex items-start"><i class="fas fa-headset text-sky-400 mt-1 mr-4"></i><span><strong>Human Support + AI Efficiency</strong> — We combine cutting-edge AI tools with real human support. Need help with your transaction? Just call us, and a real expert will assist you — no bots, no scripts.</span></li>
+                    <li class="flex items-start"><i class="fas fa-globe text-sky-400 mt-1 mr-4"></i><span><strong>Based in the Heart of the City. Accessible from Anywhere.</strong> — While our headquarters are conveniently located in the city center, our entire operation is fully digital. This means you can exchange currency, receive support, and track your transfers — all from your smartphone or computer, 24/7.</span></li>
+                    <li class="flex items-start"><i class="fas fa-file-invoice-dollar text-sky-400 mt-1 mr-4"></i><span><strong>Transparent Fees. No Hidden Charges.</strong> — We believe in clarity. You’ll always see what you’re paying — no surprises, no fine print.</span></li>
+                </ul>
+
+                <p class="pt-8 border-t border-slate-800">Whether you're planning a trip, investing abroad, or just need to send money to family in another country — EX.Financial is here to make it smooth, secure, and stress-free.</p>
+                <p>Let us take the complexity out of currency exchange — so you can focus on what really matters.</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+      <div class="footer-links">
+        <a href="https://ex.financial/about_us.html">About Us</a>
+        <a href="https://ex.financial/Privacy_Policy.html">Privacy Policy</a>
+        <a href="https://ex.financial/AML.html">AML/KYC</a>
+        <a href="https://ex.financial/verification.html">Verification</a>
+        <a href="https://ex.financial/">Back to Home</a>
+      </div>        © 2025 Ex.financial. All rights reserved.
+        <div style="margin-top: 0.5rem; color: #ffffff !important; font-size: 0.8rem;">
+          Ex.financial Ltda<br>
+          CNPJ: 54.041.201/0001-66
+        </div>
+      </div>
+    </footer>
+    <!-- This script enables the typography plugin for prose styling -->
+    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+
+</body>
+</html>
