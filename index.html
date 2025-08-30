@@ -1965,9 +1965,9 @@
           console.log("📊 Получен курс:", rate);
           
           if (rate) {
-            // Курс без комиссии
+            // Курс с комиссией 2% (умножение на 0.98)
             window.currentRate = rate;
-            rateInput.value = rate.toFixed(4);
+            rateInput.value = (rate * 0.98).toFixed(4);
             rateInput.style.color = '#ffffff'; // Белый цвет для реального курса
             
             console.log("✅ Курс успешно установлен:", rate.toFixed(4));
