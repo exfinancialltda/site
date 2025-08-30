@@ -29,34 +29,178 @@
         .prose-invert a:hover {
             color: #7dd3fc; /* sky-300 */
         }
-    </style>
+    /* Header and Footer Styles */
+    :root {
+      --primary-color: #005580;
+      --secondary-color: #003d5c;
+      --accent-color: #005580;
+      --success-color: #005580;
+      --warning-color: #ff6b6b;
+      --error-color: #ff6b6b;
+      --text-primary: #ffffff;
+      --text-secondary: #cccccc;
+      --bg-primary: #0a0a0a;
+      --bg-secondary: #1a1a1a;
+      --border-color: #333333;
+      --card-bg: rgba(26, 26, 26, 0.8);
+      --glass-border: rgba(255, 255, 255, 0.1);
+      --shadow-lg: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+      --transition: all 0.3s ease;
+    }
+    
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background: rgba(10, 10, 10, 0.95);
+      backdrop-filter: blur(20px);
+      box-shadow: var(--shadow-lg);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid var(--border-color);
+      flex-wrap: wrap;
+      gap: 1rem;
+      text-align: center;
+    }
+    
+    .logo {
+      display: flex;
+      align-items: center;
+      font-weight: 800;
+      font-size: 1.75rem;
+      justify-content: center;
+      flex: 1;
+    }
+    
+    .logo-ex {
+      color: #ffffff !important;
+      -webkit-text-fill-color: #ffffff !important;
+      background: none !important;
+      background-clip: unset !important;
+    }
+    
+    .logo-financial {
+      color: #61BCF3 !important;
+      -webkit-text-fill-color: #61BCF3 !important;
+      background: none !important;
+      background-clip: unset !important;
+    }
+    
+    .status {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-size: 0.9rem;
+      color: #ffffff !important;
+      font-weight: 600;
+      justify-content: center;
+      flex: 1;
+    }
+    
+    .support {
+      display: flex;
+      flex-direction: column;
+      font-size: 0.85rem;
+      color: #ffffff !important;
+      gap: 0.25rem;
+      font-weight: 600;
+      justify-content: center;
+      flex: 1;
+    }
+    
+    .lang {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.9rem;
+      color: #ffffff !important;
+      font-weight: 600;
+      justify-content: center;
+      flex: 1;
+    }
+    
+    footer {
+      text-align: center;
+      background: var(--card-bg);
+      backdrop-filter: blur(20px);
+      padding: 2rem 2rem;
+      margin-top: 1rem;
+      border-top: 1px solid var(--glass-border);
+      box-shadow: var(--shadow-lg);
+    }
+    
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      margin-bottom: 1rem;
+    }
+    
+    .footer-links a {
+      display: inline-block;
+      margin: 0.25rem;
+      text-decoration: none;
+      color: #ffffff !important;
+      font-weight: 600;
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.1);
+      transition: var(--transition);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    .footer-links a:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+    
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        gap: 0.75rem;
+        padding: 0.75rem 1rem;
+      }
+      
+      footer {
+        padding: 1.5rem 1rem;
+        margin-top: 0.75rem;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      header {
+        padding: 0.5rem 1rem;
+      }
+      
+      footer {
+        padding: 1rem 0.75rem;
+        margin-top: 0.5rem;
+      }
+    }    </style>
 </head>
 <body class="antialiased" x-data="{ openMenu: false }">
 
     <!-- Header -->
-    <header class="bg-black/80 backdrop-blur-lg fixed w-full z-40">
-        <div class="container mx-auto px-4 sm:px-6">
-            <div class="flex items-center justify-between h-20">
-                <a href="index.html" class="text-2xl font-bold text-white">ex.<span class="text-sky-400">financial</span></a>
-                
-                <nav class="hidden lg:flex items-center space-x-10">
-                    <a href="index.html#exchange" class="text-sm font-medium hover:text-sky-400 transition-colors">Exchange</a>
-                    <a href="index.html#how-it-works" class="text-sm font-medium hover:text-sky-400 transition-colors">How It Works</a>
-                    <a href="index.html#security" class="text-sm font-medium hover:text-sky-400 transition-colors">Security</a>
-                </nav>
-
-                <div class="flex items-center">
-                    <a href="https://wa.me/5599981699999?text=Hello,%20I'd%20like%20to%20know%20more%20about%20your%20financial%20solutions." target="_blank" class="hidden sm:inline-block bg-white text-black font-bold py-2.5 px-6 rounded-lg hover:bg-gray-200 transition-all duration-300">
-                        Contact Us
-                    </a>
-                    <button @click="openMenu = true" class="lg:hidden ml-4 text-white focus:outline-none z-50">
-                        <i class="fas fa-bars text-2xl"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
+    <header>
+      <div class="logo">
+        <span class="logo-ex">EX</span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M12 2L2 7l10 5 12l10 5 10-5M2 12l10 5 10-5" fill="currentColor"></path></svg><span class="logo-financial">FINANCIAL</span>
+      </div>
+      <div class="status">
+        <div><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="currentColor"></path></svg> The service is working</div>
+        <div><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="currentColor"></path></svg> 24/7</div>
+      </div>
+      <div class="support">
+        <div>support@ex.financial</div>
+      </div>
+      <div class="lang">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="currentColor"></path></svg>
+        EN
+      </div>
     </header>
-
     <!-- Mobile Menu Overlay -->
     <div x-show="openMenu" x-cloak
          x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
@@ -125,45 +269,21 @@
     </main>
 
     <!-- Footer -->
-    <footer class="border-t border-slate-800">
-        <div class="container mx-auto px-4 sm:px-6 py-12">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div class="col-span-1 lg:col-span-2">
-                    <h3 class="text-xl font-bold text-white">ex.<span class="text-sky-400">financial</span></h3>
-                    <p class="text-sm mt-2 text-slate-400 max-w-xs">Ex.financial Ltda<br>CNPJ: 54.041.201/0001-66</p>
-                </div>
-                 <div>
-                    <h4 class="font-semibold text-white tracking-wider">Company</h4>
-                    <ul class="mt-4 space-y-2 text-sm text-slate-400">
-                        <li><a href="#" class="hover:text-sky-400">About Us</a></li>
-                        <li><a href="terms.html" class="hover:text-sky-400">Terms of Service</a></li>
-                        <li><a href="privacy.html" class="hover:text-sky-400">Privacy Policy</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-semibold text-white tracking-wider">Contact</h4>
-                     <ul class="mt-4 space-y-2 text-sm text-slate-400">
-                         <li><a href="mailto:info@ex.financial" class="hover:text-sky-400 flex items-center"><i class="fas fa-envelope fa-fw mr-2"></i><span>info@ex.financial</span></a></li>
-                        <li><a href="https://wa.me/5599981699999" target="_blank" class="hover:text-sky-400 flex items-center"><i class="fab fa-whatsapp fa-fw mr-2"></i><span>+55 99 98169-9999</span></a></li>
-                        <li><a href="https://t.me/exfinancial" target="_blank" class="hover:text-sky-400 flex items-center"><i class="fab fa-telegram fa-fw mr-2"></i><span>@exfinancial</span></a></li>
-                        <li>
-                            <div class="flex space-x-4 mt-4">
-                                <a href="https://www.instagram.com/ex.financial?igsh=cDVqankwM2dnOGh2&utm_source=qr" target="_blank" class="hover:text-sky-400"><i class="fab fa-instagram text-xl"></i></a>
-                                <a href="#" class="hover:text-sky-400"><i class="fab fa-twitter text-xl"></i></a>
-                                <a href="#" class="hover:text-sky-400"><i class="fab fa-linkedin text-xl"></i></a>
-                            </div>
-                        </li>
-                     </ul>
-                </div>
-            </div>
-             <div class="mt-12 border-t border-slate-800 pt-8 text-sm text-slate-500">
-                <p><strong>Address:</strong> SALA 1416 Av. Washington Soares, 3663 15º andar - Torre 2 - WSTC - Edson Queiroz, Fortaleza - CE, 60811-341</p>
-                <p class="mt-4">&copy; 2025 Ex.financial Ltda. All rights reserved.</p>
-                <p class="mt-2">This website is for informational purposes and does not constitute a financial institution.</p>
-            </div>
+    <footer>
+      <div class="footer-links">
+        <a href="https://ex.financial/about_us.html">About Us</a>
+        <a href="https://ex.financial/Privacy_Policy.html">Privacy Policy</a>
+        <a href="https://ex.financial/Terms.html">Terms of Use</a>
+        <a href="https://ex.financial/AML.html">AML/KYC</a>
+      </div>
+      <div style="margin-top: 1rem; color: #ffffff !important; font-size: 0.9rem;">
+        © 2025 Ex.financial. All rights reserved.
+        <div style="margin-top: 0.5rem; color: #ffffff !important; font-size: 0.8rem;">
+          Ex.financial Ltda<br>
+          CNPJ: 54.041.201/0001-66
         </div>
+      </div>
     </footer>
-
     <!-- This script enables the typography plugin for prose styling -->
     <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
 
