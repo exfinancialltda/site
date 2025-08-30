@@ -1965,7 +1965,7 @@
           console.log("📊 Получен курс:", rate);
           
           if (rate) {
-            // Курс уже содержит комиссию (применена в getExchangeRate)
+            // Курс без комиссии
             window.currentRate = rate;
             rateInput.value = rate.toFixed(4);
             rateInput.style.color = '#ffffff'; // Белый цвет для реального курса
@@ -2053,8 +2053,8 @@
       
       if (fromAmount.value && window.currentRate) {
         const converted = parseFloat(fromAmount.value) * window.currentRate;
-        // Применяем комиссию 2% к сумме, которую получит клиент
-        const finalAmount = converted * 0.98;
+        // Конвертируем сумму без комиссии
+        const finalAmount = converted;
         toAmount.value = finalAmount.toFixed(2);
       }
     }
@@ -2070,7 +2070,7 @@
       // Формируем сообщение для Telegram
       let message = '🔄 Exchange Request\n\n';
       message += `💰 From: ${fromAmount || '0'} ${fromCurrency || 'USDT (TRC-20)'}\n`;
-      message += `💸 To: ${toAmount || '0'} ${toCurrency || 'BRL'} (with 2% commission)\n\n`;
+      message += `💸 To: ${toAmount || '0'} ${toCurrency || 'BRL'} ((without commission))\n\n`;
       message += `💱 Rate: ${window.currentRate || 'N/A'}\n`;
       message += `💸 Commission: 2%\n`;
       message += `⏰ Time: ${new Date().toLocaleString()}\n\n`;
@@ -2090,9 +2090,9 @@
       const toAmount = document.getElementById('receive');
       
       if (toAmount.value && window.currentRate) {
-        // Учитываем комиссию 2% при обратной конвертации
-        // Если клиент хочет получить X, то нужно отправить X / 0.98 / rate
-        const amountWithoutCommission = parseFloat(toAmount.value) / 0.98;
+        // Обратная конвертация без комиссии
+        // Если клиент хочет получить X, то нужно отправить X / rate
+        const amountWithoutCommission = parseFloat(toAmount.value);
         const converted = amountWithoutCommission / window.currentRate;
         fromAmount.value = converted.toFixed(6);
       }
