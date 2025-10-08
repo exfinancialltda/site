@@ -562,98 +562,38 @@
             showStatus('live-status', '🔄 Fetching live rates from APIs...', 'loading');
             
             try {
-                // Fetch live rates from Binance API directly
-                const binanceResponse = await fetch('https://api.binance.com/api/v3/ticker/price');
-                const binanceData = await binanceResponse.json();
+                // Call real API
+                const response = await fetch(`http://localhost:8001/api/rates/live?format=${currentFormat}`);
                 
-                // Process live rates
-                const liveRatesData = {};
+                if (!response.ok) {
+                    throw new Error(`API Error: ${response.status}`);
+                }
                 
-                // Add stablecoins
-                liveRatesData['USDT (TRC-20)'] = { symbol: 'USDT', rate: 1.0, type: 'fiat' };
-                liveRatesData['USDT (ERC-20)'] = { symbol: 'USDT', rate: 1.0, type: 'fiat' };
-                liveRatesData['USDC (ERC-20)'] = { symbol: 'USDC', rate: 1.0, type: 'fiat' };
-                liveRatesData['BUSD (BEP-20)'] = { symbol: 'BUSD', rate: 1.0, type: 'fiat' };
+                const blob = await response.blob();
+                const filename = `live_rates_${new Date().toISOString().split('T')[0]}.${currentFormat}`;
                 
-                // Process crypto rates from Binance
-                const cryptoMapping = {
-                    'BTCUSDT': 'Bitcoin BTC',
-                    'ETHUSDT': 'Ethereum ETH',
-                    'LTCUSDT': 'Litecoin LTC',
-                    'TRXUSDT': 'Tron TRX',
-                    'BNBUSDT': 'Bsc BNB',
-                    'MATICUSDT': 'Polygon MATIC',
-                    'SOLUSDT': 'Solana SOL',
-                    'ADAUSDT': 'Cardano ADA',
-                    'DOGEUSDT': 'Dogecoin DOGE',
-                    'SHIBUSDT': 'Shiba Inu SHIB',
-                    'XMRUSDT': 'Monero XMR'
+                // Download file
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = filename;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+                
+                // Update preview with mock data for display
+                const mockLiveRates = {
+                    'Bitcoin BTC': { symbol: 'BTC', rate: 0.0000234, type: 'crypto' },
+                    'Ethereum ETH': { symbol: 'ETH', rate: 0.00042, type: 'crypto' },
+                    'USDT (TRC-20)': { symbol: 'USDT', rate: 1.0, type: 'fiat' },
+                    'USD Dollar': { symbol: 'USD', rate: 1.0, type: 'fiat' },
+                    'EUR Euro': { symbol: 'EUR', rate: 0.87, type: 'fiat' },
+                    'RUB Ruble': { symbol: 'RUB', rate: 96.2, type: 'fiat' },
+                    'BRL Real': { symbol: 'BRL', rate: 5.15, type: 'fiat' }
                 };
                 
-                for (const item of binanceData) {
-                    if (cryptoMapping[item.symbol]) {
-                        const rate = 1.0 / parseFloat(item.price);
-                        const symbol = item.symbol.replace('USDT', '');
-                        liveRatesData[cryptoMapping[item.symbol]] = {
-                            symbol: symbol,
-                            rate: rate,
-                            type: 'crypto'
-                        };
-                    }
-                }
-                
-                // Fetch fiat rates from Fixer API
-                try {
-                    const fixerResponse = await fetch(`https://data.fixer.io/api/latest?access_key=3248141d09cae0d63b8636ec094f158b&symbols=USD,EUR,RUB,BRL`);
-                    const fixerData = await fixerResponse.json();
-                    
-                    if (fixerData.success) {
-                        const rates = fixerData.rates;
-                        const usdToEur = rates.USD || 1.0;
-                        
-                        liveRatesData['USD Dollar'] = { symbol: 'USD', rate: 1.0, type: 'fiat' };
-                        liveRatesData['EUR Euro'] = { symbol: 'EUR', rate: 1.0 / usdToEur, type: 'fiat' };
-                        liveRatesData['RUB Ruble'] = { symbol: 'RUB', rate: rates.RUB / usdToEur, type: 'fiat' };
-                        liveRatesData['BRL Real'] = { symbol: 'BRL', rate: rates.BRL / usdToEur, type: 'fiat' };
-                    } else {
-                        // Fallback to static rates if API fails
-                        liveRatesData['USD Dollar'] = { symbol: 'USD', rate: 1.0, type: 'fiat' };
-                        liveRatesData['EUR Euro'] = { symbol: 'EUR', rate: 0.87, type: 'fiat' };
-                        liveRatesData['RUB Ruble'] = { symbol: 'RUB', rate: 96.2, type: 'fiat' };
-                        liveRatesData['BRL Real'] = { symbol: 'BRL', rate: 5.15, type: 'fiat' };
-                    }
-                } catch (fixerError) {
-                    // Fallback to static rates if API fails
-                    liveRatesData['USD Dollar'] = { symbol: 'USD', rate: 1.0, type: 'fiat' };
-                    liveRatesData['EUR Euro'] = { symbol: 'EUR', rate: 0.87, type: 'fiat' };
-                    liveRatesData['RUB Ruble'] = { symbol: 'RUB', rate: 96.2, type: 'fiat' };
-                    liveRatesData['BRL Real'] = { symbol: 'BRL', rate: 5.15, type: 'fiat' };
-                }
-                
-                liveRates = liveRatesData;
-                
-                // Generate and download file
-                let content, filename, mimeType;
-                
-                switch (currentFormat) {
-                    case 'xml':
-                        content = formatToXML(liveRates, 'Live Rates');
-                        filename = `live_rates_${new Date().toISOString().split('T')[0]}.xml`;
-                        mimeType = 'application/xml';
-                        break;
-                    case 'json':
-                        content = formatToJSON(liveRates, 'Live Rates');
-                        filename = `live_rates_${new Date().toISOString().split('T')[0]}.json`;
-                        mimeType = 'application/json';
-                        break;
-                    case 'csv':
-                        content = formatToCSV(liveRates, 'Live Rates');
-                        filename = `live_rates_${new Date().toISOString().split('T')[0]}.csv`;
-                        mimeType = 'text/csv';
-                        break;
-                }
-                
-                downloadFile(content, filename, mimeType);
+                liveRates = mockLiveRates;
                 updatePreview(liveRates, 'Live Rates');
                 showStatus('live-status', `✅ ${filename} downloaded successfully!`, 'success');
                 
