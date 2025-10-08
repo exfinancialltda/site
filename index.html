@@ -168,6 +168,29 @@
       height: 18px;
     }
 
+    .lang-selector {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--border-radius-sm);
+      color: var(--text-primary);
+      padding: 0.5rem 1rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .lang-selector:hover {
+      border-color: var(--accent-color);
+      background: var(--glass-bg);
+    }
+
+    .lang-selector:focus {
+      outline: none;
+      border-color: var(--accent-color);
+      box-shadow: 0 0 0 3px rgba(79, 172, 254, 0.1);
+    }
+
     .auth {
       display: flex;
       gap: 1rem;
@@ -997,7 +1020,12 @@
       <div>support@ex.financial</div>
     </div>
     <div class="lang">
-      EN
+      <select id="language-selector" class="lang-selector">
+        <option value="en">🇺🇸 EN</option>
+        <option value="ru">🇷🇺 RU</option>
+        <option value="pt">🇧🇷 PT</option>
+        <option value="es">🇪🇸 ES</option>
+      </select>
     </div>
 
   </header>
@@ -1008,7 +1036,7 @@
   <div class="main">
     <!-- Left Column -->
     <div class="card">
-      <h3>SELECT WHAT YOU SEND</h3>
+      <h3 data-translate="select_send">SELECT WHAT YOU SEND</h3>
       <ul class="currency-list">
         <!-- Стабильные монеты -->
         <li class="currency-item active" data-currency="USDT (TRC-20)" data-type="from">
@@ -1174,7 +1202,7 @@
 
     <!-- Middle Column -->
     <div class="card">
-      <h3>SELECT WHAT YOU GET</h3>
+      <h3 data-translate="select_get">SELECT WHAT YOU GET</h3>
       <ul class="currency-list">
         <!-- Фиатные валюты -->
         <li class="currency-item active" data-currency="BRL Real" data-type="to">
@@ -1306,15 +1334,15 @@
 
     <!-- Right Column -->
     <div class="card">
-      <h3>ENTER DETAILS</h3>
+      <h3 data-translate="enter_details">ENTER DETAILS</h3>
 
       <div class="form-group">
-        <label for="well" class="form-label">RATE</label>
+        <label for="well" class="form-label" data-translate="rate">RATE</label>
         <div class="rate-container">
           <input type="text" id="well" class="form-input" placeholder="Loading real-time rates..." readonly="" style="color: #ffffff;">
           <div id="rate-status" class="rate-status">
             <span class="status-indicator" id="status-indicator">✅</span>
-            <span class="status-text" id="status-text">Real-time rate</span>
+            <span class="status-text" id="status-text" data-translate="real_time_rate">Real-time rate</span>
           </div>
 
         </div>
@@ -1323,12 +1351,12 @@
       </div>
       <div class="form-row">
         <div class="form-col">
-          <label for="give" class="form-label">You give:</label>
+          <label for="give" class="form-label" data-translate="you_give">You give:</label>
           <input type="number" id="give" class="form-input" placeholder="Enter the amount">
 
         </div>
         <div class="form-col">
-          <label for="receive" class="form-label">You receive:</label>
+          <label for="receive" class="form-label" data-translate="you_receive">You receive:</label>
           <input type="number" id="receive" class="form-input" placeholder="Enter the amount">
 
         </div>
@@ -2276,6 +2304,97 @@
         rateInput.placeholder = 'Loading real-time rates...';
       }
       
+    });
+
+    // Многоязычность
+    const translations = {
+      en: {
+        select_send: "SELECT WHAT YOU SEND",
+        select_get: "SELECT WHAT YOU GET", 
+        enter_details: "ENTER DETAILS",
+        rate: "RATE",
+        you_give: "You give:",
+        you_receive: "You receive:",
+        real_time_rate: "Real-time rate",
+        loading_rates: "Loading real-time rates...",
+        enter_amount: "Enter the amount"
+      },
+      ru: {
+        select_send: "ВЫБЕРИТЕ ЧТО ОТПРАВЛЯЕТЕ",
+        select_get: "ВЫБЕРИТЕ ЧТО ПОЛУЧАЕТЕ",
+        enter_details: "ВВЕДИТЕ ДЕТАЛИ", 
+        rate: "КУРС",
+        you_give: "Вы даете:",
+        you_receive: "Вы получаете:",
+        real_time_rate: "Курс в реальном времени",
+        loading_rates: "Загрузка курсов...",
+        enter_amount: "Введите сумму"
+      },
+      pt: {
+        select_send: "SELECIONE O QUE ENVIA",
+        select_get: "SELECIONE O QUE RECEBE",
+        enter_details: "INSIRA OS DETALHES",
+        rate: "TAXA",
+        you_give: "Você dá:",
+        you_receive: "Você recebe:",
+        real_time_rate: "Taxa em tempo real",
+        loading_rates: "Carregando taxas...",
+        enter_amount: "Digite o valor"
+      },
+      es: {
+        select_send: "SELECCIONA LO QUE ENVÍAS",
+        select_get: "SELECCIONA LO QUE RECIBES", 
+        enter_details: "INGRESA LOS DETALLES",
+        rate: "TASA",
+        you_give: "Tú das:",
+        you_receive: "Tú recibes:",
+        real_time_rate: "Tasa en tiempo real",
+        loading_rates: "Cargando tasas...",
+        enter_amount: "Ingresa el monto"
+      }
+    };
+
+    let currentLanguage = 'en';
+
+    function translatePage(language) {
+      currentLanguage = language;
+      const elements = document.querySelectorAll('[data-translate]');
+      
+      elements.forEach(element => {
+        const key = element.getAttribute('data-translate');
+        if (translations[language] && translations[language][key]) {
+          element.textContent = translations[language][key];
+        }
+      });
+
+      // Обновляем placeholder'ы
+      const rateInput = document.getElementById('well');
+      if (rateInput) {
+        rateInput.placeholder = translations[language].loading_rates;
+      }
+      
+      const amountInputs = document.querySelectorAll('input[type="number"]');
+      amountInputs.forEach(input => {
+        input.placeholder = translations[language].enter_amount;
+      });
+
+      // Сохраняем выбранный язык
+      localStorage.setItem('selectedLanguage', language);
+    }
+
+    // Инициализация языка
+    document.addEventListener('DOMContentLoaded', function() {
+      const savedLanguage = localStorage.getItem('selectedLanguage') || 'en';
+      const languageSelector = document.getElementById('language-selector');
+      
+      if (languageSelector) {
+        languageSelector.value = savedLanguage;
+        translatePage(savedLanguage);
+        
+        languageSelector.addEventListener('change', function() {
+          translatePage(this.value);
+        });
+      }
     });
   </script>
 
