@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='utf-8'?>
+<rates date="2025-10-08" time="14:11:53">
+  <currency symbol="BTC" rate="2.3e-05" base="USD" />
+  <currency symbol="ETH" rate="0.0004" base="USD" />
+  <currency symbol="USDT" rate="1.0" base="USD" />
+  <currency symbol="USDC" rate="1.0" base="USD" />
+  <currency symbol="BRL" rate="5.2" base="USD" />
+  <currency symbol="USD" rate="1.0" base="USD" />
+  <currency symbol="EUR" rate="0.85" base="USD" />
+  <currency symbol="RUB" rate="95.5" base="USD" />
+</rates>

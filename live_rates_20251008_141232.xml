@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='utf-8'?>
+<exchange_rates timestamp="2025-10-08T14:12:32.334379" source="EX Financial - Live Rates" version="2.0">
+  <metadata>
+    <last_updated>2025-10-08 14:12:32</last_updated>
+    <total_currencies>19</total_currencies>
+    <base_currency>USD</base_currency>
+    <crypto_sources>Binance API</crypto_sources>
+    <fiat_sources>Fixer API</fiat_sources>
+  </metadata>
+  <rates>
+    <rate currency="Bitcoin BTC" symbol="BTC" rate="2.338120244847952e-05" type="crypto" />
+    <rate currency="Ethereum ETH" symbol="ETH" rate="0.0004383811461036684" type="crypto" />
+    <rate currency="Litecoin LTC" symbol="LTC" rate="0.01381788033715628" type="crypto" />
+    <rate currency="Tron TRX" symbol="TRX" rate="9.681479330041629" type="crypto" />
+    <rate currency="Bsc BNB" symbol="BNB" rate="0.003971405877680699" type="crypto" />
+    <rate currency="Polygon MATIC" symbol="MATIC" rate="1.1548677676406052" type="crypto" />
+    <rate currency="Solana SOL" symbol="SOL" rate="0.013401232913428035" type="crypto" />
+    <rate currency="Cardano ADA" symbol="ADA" rate="1.5688735487919674" type="crypto" />
+    <rate currency="Dogecoin DOGE" symbol="DOGE" rate="10.264832683227263" type="crypto" />
+    <rate currency="Shiba Inu SHIB" symbol="SHIB" rate="107411.38560687432" type="crypto" />
+    <rate currency="Monero XMR" symbol="XMR" rate="0.005875440658049354" type="crypto" />
+    <rate currency="USDT (TRC-20)" symbol="USDT" rate="1.0" type="fiat" />
+    <rate currency="USDT (ERC-20)" symbol="USDT" rate="1.0" type="fiat" />
+    <rate currency="USDC (ERC-20)" symbol="USDC" rate="1.0" type="fiat" />
+    <rate currency="BUSD (BEP-20)" symbol="BUSD" rate="1.0" type="fiat" />
+    <rate currency="USD Dollar" symbol="USD" rate="1.0" type="fiat" />
+    <rate currency="EUR Euro" symbol="EUR" rate="0.8616968016399813" type="fiat" />
+    <rate currency="RUB Ruble" symbol="RUB" rate="81.4447768679217" type="fiat" />
+    <rate currency="BRL Real" symbol="BRL" rate="5.345704139849944" type="fiat" />
+  </rates>
+</exchange_rates>

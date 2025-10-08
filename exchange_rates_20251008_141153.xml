@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='utf-8'?>
+<exchange_rates timestamp="2025-10-08T14:11:53.631893" source="EX Financial" version="1.0">
+  <metadata>
+    <last_updated>2025-10-08 14:11:53</last_updated>
+    <total_currencies>19</total_currencies>
+    <base_currency>USD</base_currency>
+  </metadata>
+  <rates>
+    <rate currency="USDT (TRC-20)" symbol="USDT" rate="1.0" type="fiat" />
+    <rate currency="USDT (ERC-20)" symbol="USDT" rate="1.0" type="fiat" />
+    <rate currency="USDC (ERC-20)" symbol="USDC" rate="1.0" type="fiat" />
+    <rate currency="BUSD (BEP-20)" symbol="BUSD" rate="1.0" type="fiat" />
+    <rate currency="Bitcoin BTC" symbol="BTC" rate="2.3e-05" type="crypto" />
+    <rate currency="Ethereum ETH" symbol="ETH" rate="0.0004" type="crypto" />
+    <rate currency="Litecoin LTC" symbol="LTC" rate="0.004" type="crypto" />
+    <rate currency="Tron TRX" symbol="TRX" rate="4.2" type="crypto" />
+    <rate currency="Bsc BNB" symbol="BNB" rate="0.0016" type="crypto" />
+    <rate currency="Polygon MATIC" symbol="MATIC" rate="0.8" type="crypto" />
+    <rate currency="Solana SOL" symbol="SOL" rate="0.004" type="crypto" />
+    <rate currency="Cardano ADA" symbol="ADA" rate="1.2" type="crypto" />
+    <rate currency="Dogecoin DOGE" symbol="DOGE" rate="3.5" type="crypto" />
+    <rate currency="Shiba Inu SHIB" symbol="SHIB" rate="150000" type="crypto" />
+    <rate currency="Monero XMR" symbol="XMR" rate="0.0006" type="crypto" />
+    <rate currency="BRL Real" symbol="BRL" rate="5.2" type="fiat" />
+    <rate currency="USD Dollar" symbol="USD" rate="1.0" type="fiat" />
+    <rate currency="EUR Euro" symbol="EUR" rate="0.85" type="fiat" />
+    <rate currency="RUB Ruble" symbol="RUB" rate="95.5" type="fiat" />
+  </rates>
+</exchange_rates>
