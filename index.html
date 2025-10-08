@@ -191,6 +191,17 @@
       box-shadow: 0 0 0 3px rgba(79, 172, 254, 0.1);
     }
 
+    .export-link {
+      display: flex;
+      align-items: center;
+    }
+
+    .export-link a:hover {
+      background: var(--accent-color);
+      color: var(--text-primary);
+      transform: translateY(-1px);
+    }
+
     .auth {
       display: flex;
       gap: 1rem;
@@ -1018,6 +1029,11 @@
 
     <div class="support">
       <div>support@ex.financial</div>
+    </div>
+    <div class="export-link">
+      <a href="export.html" style="color: var(--accent-color); text-decoration: none; font-weight: 600; padding: 0.5rem 1rem; border: 1px solid var(--accent-color); border-radius: var(--border-radius-sm); transition: var(--transition);">
+        📊 Export
+      </a>
     </div>
     <div class="lang">
       <select id="language-selector" class="lang-selector">
