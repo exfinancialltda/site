@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Export Exchange Rates - EX Financial</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #1a365d;
+            --secondary-color: #2d3748;
+            --accent-color: #3182ce;
+            --success-color: #38a169;
+            --warning-color: #ed8936;
+            --error-color: #e53e3e;
+            --text-primary: #f7fafc;
+            --text-secondary: #a0aec0;
+            --text-muted: #718096;
+            --bg-primary: #0f1419;
+            --bg-secondary: #1a202c;
+            --bg-tertiary: #2d3748;
+            --bg-card: rgba(26, 32, 44, 0.95);
+            --border-color: #4a5568;
+            --border-light: #2d3748;
+            --glass-bg: rgba(247, 250, 252, 0.05);
+            --glass-border: rgba(247, 250, 252, 0.1);
+            --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.4);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.4), 0 10px 10px -5px rgba(0, 0, 0, 0.3);
+            --gradient-primary: linear-gradient(135deg, #1a365d 0%, #2d3748 100%);
+            --gradient-accent: linear-gradient(135deg, #3182ce 0%, #4299e1 100%);
+            --gradient-success: linear-gradient(135deg, #38a169 0%, #48bb78 100%);
+            --border-radius: 12px;
+            --border-radius-sm: 6px;
+            --border-radius-lg: 16px;
+            --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-slow: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .logo-ex {
+            color: var(--accent-color);
+        }
+
+        .title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: var(--gradient-accent);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+
+        .export-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .export-card {
+            background: var(--bg-card);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--border-radius-lg);
+            padding: 2rem;
+            backdrop-filter: blur(20px);
+            box-shadow: var(--shadow-lg);
+            transition: var(--transition);
+        }
+
+        .export-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+        }
+
+        .card-description {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .export-options {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .export-btn {
+            background: var(--gradient-accent);
+            color: var(--text-primary);
+            border: none;
+            border-radius: var(--border-radius);
+            padding: 1rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .export-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .export-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .export-btn.success {
+            background: var(--gradient-success);
+        }
+
+        .format-selector {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .format-btn {
+            background: var(--bg-secondary);
+            color: var(--text-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius-sm);
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 0.9rem;
+        }
+
+        .format-btn.active {
+            background: var(--accent-color);
+            color: var(--text-primary);
+            border-color: var(--accent-color);
+        }
+
+        .format-btn:hover {
+            border-color: var(--accent-color);
+        }
+
+        .status {
+            margin-top: 1rem;
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            font-size: 0.9rem;
+            display: none;
+        }
+
+        .status.success {
+            background: rgba(56, 161, 105, 0.1);
+            border: 1px solid var(--success-color);
+            color: var(--success-color);
+        }
+
+        .status.error {
+            background: rgba(229, 62, 62, 0.1);
+            border: 1px solid var(--error-color);
+            color: var(--error-color);
+        }
+
+        .status.loading {
+            background: rgba(49, 130, 206, 0.1);
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+        }
+
+        .rates-preview {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            padding: 1rem;
+            margin-top: 1rem;
+            max-height: 300px;
+            overflow-y: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 0.8rem;
+            white-space: pre-wrap;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            transition: var(--transition);
+        }
+
+        .back-link:hover {
+            color: var(--text-primary);
+        }
+
+        .loading-spinner {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 2px solid transparent;
+            border-top: 2px solid currentColor;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            .export-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            .export-card {
+                padding: 1.5rem;
+            }
+            
+            .title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">
+            ← Back to Exchange
+        </a>
+
+        <div class="header">
+            <div class="logo">
+                <span class="logo-ex">EX</span>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                    <path d="M12 2L2 7l10 5 12l10 5 10-5M2 12l10 5 10-5" fill="currentColor"></path>
+                </svg>
+                <span>FINANCIAL</span>
+            </div>
+            <h1 class="title">Export Exchange Rates</h1>
+            <p class="subtitle">Download current exchange rates in various formats</p>
+        </div>
+
+        <div class="export-grid">
+            <!-- Static Rates Export -->
+            <div class="export-card">
+                <h3 class="card-title">Static Rates</h3>
+                <p class="card-description">
+                    Export predefined exchange rates from the system. These rates are updated manually and provide consistent data for testing and development.
+                </p>
+                
+                <div class="format-selector">
+                    <button class="format-btn active" data-format="xml">XML</button>
+                    <button class="format-btn" data-format="json">JSON</button>
+                    <button class="format-btn" data-format="csv">CSV</button>
+                </div>
+
+                <div class="export-options">
+                    <button class="export-btn" id="export-static">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z"/>
+                        </svg>
+                        Export Static Rates
+                    </button>
+                </div>
+
+                <div class="status" id="static-status"></div>
+            </div>
+
+            <!-- Live Rates Export -->
+            <div class="export-card">
+                <h3 class="card-title">Live Rates</h3>
+                <p class="card-description">
+                    Export real-time exchange rates from Binance API and Fixer API. These rates are fetched live and represent current market conditions.
+                </p>
+                
+                <div class="format-selector">
+                    <button class="format-btn active" data-format="xml">XML</button>
+                    <button class="format-btn" data-format="json">JSON</button>
+                    <button class="format-btn" data-format="csv">CSV</button>
+                </div>
+
+                <div class="export-options">
+                    <button class="export-btn" id="export-live">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,7A5,5 0 0,0 7,12A5,5 0 0,0 12,17A5,5 0 0,0 17,12A5,5 0 0,0 12,7M12,9A3,3 0 0,1 15,12A3,3 0 0,1 12,15A3,3 0 0,1 9,12A3,3 0 0,1 12,9Z"/>
+                        </svg>
+                        Export Live Rates
+                    </button>
+                </div>
+
+                <div class="status" id="live-status"></div>
+            </div>
+
+            <!-- Custom Export -->
+            <div class="export-card">
+                <h3 class="card-title">Custom Export</h3>
+                <p class="card-description">
+                    Export specific currencies or date ranges. Choose which currencies to include and set custom parameters for your export.
+                </p>
+                
+                <div class="format-selector">
+                    <button class="format-btn active" data-format="xml">XML</button>
+                    <button class="format-btn" data-format="json">JSON</button>
+                    <button class="format-btn" data-format="csv">CSV</button>
+                </div>
+
+                <div class="export-options">
+                    <button class="export-btn" id="export-custom">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4M12,6A6,6 0 0,1 18,12A6,6 0 0,1 12,18A6,6 0 0,1 6,12A6,6 0 0,1 12,6M12,8A4,4 0 0,0 8,12A4,4 0 0,0 12,16A4,4 0 0,0 16,12A4,4 0 0,0 12,8Z"/>
+                        </svg>
+                        Export Custom
+                    </button>
+                </div>
+
+                <div class="status" id="custom-status"></div>
+            </div>
+        </div>
+
+        <!-- Preview Area -->
+        <div class="export-card">
+            <h3 class="card-title">Preview</h3>
+            <p class="card-description">Preview of the exported data will appear here</p>
+            <div class="rates-preview" id="preview-area">
+                Select an export option above to see a preview of the data.
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Static rates data
+        const staticRates = {
+            'USDT (TRC-20)': { symbol: 'USDT', rate: 1.0, type: 'fiat' },
+            'USDT (ERC-20)': { symbol: 'USDT', rate: 1.0, type: 'fiat' },
+            'USDC (ERC-20)': { symbol: 'USDC', rate: 1.0, type: 'fiat' },
+            'BUSD (BEP-20)': { symbol: 'BUSD', rate: 1.0, type: 'fiat' },
+            'Bitcoin BTC': { symbol: 'BTC', rate: 0.000023, type: 'crypto' },
+            'Ethereum ETH': { symbol: 'ETH', rate: 0.0004, type: 'crypto' },
+            'Litecoin LTC': { symbol: 'LTC', rate: 0.004, type: 'crypto' },
+            'Tron TRX': { symbol: 'TRX', rate: 4.2, type: 'crypto' },
+            'Bsc BNB': { symbol: 'BNB', rate: 0.0016, type: 'crypto' },
+            'Polygon MATIC': { symbol: 'MATIC', rate: 0.8, type: 'crypto' },
+            'Solana SOL': { symbol: 'SOL', rate: 0.004, type: 'crypto' },
+            'Cardano ADA': { symbol: 'ADA', rate: 1.2, type: 'crypto' },
+            'Dogecoin DOGE': { symbol: 'DOGE', rate: 3.5, type: 'crypto' },
+            'Shiba Inu SHIB': { symbol: 'SHIB', rate: 150000, type: 'crypto' },
+            'Monero XMR': { symbol: 'XMR', rate: 0.0006, type: 'crypto' },
+            'BRL Real': { symbol: 'BRL', rate: 5.2, type: 'fiat' },
+            'USD Dollar': { symbol: 'USD', rate: 1.0, type: 'fiat' },
+            'EUR Euro': { symbol: 'EUR', rate: 0.85, type: 'fiat' },
+            'RUB Ruble': { symbol: 'RUB', rate: 95.5, type: 'fiat' }
+        };
+
+        let currentFormat = 'xml';
+        let liveRates = null;
+
+        // Format selector
+        document.querySelectorAll('.format-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Remove active class from all buttons in the same card
+                const card = this.closest('.export-card');
+                card.querySelectorAll('.format-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                currentFormat = this.dataset.format;
+            });
+        });
+
+        // Export functions
+        function showStatus(elementId, message, type) {
+            const status = document.getElementById(elementId);
+            status.textContent = message;
+            status.className = `status ${type}`;
+            status.style.display = 'block';
+            
+            if (type === 'success') {
+                setTimeout(() => {
+                    status.style.display = 'none';
+                }, 3000);
+            }
+        }
+
+        function downloadFile(content, filename, mimeType) {
+            const blob = new Blob([content], { type: mimeType });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        function formatToXML(data, title) {
+            const timestamp = new Date().toISOString();
+            let xml = `<?xml version="1.0" encoding="utf-8"?>\n`;
+            xml += `<exchange_rates timestamp="${timestamp}" source="EX Financial - ${title}" version="1.0">\n`;
+            xml += `  <metadata>\n`;
+            xml += `    <last_updated>${new Date().toLocaleString()}</last_updated>\n`;
+            xml += `    <total_currencies>${Object.keys(data).length}</total_currencies>\n`;
+            xml += `    <base_currency>USD</base_currency>\n`;
+            xml += `  </metadata>\n`;
+            xml += `  <rates>\n`;
+            
+            for (const [currency, info] of Object.entries(data)) {
+                xml += `    <rate currency="${currency}" symbol="${info.symbol}" rate="${info.rate}" type="${info.type}" />\n`;
+            }
+            
+            xml += `  </rates>\n`;
+            xml += `</exchange_rates>`;
+            return xml;
+        }
+
+        function formatToJSON(data, title) {
+            const result = {
+                metadata: {
+                    last_updated: new Date().toISOString(),
+                    total_currencies: Object.keys(data).length,
+                    base_currency: "USD",
+                    source: `EX Financial - ${title}`
+                },
+                rates: data
+            };
+            return JSON.stringify(result, null, 2);
+        }
+
+        function formatToCSV(data, title) {
+            let csv = "Currency,Symbol,Rate,Type\n";
+            for (const [currency, info] of Object.entries(data)) {
+                csv += `"${currency}","${info.symbol}","${info.rate}","${info.type}"\n`;
+            }
+            return csv;
+        }
+
+        function updatePreview(data, title) {
+            const preview = document.getElementById('preview-area');
+            let content = '';
+            
+            switch (currentFormat) {
+                case 'xml':
+                    content = formatToXML(data, title);
+                    break;
+                case 'json':
+                    content = formatToJSON(data, title);
+                    break;
+                case 'csv':
+                    content = formatToCSV(data, title);
+                    break;
+            }
+            
+            preview.textContent = content;
+        }
+
+        // Static rates export
+        document.getElementById('export-static').addEventListener('click', function() {
+            const btn = this;
+            const originalText = btn.innerHTML;
+            
+            btn.innerHTML = '<div class="loading-spinner"></div> Exporting...';
+            btn.disabled = true;
+            
+            setTimeout(() => {
+                try {
+                    let content, filename, mimeType;
+                    
+                    switch (currentFormat) {
+                        case 'xml':
+                            content = formatToXML(staticRates, 'Static Rates');
+                            filename = `static_rates_${new Date().toISOString().split('T')[0]}.xml`;
+                            mimeType = 'application/xml';
+                            break;
+                        case 'json':
+                            content = formatToJSON(staticRates, 'Static Rates');
+                            filename = `static_rates_${new Date().toISOString().split('T')[0]}.json`;
+                            mimeType = 'application/json';
+                            break;
+                        case 'csv':
+                            content = formatToCSV(staticRates, 'Static Rates');
+                            filename = `static_rates_${new Date().toISOString().split('T')[0]}.csv`;
+                            mimeType = 'text/csv';
+                            break;
+                    }
+                    
+                    downloadFile(content, filename, mimeType);
+                    updatePreview(staticRates, 'Static Rates');
+                    showStatus('static-status', `✅ ${filename} downloaded successfully!`, 'success');
+                    
+                } catch (error) {
+                    showStatus('static-status', `❌ Error: ${error.message}`, 'error');
+                }
+                
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+            }, 1000);
+        });
+
+        // Live rates export
+        document.getElementById('export-live').addEventListener('click', async function() {
+            const btn = this;
+            const originalText = btn.innerHTML;
+            
+            btn.innerHTML = '<div class="loading-spinner"></div> Fetching live rates...';
+            btn.disabled = true;
+            showStatus('live-status', '🔄 Fetching live rates from APIs...', 'loading');
+            
+            try {
+                // Call real API
+                const response = await fetch(`/api/rates/live?format=${currentFormat}`);
+                
+                if (!response.ok) {
+                    throw new Error(`API Error: ${response.status}`);
+                }
+                
+                const blob = await response.blob();
+                const filename = `live_rates_${new Date().toISOString().split('T')[0]}.${currentFormat}`;
+                
+                // Download file
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = filename;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+                
+                // Update preview with mock data for display
+                const mockLiveRates = {
+                    'Bitcoin BTC': { symbol: 'BTC', rate: 0.0000234, type: 'crypto' },
+                    'Ethereum ETH': { symbol: 'ETH', rate: 0.00042, type: 'crypto' },
+                    'USDT (TRC-20)': { symbol: 'USDT', rate: 1.0, type: 'fiat' },
+                    'USD Dollar': { symbol: 'USD', rate: 1.0, type: 'fiat' },
+                    'EUR Euro': { symbol: 'EUR', rate: 0.87, type: 'fiat' },
+                    'RUB Ruble': { symbol: 'RUB', rate: 96.2, type: 'fiat' },
+                    'BRL Real': { symbol: 'BRL', rate: 5.15, type: 'fiat' }
+                };
+                
+                liveRates = mockLiveRates;
+                updatePreview(liveRates, 'Live Rates');
+                showStatus('live-status', `✅ ${filename} downloaded successfully!`, 'success');
+                
+            } catch (error) {
+                showStatus('live-status', `❌ Error fetching live rates: ${error.message}`, 'error');
+            }
+            
+            btn.innerHTML = originalText;
+            btn.disabled = false;
+        });
+
+        // Custom export
+        document.getElementById('export-custom').addEventListener('click', function() {
+            const btn = this;
+            const originalText = btn.innerHTML;
+            
+            btn.innerHTML = '<div class="loading-spinner"></div> Exporting...';
+            btn.disabled = true;
+            
+            setTimeout(() => {
+                try {
+                    // For custom export, we'll use a subset of static rates
+                    const customRates = {
+                        'Bitcoin BTC': staticRates['Bitcoin BTC'],
+                        'Ethereum ETH': staticRates['Ethereum ETH'],
+                        'USD Dollar': staticRates['USD Dollar'],
+                        'EUR Euro': staticRates['EUR Euro'],
+                        'RUB Ruble': staticRates['RUB Ruble']
+                    };
+                    
+                    let content, filename, mimeType;
+                    
+                    switch (currentFormat) {
+                        case 'xml':
+                            content = formatToXML(customRates, 'Custom Export');
+                            filename = `custom_rates_${new Date().toISOString().split('T')[0]}.xml`;
+                            mimeType = 'application/xml';
+                            break;
+                        case 'json':
+                            content = formatToJSON(customRates, 'Custom Export');
+                            filename = `custom_rates_${new Date().toISOString().split('T')[0]}.json`;
+                            mimeType = 'application/json';
+                            break;
+                        case 'csv':
+                            content = formatToCSV(customRates, 'Custom Export');
+                            filename = `custom_rates_${new Date().toISOString().split('T')[0]}.csv`;
+                            mimeType = 'text/csv';
+                            break;
+                    }
+                    
+                    downloadFile(content, filename, mimeType);
+                    updatePreview(customRates, 'Custom Export');
+                    showStatus('custom-status', `✅ ${filename} downloaded successfully!`, 'success');
+                    
+                } catch (error) {
+                    showStatus('custom-status', `❌ Error: ${error.message}`, 'error');
+                }
+                
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+            }, 1000);
+        });
+
+        // Initialize preview with static rates
+        updatePreview(staticRates, 'Static Rates');
+    </script>
+</body>
+</html>
