@@ -570,7 +570,7 @@
                     throw new Error(`API Error: ${response.status}`);
                 }
                 
-                const content = currentFormat === "json" ? formatToJSON(data, "Live Rates") : currentFormat === "xml" ? formatToXML(data, "Live Rates") : formatToCSV(data, "Live Rates");
+                const content = currentFormat === "json" ? formatToJSON(liveRates, "Live Rates") : currentFormat === "xml" ? formatToXML(liveRates, "Live Rates") : formatToCSV(liveRates, "Live Rates");
                 const blob = new Blob([content], { type: currentFormat === "json" ? "application/json" : currentFormat === "xml" ? "application/xml" : "text/csv" });
                 const filename = `live_rates_${new Date().toISOString().split('T')[0]}.${currentFormat}`;
                 
