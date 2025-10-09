@@ -551,7 +551,24 @@
     .form-group {
       margin-bottom: 1.5rem;
     }
+    }
 
+    /* Расстояние в столбце ENTER DETAILS */
+    .card:nth-child(3) .form-group {
+      margin-bottom: 1rem;
+    }
+
+    .card:nth-child(3) .rate-container {
+      margin-bottom: 1rem;
+    }
+    }
+
+    .card:nth-child(3) .rate-container .exchange-rate-button {
+      margin-top: 1rem;
+    }
+    .card:nth-child(3) .form-row {
+      margin-bottom: 1rem;
+    }
     .form-label {
       display: block;
       font-size: 0.95rem;
@@ -1454,9 +1471,9 @@
         <div class="exchange-rate-button" data-translate="rate">EXCHANGE RATE</div>
         <div class="rate-container">
           <input type="text" id="well" class="form-input" placeholder="Loading real-time rates..." readonly="" style="color: #ffffff;">
-          <div id="rate-status" class="rate-status">
-            <span class="status-indicator" id="status-indicator">✅</span>
-            <span class="status-text" id="status-text" data-translate="real_time_rate">Real-time rate</span>
+          <div class="exchange-rate-button">
+            
+            ✅ Real-time rate
           </div>
 
         </div>
