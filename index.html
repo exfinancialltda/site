@@ -567,6 +567,39 @@
       text-align: center;
     }
 
+    .exchange-rate-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--text-secondary);
+      padding: 0.75rem 1.5rem;
+      border-radius: var(--border-radius-sm);
+      border: 1px solid var(--border-color);
+      background: var(--bg-card);
+      backdrop-filter: blur(20px);
+      transition: var(--transition);
+      margin-bottom: 1rem;
+      text-align: center;
+      min-height: 60px;
+      width: 100%;
+    }
+
+    .exchange-rate-button:hover {
+      color: #ffffff;
+      border-color: #ffffff;
+      background: rgba(79, 172, 254, 0.1);
+    }
+
+    #well {
+      height: 60px;
+      min-height: 60px;
+      font-size: 1.2rem;
+      font-weight: 700;
+      padding: 0.75rem 1.5rem;
+    }
+
     .form-input {
       width: 100%;
       padding: 1rem;
@@ -1392,7 +1425,7 @@
       <h3 data-translate="enter_details">ENTER DETAILS</h3>
 
       <div class="form-group">
-        <label for="well" class="form-label" data-translate="rate">RATE</label>
+        <div class="exchange-rate-button" data-translate="rate">EXCHANGE RATE</div>
         <div class="rate-container">
           <input type="text" id="well" class="form-input" placeholder="Loading real-time rates..." readonly="" style="color: #ffffff;">
           <div id="rate-status" class="rate-status">
@@ -2367,7 +2400,7 @@
         select_send: "SELECT WHAT YOU SEND",
         select_get: "SELECT WHAT YOU GET", 
         enter_details: "ENTER DETAILS",
-        rate: "RATE",
+        rate: "EXCHANGE RATE",
         you_give: "You give:",
         you_receive: "You receive:",
         real_time_rate: "Real-time rate",
