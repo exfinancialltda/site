@@ -563,15 +563,13 @@
             
             try {
                 // Call real API
-                // Используем статические данные вместо API
-                let liveRates = staticRates;
+                const response = await fetch(`http://localhost:8001/api/rates/live?format=${currentFormat}`);
                 
-                if (false) {
+                if (!response.ok) {
                     throw new Error(`API Error: ${response.status}`);
                 }
                 
-                const content = currentFormat === "json" ? formatToJSON(liveRates, "Live Rates") : currentFormat === "xml" ? formatToXML(liveRates, "Live Rates") : formatToCSV(liveRates, "Live Rates");
-                const blob = new Blob([content], { type: currentFormat === "json" ? "application/json" : currentFormat === "xml" ? "application/xml" : "text/csv" });
+                const blob = await response.blob();
                 const filename = `live_rates_${new Date().toISOString().split('T')[0]}.${currentFormat}`;
                 
                 // Download file
