@@ -564,7 +564,7 @@
             try {
                 // Call real API
                 // Используем статические данные вместо API
-                const liveRates = staticRates;
+                let liveRates = staticRates;
                 
                 if (false) {
                     throw new Error(`API Error: ${response.status}`);
