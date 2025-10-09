@@ -563,7 +563,7 @@
             
             try {
                 // Call real API
-                const response = await fetch(`http://localhost:8001/api/rates/live?format=${currentFormat}`);
+                const response = await fetch(`/api/rates/live?format=${currentFormat}`);
                 
                 if (!response.ok) {
                     throw new Error(`API Error: ${response.status}`);
